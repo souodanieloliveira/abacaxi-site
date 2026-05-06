@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type React from "react";
 function InstagramIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -27,7 +28,7 @@ function FacebookIcon() {
   );
 }
 
-const socials = [
+const socials: { icon: React.ComponentType; href: string; label: string }[] = [
   { icon: InstagramIcon, href: "https://www.instagram.com/abacaxi.cc/", label: "Instagram" },
   { icon: LinkedinIcon, href: "https://www.linkedin.com/company/abacaxi-cc/", label: "LinkedIn" },
   { icon: FacebookIcon, href: "https://www.facebook.com/abacaxi.cc", label: "Facebook" },
@@ -76,7 +77,7 @@ export default function Footer() {
                   transition: "border-color 0.2s",
                 }}
               >
-                <Icon size={18} />
+                <Icon />
               </Link>
             ))}
           </div>
