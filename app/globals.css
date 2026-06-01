@@ -23,10 +23,16 @@
 /* Body */
 body {
   margin: 0;
-  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-figtree), system-ui, -apple-system, Arial, sans-serif;
   background-color: var(--color-background);
   color: var(--color-text-main);
   line-height: 1.6;
+}
+
+/* Destaques em serifa */
+.accent-serif {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
 }
 
 /* Container padrão */
