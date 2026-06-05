@@ -2,16 +2,43 @@
 
 import { useState } from "react";
 
-export default function ContactForm() {
-  const [form, setForm] = useState({ nome: "", empresa: "", email: "", mensagem: "" });
-  const [submitted, setSubmitted] = useState(false);
+interface Props {
+  /** Serviço de Interesse a registrar no Airtable (em branco no contato genérico). */
+  servico?: string;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
+type Status = "idle" | "loading" | "success" | "error";
+
+export default function ContactForm({ servico }: Props) {
+  const [form, setForm] = useState({ nome: "", empresa: "", email: "", mensagem: "" });
+  const [status, setStatus] = useState<Status>("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.nome && form.email && form.mensagem) setSubmitted(true);
+    if (!form.nome || !form.email || !form.mensagem) return;
+
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: form.nome,
+          empresa: form.empresa,
+          email: form.email,
+          mensagem: form.mensagem,
+          servico,
+        }),
+      });
+
+      if (!res.ok) throw new Error("request failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <p style={{ fontWeight: 600, color: "var(--color-text-accent)", fontSize: "1.125rem" }}>
         Mensagem recebida! Entraremos em contato em breve.
@@ -28,6 +55,8 @@ export default function ContactForm() {
     outline: "none",
     boxSizing: "border-box",
   };
+
+  const loading = status === "loading";
 
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -67,6 +96,7 @@ export default function ContactForm() {
       <div>
         <button
           type="submit"
+          disabled={loading}
           style={{
             background: "var(--color-button)",
             color: "#ffffff",
@@ -75,12 +105,18 @@ export default function ContactForm() {
             fontWeight: 700,
             fontSize: "1rem",
             border: "none",
-            cursor: "pointer",
+            cursor: loading ? "not-allowed" : "pointer",
+            opacity: loading ? 0.7 : 1,
           }}
         >
-          Enviar
+          {loading ? "Enviando…" : "Enviar"}
         </button>
       </div>
+      {status === "error" && (
+        <p style={{ color: "#c0392b", fontSize: "0.9375rem", margin: 0 }}>
+          Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.
+        </p>
+      )}
     </form>
   );
 }

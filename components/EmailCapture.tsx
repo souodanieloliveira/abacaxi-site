@@ -8,22 +8,40 @@ interface Props {
   disclaimer: string;
 }
 
+type Status = "idle" | "loading" | "success" | "error";
+
 export default function EmailCapture({ placeholder, cta, disclaimer }: Props) {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/lista-espera", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) throw new Error("request failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <p style={{ fontWeight: 600, color: "var(--color-text-accent)" }}>
         Anotado! Te avisamos quando estiver pronto.
       </p>
     );
   }
+
+  const loading = status === "loading";
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,6 +63,7 @@ export default function EmailCapture({ placeholder, cta, disclaimer }: Props) {
         />
         <button
           type="submit"
+          disabled={loading}
           style={{
             background: "var(--color-button)",
             color: "#ffffff",
@@ -53,16 +72,23 @@ export default function EmailCapture({ placeholder, cta, disclaimer }: Props) {
             fontWeight: 500,
             fontSize: "1rem",
             border: "none",
-            cursor: "pointer",
+            cursor: loading ? "not-allowed" : "pointer",
+            opacity: loading ? 0.7 : 1,
             whiteSpace: "nowrap",
           }}
         >
-          {cta}
+          {loading ? "Enviando…" : cta}
         </button>
       </div>
-      <p style={{ fontSize: "0.875rem", opacity: 0.6, margin: 0 }}>
-        {disclaimer}
-      </p>
+      {status === "error" ? (
+        <p style={{ fontSize: "0.875rem", color: "#c0392b", margin: 0 }}>
+          Não foi possível registrar agora. Tente novamente.
+        </p>
+      ) : (
+        <p style={{ fontSize: "0.875rem", opacity: 0.6, margin: 0 }}>
+          {disclaimer}
+        </p>
+      )}
     </form>
   );
 }

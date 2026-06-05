@@ -71,7 +71,6 @@ export default function ContatoPage() {
             >
               Envie uma mensagem
             </h2>
-            {/* TODO: integrar com Pipefy ou Brevo */}
             <ContactForm />
           </div>
 
