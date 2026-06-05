@@ -23,7 +23,7 @@ export default function EmailCapture({ placeholder, cta, disclaimer }: Props) {
       const res = await fetch("/api/lista-espera", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, origem: "Cursos online" }),
       });
 
       if (!res.ok) throw new Error("request failed");

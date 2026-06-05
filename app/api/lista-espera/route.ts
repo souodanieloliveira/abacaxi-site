@@ -5,7 +5,12 @@ const TABLE_ID = "tblg5KBb3cLk6nZLo";
 
 type ListaEsperaBody = {
   email?: string;
+  origem?: string;
 };
+
+// Opções válidas do singleSelect "Origem" na tabela Lista de Espera.
+const ORIGENS_VALIDAS = ["Cursos online", "Lead magnet", "Newsletter"] as const;
+const ORIGEM_PADRAO = "Cursos online";
 
 export async function POST(request: Request) {
   const token = process.env.AIRTABLE_TOKEN;
@@ -35,12 +40,20 @@ export async function POST(request: Request) {
     );
   }
 
+  // Só aceita origens conhecidas; o client não pode injetar valores arbitrários.
+  const origemInformada = body.origem?.trim();
+  const origem = ORIGENS_VALIDAS.includes(
+    origemInformada as (typeof ORIGENS_VALIDAS)[number]
+  )
+    ? (origemInformada as string)
+    : ORIGEM_PADRAO;
+
   // Data atual em formato ISO (YYYY-MM-DD).
   const dataInscricao = new Date().toISOString().slice(0, 10);
 
   const fields: Record<string, string> = {
     "E-mail": email,
-    Origem: "Cursos online",
+    Origem: origem,
     "Data de Inscrição": dataInscricao,
   };
 
