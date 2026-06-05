@@ -35,7 +35,7 @@ export default function EmailCapture({ placeholder, cta, disclaimer }: Props) {
 
   if (status === "success") {
     return (
-      <p style={{ fontWeight: 600, color: "var(--color-text-accent)" }}>
+      <p style={{ fontWeight: 600, color: "#ffffff" }}>
         Anotado! Te avisamos quando estiver pronto.
       </p>
     );
@@ -81,7 +81,7 @@ export default function EmailCapture({ placeholder, cta, disclaimer }: Props) {
         </button>
       </div>
       {status === "error" ? (
-        <p style={{ fontSize: "0.875rem", color: "#c0392b", margin: 0 }}>
+        <p style={{ fontSize: "0.875rem", color: "#ffffff", fontWeight: 600, margin: 0 }}>
           Não foi possível registrar agora. Tente novamente.
         </p>
       ) : (
