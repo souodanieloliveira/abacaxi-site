@@ -5,19 +5,19 @@
 
 /* Variáveis da marca */
 :root {
-  --color-primary: #7d1fde;
-  --color-secondary: #ec9012;
-  --color-button: #f15808;
+  --color-primary: #8500DB;
+  --color-secondary: #FF8B13;
+  --color-button: #FF8B13;
 
-  --color-text-main: #111111;
-  --color-text-accent: #6a1b9a;
+  --color-text-main: #1A1A1A;
+  --color-text-accent: #8500DB;
 
-  --color-background: #f1f1f1;
-  --color-background-soft: #e5d7d1;
-  --color-header: #e5d7d1;
+  --color-background: #F4F0FB;
+  --color-background-soft: #ECE4FA;
+  --color-header: #F4F0FB;
 
-  --color-border-light: #d6d6d6;
-  --color-dark: #3d1a6e;
+  --color-border-light: #E3DCF2;
+  --color-dark: #3D1A6E;
 }
 
 /* Body */
@@ -83,7 +83,7 @@ a {
 
 /* Hero */
 .hero-card {
-  background: rgba(229, 215, 209, 0.8);
+  background: rgba(236, 228, 250, 0.8);
   backdrop-filter: blur(2px);
   padding: 20px 24px 28px;
   border-radius: 12px;
