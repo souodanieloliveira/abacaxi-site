@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   // então concatenamos em "Próxima Ação".
   const fields: Record<string, string> = {
     "Nome do Lead": empresa ? `${nome} — ${empresa}` : nome,
-    Gatilho: "Site",
+    Origem: "Site",
     Fase: "Novos",
     Status: "Novo",
     Temperatura: "Morno",
