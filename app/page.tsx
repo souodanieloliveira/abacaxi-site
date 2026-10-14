@@ -221,7 +221,7 @@ export default function Home() {
                   gap: 28,
                   marginBottom: index < home.coroa.items.length - 1 ? 24 : 0,
                   position: "relative",
-                  background: index % 2 !== 0 ? "rgba(61, 26, 110, 0.06)" : "rgba(229, 215, 209, 0.45)",
+                  background: index % 2 !== 0 ? "rgba(61, 26, 110, 0.06)" : "rgba(133, 0, 219, 0.06)",
                   borderRadius: 10,
                   padding: "20px 16px 20px 16px",
                 }}
