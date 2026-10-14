@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterBox from "../../components/blog/NewsletterBox";
-import { DEFAULT_OG_IMAGE, SITE_URL } from "../../content/blog/config";
+import { AUTHOR, DEFAULT_OG_IMAGE, SITE_URL } from "../../content/blog/config";
 import { formatDate, getAllPosts, readingMinutes, toDate } from "../../content/blog";
 
 const description =
@@ -44,6 +44,7 @@ export default function BlogPage() {
       headline: p.title,
       url: `${SITE_URL}/blog/${p.slug}`,
       datePublished: toDate(p.publishedAt).toISOString(),
+      author: { "@type": "Person", name: AUTHOR.name, url: `${SITE_URL}/sobre` },
     })),
   };
 
@@ -86,6 +87,8 @@ export default function BlogPage() {
                   <article>
                     <p style={{ margin: "0 0 8px", fontSize: "0.875rem", opacity: 0.65 }}>
                       <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                      {" · "}
+                      Por {AUTHOR.name}
                       {" · "}
                       {readingMinutes(post.body)} min de leitura
                     </p>

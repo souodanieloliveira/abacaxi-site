@@ -203,7 +203,7 @@ export default function PessoasPage() {
                 {service.testimonial ? (
                   <>
                     <p style={{ fontStyle: "italic", margin: 0, fontSize: "1.0625rem" }}>
-                      "{service.testimonial}"
+                      &ldquo;{service.testimonial}&rdquo;
                     </p>
                     <p style={{ margin: "8px 0 0", fontSize: "0.875rem", opacity: 0.6 }}>
                       — Cliente Abacaxi

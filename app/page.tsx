@@ -404,7 +404,7 @@ export default function Home() {
                     opacity: 0.9,
                   }}
                 >
-                  "A educação financeira muda a forma como você enxerga cada decisão — não só as financeiras."
+                  &ldquo;A educação financeira muda a forma como você enxerga cada decisão — não só as financeiras.&rdquo;
                 </p>
                 <p style={{ margin: 0, opacity: 0.5, fontSize: "0.875rem" }}>
                   Equipe Abacaxi
