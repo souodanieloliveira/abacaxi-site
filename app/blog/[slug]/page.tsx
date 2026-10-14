@@ -114,7 +114,7 @@ export default async function PostPage({ params }: Props) {
       />
 
       <div style={{ background: "var(--color-background-soft)" }}>
-        <div className="container" style={{ paddingTop: 112, paddingBottom: 56 }}>
+        <div className="container" style={{ paddingTop: 72, paddingBottom: 56 }}>
           <div style={{ maxWidth: 720 }}>
             <nav aria-label="Você está em" style={{ fontSize: "0.875rem", marginBottom: 20 }}>
               <Link href="/" style={{ opacity: 0.7 }}>Início</Link>
