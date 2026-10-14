@@ -8,7 +8,7 @@ export const NEWSLETTER_SIGNUP_URL =
   process.env.NEXT_PUBLIC_NEWSLETTER_URL ||
   "https://68c8a4be.sibforms.com/serve/MUIFAFUrluGqCNQYm3nDLL702qEaDTXC7FL_JJi9Gy1wfwhBM6NGmKNTvd7obA_cXkZJd6N1Y5JWxjo8F4NoShHN4Ia3WoVnj9r9UEnXL2Fq5rzQxsUCe5qbn2Qx9yIOoDO_kvker4AkKzQta8Z7gwxl1ltOwD1rrhuEwp_v2Foa4RsQxYmH0RlQr3lXuGfWf4GDs8bY6GIjV54TCg==";
 
-export const NEWSLETTER_NAME = "Newsletter Pública da Abacaxi";
+export const NEWSLETTER_NAME = "Newsletter da Abacaxi";
 
 export const AUTHOR = {
   name: "Daniel Oliveira",
