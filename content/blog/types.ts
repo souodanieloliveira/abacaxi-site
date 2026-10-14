@@ -10,6 +10,8 @@ export interface BlogPost {
   updatedAt?: string;
   /** Edição da newsletter em que o texto saiu primeiro. */
   newsletter?: { edition: number; sentAt: string };
+  /** Frase extra anexada ao aviso padrão no fim do texto (opcional). */
+  disclaimerExtra?: string;
   keywords?: string[];
   /**
    * Corpo em markdown simples: parágrafos separados por linha em branco;
