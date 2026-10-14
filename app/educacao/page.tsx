@@ -154,7 +154,7 @@ export default function EducacaoPage() {
             >
               Fale com a gente
             </h3>
-            <ContactForm />
+            <ContactForm servico="Educação" />
           </div>
         </div>
       </div>
