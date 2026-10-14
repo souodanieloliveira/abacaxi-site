@@ -71,7 +71,7 @@ export default function Home() {
           {/* tagline centralizado com linhas */}
           <div style={{ display: "flex", alignItems: "center", gap: 24, marginBottom: 56 }}>
             <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.25)" }} />
-            <h2 style={{ margin: 0, fontStyle: "italic", fontSize: "1.125rem", fontWeight: 400, whiteSpace: "nowrap" }}>
+            <h2 className="accent-serif" style={{ margin: 0, fontSize: "1.125rem", fontWeight: 400, whiteSpace: "nowrap" }}>
               Como a Abacaxi pode ajudar
             </h2>
             <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.25)" }} />
@@ -113,7 +113,7 @@ export default function Home() {
                 {/* corpo do card */}
                 <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                 {service.subtitle && (
-                  <p style={{ fontWeight: 500, opacity: 0.7, marginBottom: 8 }}>
+                  <p className="accent-serif" style={{ fontWeight: 500, opacity: 0.9, marginBottom: 8 }}>
                     {service.subtitle}
                   </p>
                 )}
@@ -192,7 +192,7 @@ export default function Home() {
       <div style={{ background: "#ffffff" }}>
         <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
           <div style={{ marginBottom: 56, textAlign: "center" }}>
-            <p style={{ fontStyle: "italic", color: "var(--color-text-accent)", marginBottom: 4 }}>
+            <p className="accent-serif" style={{ color: "var(--color-text-accent)", marginBottom: 4 }}>
               {home.coroa.subtitle}
             </p>
             <h2 style={{ fontSize: "1.75rem", fontWeight: 700, color: "var(--color-text-main)", margin: 0 }}>
