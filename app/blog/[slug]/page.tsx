@@ -203,6 +203,7 @@ export default async function PostPage({ params }: Props) {
 
             <p style={{ margin: "32px 0 0", fontSize: "0.875rem", lineHeight: 1.7, opacity: 0.65, fontStyle: "italic" }}>
               {DISCLAIMER}
+              {post.disclaimerExtra ? ` ${post.disclaimerExtra}` : ""}
             </p>
           </article>
 
