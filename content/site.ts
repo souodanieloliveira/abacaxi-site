@@ -119,7 +119,7 @@ export const siteContent = {
       statement:
         "A Abacaxi nasceu da crença de que todo mundo merece um plano financeiro feito para a sua vida — não para a vida dos outros.",
       numeros: [
-        { valor: "+8", label: "anos de mercado" },
+        { valor: "+9", label: "anos de mercado" },
         { valor: "+600", label: "pessoas e empresas atendidas" },
         { valor: "+500", label: "alunos em workshops e palestras" },
       ],
@@ -276,7 +276,7 @@ export const siteContent = {
       image: null as string | null,
     },
     numeros: [
-      { valor: "+8", label: "anos de mercado" },
+      { valor: "+9", label: "anos de mercado" },
       { valor: "+600", label: "pessoas e empresas atendidas" },
       { valor: "+500", label: "alunos em workshops e palestras" },
     ],

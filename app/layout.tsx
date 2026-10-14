@@ -21,6 +21,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://abacaxi.cc"),
   title: {
     template: "%s | Abacaxi",
     default: "Abacaxi – Roteiro Financeiro para Momentos Decisivos",

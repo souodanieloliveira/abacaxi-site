@@ -6,7 +6,6 @@ import PostBody from "../../../components/blog/PostBody";
 import {
   AUTHOR,
   BOOKING_URL,
-  DEFAULT_OG_IMAGE,
   DISCLAIMER,
   NEWSLETTER_NAME,
   SITE_URL,
@@ -51,13 +50,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: toDate(post.publishedAt).toISOString(),
       modifiedTime: toDate(post.updatedAt ?? post.publishedAt).toISOString(),
       authors: [AUTHOR.name],
-      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [DEFAULT_OG_IMAGE.url],
     },
   };
 }
@@ -79,9 +76,14 @@ export default async function PostPage({ params }: Props) {
       datePublished: toDate(post.publishedAt).toISOString(),
       dateModified: toDate(post.updatedAt ?? post.publishedAt).toISOString(),
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
-      image: DEFAULT_OG_IMAGE.url,
+      image: `${url}/opengraph-image`,
       keywords: post.keywords?.join(", "),
-      author: { "@type": "Person", name: AUTHOR.name, url: `${SITE_URL}/sobre` },
+      author: {
+        "@type": "Person",
+        name: AUTHOR.name,
+        jobTitle: "Fundador da Abacaxi",
+        url: `${SITE_URL}/sobre`,
+      },
       publisher: {
         "@type": "Organization",
         name: "Abacaxi",
@@ -145,11 +147,27 @@ export default async function PostPage({ params }: Props) {
               </p>
             )}
 
-            <p style={{ margin: 0, fontSize: "0.875rem", opacity: 0.65 }}>
-              Por {AUTHOR.name} ·{" "}
-              <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time> ·{" "}
-              {readingMinutes(post.body)} min de leitura
-            </p>
+            <div style={{ borderTop: "1px solid var(--color-border-light)", paddingTop: 14, marginTop: 20 }}>
+              <p style={{ margin: "0 0 2px", fontSize: "1rem" }}>
+                Por{" "}
+                <Link href="/sobre" rel="author" style={{ fontWeight: 700, color: "var(--color-dark)" }}>
+                  {AUTHOR.name}
+                </Link>
+                , fundador da Abacaxi
+              </p>
+              <p style={{ margin: 0, fontSize: "0.875rem", opacity: 0.7 }}>
+                Publicado em{" "}
+                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                {post.updatedAt && (
+                  <>
+                    {" · Atualizado em "}
+                    <time dateTime={post.updatedAt}>{formatDate(post.updatedAt)}</time>
+                  </>
+                )}
+                {" · "}
+                {readingMinutes(post.body)} min de leitura
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -162,6 +180,26 @@ export default async function PostPage({ params }: Props) {
             <div style={{ marginTop: 48 }}>
               <NewsletterBox />
             </div>
+
+            <aside
+              aria-label="Sobre o autor"
+              style={{
+                marginTop: 40,
+                paddingTop: 24,
+                borderTop: "1px solid var(--color-border-light)",
+              }}
+            >
+              <p style={{ margin: "0 0 4px", fontWeight: 700 }}>
+                Escrito por{" "}
+                <Link href="/sobre" style={{ color: "var(--color-dark)" }}>
+                  {AUTHOR.name}
+                </Link>
+              </p>
+              <p style={{ margin: "0 0 8px", lineHeight: 1.7, opacity: 0.85 }}>{AUTHOR.bio}</p>
+              <Link href="/sobre" style={{ color: "var(--color-text-accent)", fontWeight: 600 }}>
+                Conheça a Abacaxi →
+              </Link>
+            </aside>
 
             <p style={{ margin: "32px 0 0", fontSize: "0.875rem", lineHeight: 1.7, opacity: 0.65, fontStyle: "italic" }}>
               {DISCLAIMER}
