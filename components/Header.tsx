@@ -56,14 +56,11 @@ export default function Header() {
       >
         <Link href="/" title="Abacaxi – Página inicial" style={{ display: "block" }}>
           <img
-            src="/logo-abacaxi.svg"
-            alt="Abacaxi – Roteiro Financeiro"
-            style={{
-              height: 400,
-              width: "auto",
-              display: "block",
-              marginLeft: -120,
-            }}
+            src="/logo-abacaxi-header.png"
+            alt="Abacaxi"
+            width={2272}
+            height={522}
+            style={{ height: 40, width: "auto", display: "block" }}
           />
         </Link>
 
