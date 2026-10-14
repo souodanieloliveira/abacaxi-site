@@ -3,15 +3,10 @@ export const SITE_URL = "https://abacaxi.cc";
 /** Link de agendamento (Google Calendar) usado como CTA no rodapé de cada texto. */
 export const BOOKING_URL = "https://calendar.app.google/qLViQu2e4Va2ztVZ6";
 
-/**
- * Link de inscrição na newsletter.
- * Quando existir um formulário hospedado no Brevo, defina NEXT_PUBLIC_NEWSLETTER_URL
- * (Vercel → Settings → Environment Variables). Enquanto não houver, o botão abre
- * um e-mail pedindo a inscrição, para nunca ficar sem destino.
- */
+/** Formulário de inscrição hospedado no Brevo. Pode ser trocado via NEXT_PUBLIC_NEWSLETTER_URL. */
 export const NEWSLETTER_SIGNUP_URL =
   process.env.NEXT_PUBLIC_NEWSLETTER_URL ||
-  "mailto:fale-com@abacaxi.cc?subject=Quero%20receber%20a%20newsletter%20da%20Abacaxi";
+  "https://68c8a4be.sibforms.com/serve/MUIFAFUrluGqCNQYm3nDLL702qEaDTXC7FL_JJi9Gy1wfwhBM6NGmKNTvd7obA_cXkZJd6N1Y5JWxjo8F4NoShHN4Ia3WoVnj9r9UEnXL2Fq5rzQxsUCe5qbn2Qx9yIOoDO_kvker4AkKzQta8Z7gwxl1ltOwD1rrhuEwp_v2Foa4RsQxYmH0RlQr3lXuGfWf4GDs8bY6GIjV54TCg==";
 
 export const NEWSLETTER_NAME = "Newsletter Pública da Abacaxi";
 
