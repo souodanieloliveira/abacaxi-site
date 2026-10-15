@@ -272,8 +272,7 @@ export const siteContent = {
         "A experiência com clientes de alta renda revelou algo que poucos profissionais do setor admitem: renda alta não resolve problema financeiro mal estruturado. Essa constatação foi o ponto de partida da Abacaxi — e da Metodologia COROA.",
         "Trabalhamos de forma fiduciária — sem vínculo com bancos, corretoras ou qualquer instituição financeira. Sem conflito de interesses. Quem nos remunera é você, e só você.",
       ],
-      // Placeholder — substituir por foto real do Daniel
-      image: null as string | null,
+      image: "/daniel-oliveira.jpg" as string | null,
     },
     numeros: [
       { valor: "+9", label: "anos de mercado" },

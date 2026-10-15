@@ -259,13 +259,18 @@ export default function SobrePage() {
             ))}
           </div>
 
-          {/* Foto — placeholder à esquerda */}
+          {/* Foto do fundador */}
           <div className="service-image">
             {sobre.daniel.image ? (
               <img
                 src={sobre.daniel.image}
                 alt="Daniel Oliveira"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center 30%",
+                }}
               />
             ) : (
               <span>Foto em breve</span>
