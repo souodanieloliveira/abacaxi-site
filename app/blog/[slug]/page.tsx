@@ -34,7 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `${SITE_URL}/blog/${post.slug}`;
 
   return {
-    title: post.title,
+    // Com o modelo "%s | Abacaxi" do layout raiz, a aba fica "Blog | Título do post | Abacaxi".
+    title: `Blog | ${post.title}`,
     description: post.description,
     keywords: post.keywords,
     authors: [{ name: AUTHOR.name }],
