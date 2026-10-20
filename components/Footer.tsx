@@ -49,11 +49,14 @@ export default function Footer() {
       >
         {/* linha superior: logo + redes sociais */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ display: "block", overflow: "hidden", height: 48 }}>
+          <Link href="/" style={{ display: "block" }}>
+            {/* Logo invertido (texto claro) da pasta de marca, para o fundo roxo escuro do rodapé. */}
             <img
-              src="/logo-abacaxi.svg"
-              alt="Abacaxi – Roteiro Financeiro"
-              style={{ height: 400, width: "auto", display: "block", marginLeft: -120 }}
+              src="/logo-abacaxi-rodape.png"
+              alt="Abacaxi – Planejamento Financeiro"
+              width={866}
+              height={200}
+              style={{ height: 48, width: "auto", display: "block" }}
             />
           </Link>
 
