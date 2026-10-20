@@ -7,7 +7,6 @@ const post: BlogPost = {
     "Mais de 33 milhões não votaram em outubro. No dinheiro, o desinteresse também tem fatura: imprevistos, tempo perdido, imposto e proteção.",
   publishedAt: "2026-10-14",
   newsletter: { edition: 2, sentAt: "2026-10-14" },
-  disclaimerExtra: "Este conteúdo não substitui orientação tributária individual.",
   keywords: [
     "desinteresse e planejamento financeiro",
     "reserva de emergência",
