@@ -22,4 +22,4 @@ export const DEFAULT_OG_IMAGE = {
 };
 
 export const DISCLAIMER =
-  "Este conteúdo tem finalidade educacional e não constitui recomendação de investimento. Rentabilidade passada não garante resultados futuros. Antes de tomar decisões financeiras, considere seu perfil, seus objetivos e, se necessário, busque orientação profissional.";
+  "Este conteúdo tem finalidade educacional e não constitui recomendação de investimento. Rentabilidade passada não garante resultados futuros. Este conteúdo não substitui orientação tributária individual. Antes de tomar decisões financeiras, considere seu perfil, seus objetivos e, se necessário, busque orientação profissional.";
