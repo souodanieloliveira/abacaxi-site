@@ -210,7 +210,7 @@ export const siteContent = {
 
   sobre: {
     hero: {
-      title: "Existimos para ajudar a construir liberdade e mostrar às pessoas que elas podem ser o que quiserem.",
+      title: "Existimos para que as pessoas decidam a própria vida financeira com clareza e segurança.",
       // Placeholder — substituir por foto da equipe ou ambiente Abacaxi
       image: "/hero-abacaxi.png",
     },
@@ -244,25 +244,23 @@ export const siteContent = {
     mvv: [
       {
         title: "Missão",
-        text: "Tornamos a vida mais fácil. Eliminamos barreiras e inspiramos pessoas para que construam um mundo melhor.",
+        text: "Organizamos o dinheiro de quem atendemos e construímos, junto com cada pessoa, um plano que ela entende, executa e ajusta.",
         items: null as string[] | null,
       },
       {
         title: "Visão",
-        text: "Cada pessoa, família e organização com a oportunidade de atingir seu máximo potencial, livre de medos e segura de si mesma.",
+        text: "Ser referência no Brasil em planejamento financeiro para os momentos decisivos da vida.",
         items: null as string[] | null,
       },
       {
         title: "Valores",
         text: null as string | null,
         items: [
-          "Sempre trabalhamos para exceder as expectativas",
-          "Pessoas acima de qualquer número",
-          "Ouvir com empatia é o primeiro passo",
-          "Acreditamos no poder da consistência",
-          "Desafiamos o estado das coisas com audácia",
-          "Acreditamos na simplicidade",
-          "Acreditamos no poder do conjunto e da integração",
+          "Pessoas antes dos números.",
+          "Escuta antes da resposta.",
+          "Simplicidade com constância.",
+          "Excelência sem promessa fácil.",
+          "Coragem para questionar o óbvio.",
         ],
       },
     ],
@@ -280,7 +278,7 @@ export const siteContent = {
       { valor: "+500", label: "alunos em workshops e palestras" },
     ],
     ctaFinal: {
-      headline: "Vamos descascar o seu abacaxi juntos?",
+      headline: "Roteiro financeiro para os momentos que decidem uma vida.",
       cta: "Agendar conversa gratuita",
       ctaHref: "/contato",
     },
