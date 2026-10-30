@@ -238,7 +238,7 @@ export default async function PostPage({ params }: Props) {
               Quer olhar a sua realidade financeira por inteiro?
             </p>
             <p style={{ margin: 0, opacity: 0.85 }}>
-              O primeiro passo é uma conversa. Sem compromisso.
+              O primeiro passo é uma conversa. Sempre gratuita.
             </p>
           </div>
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
