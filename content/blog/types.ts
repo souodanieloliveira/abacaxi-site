@@ -15,7 +15,8 @@ export interface BlogPost {
   keywords?: string[];
   /**
    * Corpo em markdown simples: parágrafos separados por linha em branco;
-   * "## " para subtítulo; **negrito**; *itálico*; [texto](url) para links.
+   * "## " para subtítulo; **negrito**; *itálico*; [texto](url) para links;
+   * tabela com linhas "| a | b |" e separador "|---|---:|" (":" à direita alinha à direita).
    */
   body: string;
 }

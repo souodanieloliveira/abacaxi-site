@@ -315,6 +315,29 @@ a {
   color: var(--color-dark);
 }
 
+.post-table {
+  overflow-x: auto;
+  margin: 0 0 1.6em;
+}
+
+.post-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.post-table th {
+  padding: 8px;
+  border-bottom: 2px solid var(--color-primary, #8500DB);
+  color: var(--color-dark);
+  text-align: left;
+}
+
+.post-table td {
+  padding: 8px;
+  border-bottom: 1px solid #e3d9f2;
+}
+
 .post-body a {
   color: var(--color-text-accent);
   text-decoration: underline;
