@@ -339,7 +339,7 @@ export const siteContent = {
         tag: "Para quem quer um plano completo e personalizado.",
         title: "Projetos de Planejamento Financeiro",
         description:
-          "Cada projeto é construído do zero, a partir da sua realidade. Entre 6 e 15 encontros, trabalhamos juntos para mapear, organizar e traçar um roteiro financeiro concreto para a sua vida. Começa com uma conversa — sem compromisso.",
+          "Cada projeto é construído do zero, a partir da sua realidade. Entre 6 e 15 encontros, trabalhamos juntos para mapear, organizar e traçar um roteiro financeiro concreto para a sua vida. Começa com uma conversa — sempre gratuita.",
         cta: "Quero conhecer os projetos",
         href: "/contato",
         // Foto: cliente revisando plano financeiro com consultor
