@@ -91,7 +91,12 @@ export default function Footer() {
 
         {/* linha inferior: CNPJ + copyright */}
         <div className="footer-bottom">
-          <span>CNPJ 12.329.221/0001-97</span>
+          <span>
+            CNPJ 12.329.221/0001-97 ·{" "}
+            <Link href="/privacidade" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+              Política de Privacidade
+            </Link>
+          </span>
           <span>© 2026 Abacaxi Serviços Financeiros Ltda. Todos os direitos reservados.</span>
         </div>
       </div>
