@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Política de Privacidade do site e da Newsletter da Abacaxi.
 // Texto aprovado por Daniel em 30/10/2026 (conversa "Site abacaxi.cc").
-// Dados dos Projetos ficam no contrato; Encontros e cursos terão página própria.
+// Dados de contratações específicas ficam em contratos particulares; Encontros e cursos terão página própria.
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
@@ -41,8 +41,8 @@ export default function PrivacidadePage() {
           <div className="post-body" style={{ maxWidth: 720 }}>
             <p>
               Esta política explica como a Abacaxi trata os dados pessoais coletados no site
-              abacaxi.cc e na Newsletter da Abacaxi. Os dados de clientes dos Projetos são tratados no
-              contrato de cada projeto.
+              abacaxi.cc e na Newsletter da Abacaxi. Os dados dos clientes relativos a contratações
+              específicas serão tratados em contratos particulares.
             </p>
 
             <h2>Quem trata os seus dados</h2>
