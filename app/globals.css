@@ -338,6 +338,17 @@ a {
   border-bottom: 1px solid #e3d9f2;
 }
 
+.post-body ul {
+  margin: 0 0 1.4em;
+  padding-left: 1.25em;
+  font-size: 1.125rem;
+  line-height: 1.85;
+}
+
+.post-body li {
+  margin-bottom: 0.4em;
+}
+
 .post-body a {
   color: var(--color-text-accent);
   text-decoration: underline;
