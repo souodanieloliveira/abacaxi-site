@@ -75,6 +75,12 @@ export default function PrivacidadePage() {
                 <strong>Acesso ao site:</strong> dados técnicos, como endereço IP, navegador e data e
                 hora do acesso, guardados pela hospedagem para a segurança e o funcionamento do site.
               </li>
+              <li>
+                <strong>Contagem de visitas:</strong> usamos o Vercel Web Analytics para saber quantas
+                pessoas visitam o site e quais páginas são mais lidas, de forma agregada (página, país,
+                navegador, sistema e tipo de dispositivo). Ele não usa cookies de terceiros; cada visita
+                é reconhecida por um código temporário, descartado em 24 horas.
+              </li>
             </ul>
             <p>Não usamos cookies de rastreamento nem ferramentas de publicidade no site.</p>
 

@@ -4,6 +4,7 @@ import { Figtree, Fraunces } from "next/font/google";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ChromeGate from "../components/ChromeGate";
+import { Analytics } from "@vercel/analytics/next";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -87,6 +88,8 @@ export default function RootLayout({
         <ChromeGate>
           <Footer />
         </ChromeGate>
+        {/* Contagem de visitas (Vercel Web Analytics), sem cookies de terceiros. Decisão de 30/10/2026. */}
+        <Analytics />
       </body>
     </html>
   );
