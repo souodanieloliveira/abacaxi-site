@@ -12,8 +12,15 @@ export default function AvisoNewsletter({
   botao?: { texto: string; href: string };
 }) {
   return (
-    <div style={{ background: "var(--color-background-soft)" }}>
-      <div className="container" style={{ paddingTop: 96, paddingBottom: 96 }}>
+    <div
+      style={{
+        background: "var(--color-background-soft)",
+        minHeight: "70vh",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div className="container" style={{ paddingTop: 96, paddingBottom: 96, width: "100%" }}>
         <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
           <p
             style={{
