@@ -8,7 +8,7 @@ export default function AvisoNewsletter({
   botao,
 }: {
   titulo: string;
-  texto: string;
+  texto: string | string[];
   botao?: { texto: string; href: string };
 }) {
   return (
@@ -45,7 +45,11 @@ export default function AvisoNewsletter({
           >
             {titulo}
           </h1>
-          <p style={{ margin: 0, fontSize: "1.125rem", lineHeight: 1.7 }}>{texto}</p>
+          {(Array.isArray(texto) ? texto : [texto]).map((paragrafo, i) => (
+            <p key={i} style={{ margin: i === 0 ? 0 : "12px 0 0", fontSize: "1.125rem", lineHeight: 1.7 }}>
+              {paragrafo}
+            </p>
+          ))}
           {botao && (
             <div style={{ marginTop: 32 }}>
               <Link href={botao.href} className="btn-primary">
