@@ -206,7 +206,7 @@ export default function PessoasPage() {
                       &ldquo;{service.testimonial}&rdquo;
                     </p>
                     <p style={{ margin: "8px 0 0", fontSize: "0.875rem", opacity: 0.6 }}>
-                      — Cliente Abacaxi
+                      — {service.testimonialAuthor ?? "Cliente Abacaxi"}
                     </p>
                   </>
                 ) : (

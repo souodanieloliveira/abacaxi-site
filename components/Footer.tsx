@@ -48,7 +48,15 @@ export default function Footer() {
         }}
       >
         {/* linha superior: logo + redes sociais */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 24,
+          }}
+        >
           <Link href="/" style={{ display: "block" }}>
             {/* Logo invertido (texto claro) da pasta de marca, para o fundo roxo escuro do rodapé. */}
             <img
