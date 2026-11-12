@@ -1,35 +1,12 @@
 import Script from "next/script";
 import { EBOOK_FORM_URL } from "../../content/ebook";
+import { IconeAviso, MENSAGENS_BREVO, RECAPTCHA_SITE_KEY } from "../brevo/comum";
 
 // Formulário "Material Rico" do Brevo dentro de /ebook (decisão de Daniel em 12/11/2026, opção b).
 // Marcação, nomes de campos, ids e scripts vêm do código HTML gerado pelo Brevo (Compartilhar > HTML);
 // o visual é o do site (estilos .ebook-form em globals.css; a folha de estilos do Brevo não é carregada). O Brevo continua cuidando da lista, do
 // reCAPTCHA, do e-mail com o ebook (modelo 9) e do envio para /ebook/obrigado.
 // Se o formulário mudar no Brevo (campos, textos, lista), este arquivo precisa ser atualizado junto.
-
-// Chave do site (pública) do reCAPTCHA v3 da Abacaxi (tipo v3, baseada em pontuação), confirmada por Daniel em 12/11/2026 15:59. A chave secreta fica só no Brevo.
-const RECAPTCHA_SITE_KEY = "6LcOqAguAAAAAAzcWQSWrHLWTyvTsA2vTovlmrOn";
-
-const MENSAGENS_BREVO = `
-  window.REQUIRED_CODE_ERROR_MESSAGE = 'Escolha um código de país';
-  window.LOCALE = 'pt';
-  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "A informação fornecida não é valida. Verifique o formato do campo e tente novamente.";
-  window.REQUIRED_ERROR_MESSAGE = "Este campo não pode ser deixado em branco. ";
-  window.GENERIC_INVALID_MESSAGE = "A informação fornecida não é valida. Verifique o formato do campo e tente novamente.";
-  window.INVALID_NUMBER = "A informação fornecida não é valida. Verifique o formato do campo e tente novamente.";
-  window.INVALID_DATE = "Insira uma data válida";
-  window.REQUIRED_MULTISELECT_MESSAGE = 'Selecione pelo menos 1 opção';
-  window.translation = { common: { selectedList: '{quantity} lista selecionada', selectedLists: '{quantity} listas selecionadas', selectedOption: '{quantity} selecionado', selectedOptions: '{quantity} selecionados' } };
-  var AUTOHIDE = Boolean(0);
-`;
-
-function IconeAviso() {
-  return (
-    <svg viewBox="0 0 512 512" className="sib-icon sib-notification__icon" aria-hidden="true">
-      <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
-    </svg>
-  );
-}
 
 export default function FormularioEbook() {
   return (

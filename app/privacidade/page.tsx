@@ -91,7 +91,7 @@ export default function PrivacidadePage() {
             <h2>Com quem compartilhamos</h2>
             <p>
               Só com os serviços que usamos para operar: Brevo (newsletter e materiais), Airtable (contatos e lista
-              de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam do formulário do ebook) e Vercel
+              de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam dos formulários do site) e Vercel
               (hospedagem). Alguns guardam os dados fora
               do Brasil. Não vendemos nem cedemos seus dados a ninguém.
             </p>
