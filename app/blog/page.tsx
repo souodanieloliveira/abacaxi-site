@@ -5,7 +5,7 @@ import { AUTHOR, DEFAULT_OG_IMAGE, SITE_URL } from "../../content/blog/config";
 import { formatDate, getAllPosts, readingMinutes, toDate } from "../../content/blog";
 
 const description =
-  "Textos sobre dinheiro, decisões e planejamento financeiro, escritos por quem atende pessoas todos os dias. Publicados a cada quinze dias.";
+  "Textos sobre dinheiro, decisões e planejamento financeiro, escritos por quem atende pessoas todos os dias. Publicados a cada duas semanas.";
 
 export const metadata: Metadata = {
   title: "Blog",
