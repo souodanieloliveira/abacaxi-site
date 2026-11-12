@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 // Política de Privacidade do site e da Newsletter da Abacaxi.
-// Texto aprovado por Daniel em 30/10/2026 (conversa "Site abacaxi.cc").
+// Texto aprovado por Daniel em 30/10/2026 (conversa "Site abacaxi.cc"); item Materiais aprovado em 11/11/2026.
 // Dados de contratações específicas ficam em contratos particulares; Encontros e cursos terão página própria.
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: { url: "https://abacaxi.cc/privacidade" },
 };
 
-const ATUALIZADA_EM = "30 de outubro de 2026";
+const ATUALIZADA_EM = "11 de novembro de 2026";
 
 export default function PrivacidadePage() {
   return (
@@ -60,6 +60,10 @@ export default function PrivacidadePage() {
                 newsletter. Você pode cancelar a qualquer momento pelo link no fim de cada e-mail.
               </li>
               <li>
+                <strong>Materiais (ebook e outros):</strong> nome, e-mail e o registro do seu
+                consentimento, para liberar o acesso ao material pedido.
+              </li>
+              <li>
                 <strong>Formulário de contato:</strong> nome, empresa (se você informar), e-mail,
                 mensagem e serviço de interesse, para responder ao seu contato.
               </li>
@@ -86,7 +90,7 @@ export default function PrivacidadePage() {
 
             <h2>Com quem compartilhamos</h2>
             <p>
-              Só com os serviços que usamos para operar: Brevo (newsletter), Airtable (contatos e lista
+              Só com os serviços que usamos para operar: Brevo (newsletter e materiais), Airtable (contatos e lista
               de espera), Google (agenda e e-mail) e Vercel (hospedagem). Alguns guardam os dados fora
               do Brasil. Não vendemos nem cedemos seus dados a ninguém.
             </p>
@@ -94,6 +98,7 @@ export default function PrivacidadePage() {
             <h2>Por quanto tempo guardamos</h2>
             <ul>
               <li>Newsletter: enquanto a sua inscrição estiver ativa.</li>
+              <li>Materiais (ebook e outros): 12 meses.</li>
               <li>Contatos que não viram clientes: 12 meses.</li>
               <li>Lista de espera: 12 meses.</li>
             </ul>

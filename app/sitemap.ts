@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/educacao`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/sobre`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contato`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/ebook`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/privacidade`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     {
       url: `${base}/blog`,
