@@ -1,8 +1,9 @@
-import { NEWSLETTER_NAME, NEWSLETTER_SIGNUP_URL } from "../../content/blog/config";
+import { NEWSLETTER_NAME } from "../../content/blog/config";
+
+// O botão leva para /newsletter (formulário do Brevo dentro do site, 12/11/2026). Link comum <a>, com
+// navegação completa, para os scripts do Brevo e do reCAPTCHA carregarem na página.
 
 export default function NewsletterBox() {
-  const isMail = NEWSLETTER_SIGNUP_URL.startsWith("mailto:");
-
   return (
     <aside
       aria-labelledby="newsletter-title"
@@ -27,11 +28,7 @@ export default function NewsletterBox() {
         A {NEWSLETTER_NAME} chega a cada quinze dias, com um texto sobre decisões
         financeiras que valem a reflexão.
       </p>
-      <a
-        href={NEWSLETTER_SIGNUP_URL}
-        className="btn-primary"
-        {...(isMail ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-      >
+      <a href="/newsletter" className="btn-primary">
         Assinar a newsletter
       </a>
     </aside>
