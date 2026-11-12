@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EBOOK_FORM_URL } from "../../content/ebook";
 
 // Página de apresentação do ebook. Textos aprovados por Daniel em 11/11/2026.
+// No celular, alinhada à esquerda com botão na largura toda, como /ebook/obrigado (12/11/2026 13:51).
 export const metadata: Metadata = {
   title: "Ebook gratuito: Quanto tempo dura seu orçamento?",
   description:
@@ -21,7 +22,7 @@ export default function EbookPage() {
       }}
     >
       <div className="container" style={{ paddingTop: 96, paddingBottom: 96, width: "100%" }}>
-        <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
+        <div className="ebook-intro" style={{ maxWidth: 640, margin: "0 auto" }}>
           <p
             style={{
               margin: "0 0 12px",
@@ -53,7 +54,7 @@ export default function EbookPage() {
           <p style={{ margin: "16px 0 0", opacity: 0.7 }}>
             15 minutos de leitura · 34 páginas · com ficha para preencher
           </p>
-          <div style={{ marginTop: 32 }}>
+          <div className="ebook-botoes">
             <a href={EBOOK_FORM_URL} className="btn-primary">
               Quero o ebook
             </a>
