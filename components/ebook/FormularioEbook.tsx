@@ -7,7 +7,8 @@ import { EBOOK_FORM_URL } from "../../content/ebook";
 // reCAPTCHA, do e-mail com o ebook (modelo 9) e do envio para /ebook/obrigado.
 // Se o formulário mudar no Brevo (campos, textos, lista), este arquivo precisa ser atualizado junto.
 
-const RECAPTCHA_SITE_KEY = "6LcOqAguAAAAAAzcWQSWrHLWTyvTsA2vTovlmrOn";
+// Chave do site (pública) do reCAPTCHA v3 da Abacaxi, informada por Daniel em 12/11/2026. A chave secreta fica só no Brevo.
+const RECAPTCHA_SITE_KEY = "6LdEJh0uAAAAAFXaKD6uPjMiYX_LqWHLyn68dPsR";
 
 const MENSAGENS_BREVO = `
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Escolha um código de país';
