@@ -1,22 +1,29 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Figtree, Fraunces } from "next/font/google";
+import localFont from "next/font/local";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ChromeGate from "../components/ChromeGate";
 import { Analytics } from "@vercel/analytics/next";
 
-const figtree = Figtree({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
+// Fontes servidas pelo próprio site (arquivos em app/fonts, licença SIL OFL 1.1), em vez de baixadas do
+// Google Fonts a cada build: o download falhou em builds de 11 e 12/11/2026. Decisão de Daniel em 12/11/2026.
+const figtree = localFont({
+  src: [
+    { path: "./fonts/figtree-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/figtree-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/figtree-latin-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/figtree-latin-800-normal.woff2", weight: "800", style: "normal" },
+  ],
   variable: "--font-figtree",
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["italic"],
+const fraunces = localFont({
+  src: [
+    { path: "./fonts/fraunces-latin-400-italic.woff2", weight: "400", style: "italic" },
+    { path: "./fonts/fraunces-latin-500-italic.woff2", weight: "500", style: "italic" },
+  ],
   variable: "--font-fraunces",
   display: "swap",
 });
