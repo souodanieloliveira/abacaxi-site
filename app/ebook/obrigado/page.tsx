@@ -4,8 +4,9 @@ import { EBOOK_PDF } from "../../../content/ebook";
 // Página depois do envio do formulário do ebook (configurada no Brevo). Fora do índice de busca.
 // 12/11/2026: no computador, o PDF aparece na própria página; no celular, o botão "Abrir o ebook"
 // abre o PDF no leitor do aparelho (navegadores de celular não mostram PDF embutido de forma confiável).
+// Texto da página definido por Daniel em 12/11/2026 13:33.
 export const metadata: Metadata = {
-  title: "Seu ebook está pronto",
+  title: "Seu ebook está pronto!",
   robots: { index: false, follow: false },
 };
 
@@ -35,12 +36,20 @@ export default function EbookObrigadoPage() {
               margin: "0 0 16px",
             }}
           >
-            Seu ebook está pronto
+            Seu ebook está pronto!
           </h1>
-          <p style={{ margin: 0, fontSize: "1.125rem", lineHeight: 1.7 }}>
-            Baixe o arquivo e salve no seu computador ou celular. A ficha da página 18 pode ser
-            preenchida direto no PDF.
-          </p>
+          {[
+            "Você pode ler nesta página e fazer o download.",
+            "Você também recebeu por e-mail para consultar mais tarde.",
+            "Faça bom proveito!",
+          ].map((paragrafo, i) => (
+            <p
+              key={i}
+              style={{ margin: i === 0 ? 0 : "12px 0 0", fontSize: "1.125rem", lineHeight: 1.7 }}
+            >
+              {paragrafo}
+            </p>
+          ))}
           <div
             style={{
               marginTop: 32,
