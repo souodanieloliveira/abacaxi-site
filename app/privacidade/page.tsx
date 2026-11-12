@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 // Política de Privacidade do site e da Newsletter da Abacaxi.
-// Texto aprovado por Daniel em 30/10/2026 (conversa "Site abacaxi.cc"); item Materiais aprovado em 11/11/2026.
+// Texto aprovado por Daniel em 30/10/2026 (conversa "Site abacaxi.cc"); item Materiais aprovado em 11/11/2026 e ajustado em 12/11/2026 (envio por e-mail).
 // Dados de contratações específicas ficam em contratos particulares; Encontros e cursos terão página própria.
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: { url: "https://abacaxi.cc/privacidade" },
 };
 
-const ATUALIZADA_EM = "11 de novembro de 2026";
+const ATUALIZADA_EM = "12 de novembro de 2026";
 
 export default function PrivacidadePage() {
   return (
@@ -61,7 +61,7 @@ export default function PrivacidadePage() {
               </li>
               <li>
                 <strong>Materiais (ebook e outros):</strong> nome, e-mail e o registro do seu
-                consentimento, para liberar o acesso ao material pedido.
+                consentimento, para liberar o acesso ao material pedido e enviá-lo para o seu e-mail.
               </li>
               <li>
                 <strong>Formulário de contato:</strong> nome, empresa (se você informar), e-mail,
