@@ -398,28 +398,28 @@ a:focus-visible {
   }
 }
 
-/* Ebook /obrigado: alinhado à esquerda e botões na largura toda no celular; centralizado no computador (12/11/2026) */
-.ebook-obrigado-intro {
+/* Ebook (/ebook e /ebook/obrigado): alinhado à esquerda e botões na largura toda no celular; centralizado no computador (12/11/2026) */
+.ebook-intro {
   text-align: left;
 }
 
-.ebook-obrigado-botoes {
+.ebook-botoes {
   margin-top: 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.ebook-obrigado-botoes a {
+.ebook-botoes a {
   text-align: center;
 }
 
 @media (min-width: 1024px) {
-  .ebook-obrigado-intro {
+  .ebook-intro {
     text-align: center;
   }
 
-  .ebook-obrigado-botoes {
+  .ebook-botoes {
     flex-direction: row;
     justify-content: center;
   }

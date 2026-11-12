@@ -15,7 +15,7 @@ export default function EbookObrigadoPage() {
   return (
     <div style={{ background: "var(--color-background-soft)" }}>
       <div className="container" style={{ paddingTop: 72, paddingBottom: 72, width: "100%" }}>
-        <div className="ebook-obrigado-intro" style={{ maxWidth: 600, margin: "0 auto" }}>
+        <div className="ebook-intro" style={{ maxWidth: 600, margin: "0 auto" }}>
           <p
             style={{
               margin: "0 0 12px",
@@ -51,7 +51,7 @@ export default function EbookObrigadoPage() {
               {paragrafo}
             </p>
           ))}
-          <div className="ebook-obrigado-botoes">
+          <div className="ebook-botoes">
             <a
               href={EBOOK_PDF}
               className="btn-secondary ebook-somente-celular"
