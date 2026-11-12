@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { EBOOK_FORM_URL } from "../../content/ebook";
+import FormularioEbook from "../../components/ebook/FormularioEbook";
 
 // Página de apresentação do ebook. Textos aprovados por Daniel em 11/11/2026.
-// No celular, alinhada à esquerda com botão na largura toda, como /ebook/obrigado (12/11/2026 13:51).
+// No celular, alinhada à esquerda, como /ebook/obrigado (12/11/2026 13:51).
+// Formulário do Brevo dentro da página, com o visual do site (12/11/2026 13:57).
 export const metadata: Metadata = {
   title: "Ebook gratuito: Quanto tempo dura seu orçamento?",
   description:
@@ -54,10 +55,8 @@ export default function EbookPage() {
           <p style={{ margin: "16px 0 0", opacity: 0.7 }}>
             15 minutos de leitura · 34 páginas · com ficha para preencher
           </p>
-          <div className="ebook-botoes">
-            <a href={EBOOK_FORM_URL} className="btn-primary">
-              Quero o ebook
-            </a>
+          <div className="ebook-form-cartao">
+            <FormularioEbook />
           </div>
         </div>
       </div>

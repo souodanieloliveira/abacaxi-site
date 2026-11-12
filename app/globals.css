@@ -424,3 +424,211 @@ a:focus-visible {
     justify-content: center;
   }
 }
+
+/* Ebook: formulário do Brevo dentro de /ebook com o visual do site (12/11/2026).
+   A folha de estilos do Brevo não é carregada; o que o script do Brevo precisa está aqui. */
+.ebook-form .sib-form-message-panel,
+.ebook-form .input--hidden,
+.ebook-form .sib-hide-loader-icon,
+.ebook-form .entry__error:empty,
+.ebook-form .checkbox {
+  display: none;
+}
+
+.ebook-form .sib-notification__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.ebook-form .sib-form-message-panel__text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+}
+
+.ebook-form .entry__field .input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.ebook-form .entry__choice input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.ebook-form .progress-indicator__icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  margin-right: 8px;
+  animation: ebook-form-gira 1s linear infinite;
+}
+
+.ebook-form .ebook-form__botao {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+@keyframes ebook-form-gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ebook-form-cartao {
+  margin-top: 32px;
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: left;
+}
+
+.ebook-form.sib-form {
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+}
+
+.ebook-form #sib-container {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.ebook-form .sib-form-container,
+.ebook-form .sib-form-block,
+.ebook-form .form__entry {
+  padding: 0;
+}
+
+.ebook-form .ebook-form__bloco {
+  padding: 0 0 18px;
+}
+
+.ebook-form .entry__label {
+  display: block;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.ebook-form .entry__field {
+  border: 1px solid var(--color-border-light);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.ebook-form .entry__field:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(133, 0, 219, 0.15);
+}
+
+.ebook-form .entry__field .input {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--color-text-main);
+  padding: 12px 14px;
+  min-height: 0;
+}
+
+.ebook-form .entry__field .input::placeholder {
+  font-family: inherit;
+  color: #9a93a8;
+}
+
+.ebook-form .entry__error {
+  display: block;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: #8a1c1c;
+  background: #fdecec;
+  border: 0;
+  border-radius: 6px;
+  margin-top: 6px;
+  text-align: left;
+}
+
+.ebook-form .entry__choice label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ebook-form .ebook-form__consentimento {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-main);
+  text-align: left;
+}
+
+.ebook-form a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ebook-form .ebook-form__aviso-brevo,
+.ebook-form .ebook-form__aviso-brevo p {
+  font-family: inherit;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #6b6478;
+  text-align: left;
+  margin: 0;
+}
+
+.ebook-form .ebook-form__botao.sib-form-block__button {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-button);
+  border: 0;
+  border-radius: 6px;
+  padding: 14px 20px;
+  text-align: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.ebook-form .ebook-form__aviso {
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  max-width: none;
+  margin-bottom: 16px;
+}
+
+.ebook-form .ebook-form__aviso--erro {
+  color: #8a1c1c;
+  background: #fdecec;
+  border-color: #e9a3a3;
+}
+
+.ebook-form .ebook-form__aviso--sucesso {
+  color: #1d5b33;
+  background: #e9f7ee;
+  border-color: #9fd6b1;
+}
+
+@media (min-width: 640px) {
+  .ebook-form-cartao {
+    padding: 32px;
+  }
+}
