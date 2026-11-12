@@ -4,7 +4,8 @@ import { EBOOK_PDF } from "../../../content/ebook";
 // Página depois do envio do formulário do ebook (configurada no Brevo). Fora do índice de busca.
 // 12/11/2026: no computador, o PDF aparece na própria página; no celular, o botão "Abrir o ebook"
 // abre o PDF no leitor do aparelho (navegadores de celular não mostram PDF embutido de forma confiável).
-// Texto da página definido por Daniel em 12/11/2026 13:33.
+// Texto da página definido por Daniel em 12/11/2026 13:33. No celular, texto alinhado à esquerda e
+// botões na largura toda (12/11/2026 13:44); no computador, centralizado.
 export const metadata: Metadata = {
   title: "Seu ebook está pronto!",
   robots: { index: false, follow: false },
@@ -14,7 +15,7 @@ export default function EbookObrigadoPage() {
   return (
     <div style={{ background: "var(--color-background-soft)" }}>
       <div className="container" style={{ paddingTop: 72, paddingBottom: 72, width: "100%" }}>
-        <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
+        <div className="ebook-obrigado-intro" style={{ maxWidth: 600, margin: "0 auto" }}>
           <p
             style={{
               margin: "0 0 12px",
@@ -50,15 +51,7 @@ export default function EbookObrigadoPage() {
               {paragrafo}
             </p>
           ))}
-          <div
-            style={{
-              marginTop: 32,
-              display: "flex",
-              gap: 12,
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="ebook-obrigado-botoes">
             <a
               href={EBOOK_PDF}
               className="btn-secondary ebook-somente-celular"
