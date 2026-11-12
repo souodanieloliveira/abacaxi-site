@@ -2,6 +2,8 @@ import Link from "next/link";
 
 // Página curta da Newsletter da Abacaxi (depois do envio do formulário ou do
 // clique no link de confirmação do Brevo). Decisão de 11/11/2026.
+// 12/11/2026 18:13: coluna mais larga e linhas equilibradas (text-wrap: balance), para não sobrar
+// uma linha curta no fim das frases (pedido de Daniel, vista no computador).
 export default function AvisoNewsletter({
   titulo,
   texto,
@@ -21,7 +23,7 @@ export default function AvisoNewsletter({
       }}
     >
       <div className="container" style={{ paddingTop: 96, paddingBottom: 96, width: "100%" }}>
-        <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <p
             style={{
               margin: "0 0 12px",
@@ -46,7 +48,10 @@ export default function AvisoNewsletter({
             {titulo}
           </h1>
           {(Array.isArray(texto) ? texto : [texto]).map((paragrafo, i) => (
-            <p key={i} style={{ margin: i === 0 ? 0 : "12px 0 0", fontSize: "1.125rem", lineHeight: 1.7 }}>
+            <p
+              key={i}
+              style={{ margin: i === 0 ? 0 : "12px 0 0", fontSize: "1.125rem", lineHeight: 1.7, textWrap: "balance" }}
+            >
               {paragrafo}
             </p>
           ))}

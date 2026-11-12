@@ -25,7 +25,7 @@ export default function NewsletterBox() {
         Receba os próximos textos por e-mail
       </h2>
       <p style={{ margin: "0 0 20px", opacity: 0.85, lineHeight: 1.7 }}>
-        A {NEWSLETTER_NAME} chega a cada quinze dias, com um texto sobre decisões
+        A {NEWSLETTER_NAME} chega a cada duas semanas, com um texto sobre decisões
         financeiras que valem a reflexão.
       </p>
       <a href="/newsletter" className="btn-primary">

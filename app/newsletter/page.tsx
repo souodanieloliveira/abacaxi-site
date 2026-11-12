@@ -7,7 +7,7 @@ import { NEWSLETTER_NAME } from "../../content/blog/config";
 export const metadata: Metadata = {
   title: NEWSLETTER_NAME,
   description:
-    "A Newsletter da Abacaxi chega a cada quinze dias, com um texto sobre decisões financeiras que valem a reflexão.",
+    "A Newsletter da Abacaxi chega a cada duas semanas, com um texto sobre decisões financeiras que valem a reflexão.",
   alternates: { canonical: "https://abacaxi.cc/newsletter" },
   openGraph: { url: "https://abacaxi.cc/newsletter" },
 };
@@ -48,8 +48,8 @@ export default function NewsletterPage() {
             Receba os próximos textos por e-mail
           </h1>
           <p style={{ margin: 0, fontSize: "1.125rem", lineHeight: 1.7 }}>
-            A {NEWSLETTER_NAME} chega a cada quinze dias, com um texto sobre decisões financeiras que
-            valem a reflexão.
+            A {NEWSLETTER_NAME} chega a cada duas semanas, com um texto sobre decisões financeiras
+            que valem a reflexão.
           </p>
           <div className="ebook-form-cartao">
             <FormularioNewsletter />

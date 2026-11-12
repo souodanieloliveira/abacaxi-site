@@ -6,6 +6,7 @@ import { IconeAviso, MENSAGENS_BREVO, RECAPTCHA_SITE_KEY } from "../brevo/comum"
 // Marcação, nomes de campos, ids e scripts vêm do código HTML gerado pelo Brevo; o visual é o do site
 // (estilos .ebook-form em globals.css, os mesmos do formulário do ebook). O Brevo continua cuidando da
 // lista, do reCAPTCHA e da confirmação dupla (modelo 8).
+// Campo NOME obrigatório incluído em 12/11/2026 18:13 (também incluído por Daniel no formulário do Brevo).
 // Se o formulário mudar no Brevo (campos, textos, lista), este arquivo precisa ser atualizado junto.
 
 export default function FormularioNewsletter() {
@@ -27,6 +28,32 @@ export default function FormularioNewsletter() {
         <div></div>
         <div id="sib-container" className="sib-container--large sib-container--vertical">
           <form id="sib-form" method="POST" action={NEWSLETTER_SIGNUP_URL} data-type="subscription">
+            <div className="ebook-form__bloco">
+              <div className="sib-input sib-form-block">
+                <div className="form__entry entry_block">
+                  <div className="form__label-row">
+                    <label className="entry__label" htmlFor="NOME" data-required="*">
+                      Insira seu Nome
+                    </label>
+                    <div className="entry__field">
+                      <input
+                        className="input"
+                        maxLength={200}
+                        type="text"
+                        id="NOME"
+                        name="NOME"
+                        autoComplete="name"
+                        placeholder="Nome e sobrenome"
+                        data-required="true"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <label className="entry__error entry__error--primary"></label>
+                </div>
+              </div>
+            </div>
+
             <div className="ebook-form__bloco">
               <div className="sib-input sib-form-block">
                 <div className="form__entry entry_block">

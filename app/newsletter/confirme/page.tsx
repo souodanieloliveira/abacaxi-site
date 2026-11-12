@@ -11,7 +11,7 @@ export default function ConfirmePage() {
   return (
     <AvisoNewsletter
       titulo="Confira seu e-mail"
-      texto="Enviamos um link de confirmação. Se não encontrar, olhe a caixa de spam ou de promoções."
+      texto={["Enviamos um link de confirmação.", "Se não encontrar, olhe a caixa de spam ou de promoções."]}
     />
   );
 }

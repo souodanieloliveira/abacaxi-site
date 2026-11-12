@@ -56,8 +56,8 @@ export default function PrivacidadePage() {
             <h2>Quais dados coletamos e para quê</h2>
             <ul>
               <li>
-                <strong>Newsletter:</strong> seu e-mail e o registro do seu consentimento, para enviar a
-                newsletter. Você pode cancelar a qualquer momento pelo link no fim de cada e-mail.
+                <strong>Newsletter:</strong> seu nome, seu e-mail e o registro do seu consentimento, para
+                enviar a newsletter. Você pode cancelar a qualquer momento pelo link no fim de cada e-mail.
               </li>
               <li>
                 <strong>Materiais (ebook e outros):</strong> nome, e-mail e o registro do seu
