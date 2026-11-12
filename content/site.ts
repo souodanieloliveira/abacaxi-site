@@ -332,7 +332,10 @@ export const siteContent = {
         href: "/contato",
         // Foto: conversa entre consultor e cliente, ambiente acolhedor
         image: null as string | null,
-        testimonial: null as string | null,
+        // Depoimento autorizado por e-mail em 06/11/2026; publicação aprovada em 11/11/2026.
+        testimonial:
+          "Muito obrigado pelo envio da planilha e, principalmente, pelo encontro de hoje. A conversa foi extremamente elucidadora e muito valiosa para que eu tenha uma visão mais clara da minha situação financeira, dos compromissos futuros e das melhores estratégias para organização do patrimônio e dos investimentos. Os esclarecimentos e orientações compartilhados certamente contribuirão para uma tomada de decisão mais consciente nos próximos anos. Agradeço também pela atenção, pela didática e pelo material encaminhado." as string | null,
+        testimonialAuthor: "Ricardo Barcelos, Programa Saber Viver (CNC)" as string | null,
       },
       {
         badge: null as string | null,
@@ -345,6 +348,7 @@ export const siteContent = {
         // Foto: cliente revisando plano financeiro com consultor
         image: null as string | null,
         testimonial: null as string | null,
+        testimonialAuthor: null as string | null,
       },
       {
         badge: null as string | null,
@@ -357,6 +361,7 @@ export const siteContent = {
         // Foto: cliente confiante, olhando para o futuro
         image: null as string | null,
         testimonial: null as string | null,
+        testimonialAuthor: null as string | null,
       },
     ],
     ctaFinal: {
