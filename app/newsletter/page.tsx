@@ -9,7 +9,14 @@ export const metadata: Metadata = {
   description:
     "A Newsletter da Abacaxi chega a cada duas semanas, com um texto sobre decisões financeiras que valem a reflexão.",
   alternates: { canonical: "https://abacaxi.cc/newsletter" },
-  openGraph: { url: "https://abacaxi.cc/newsletter" },
+  // Ao definir openGraph aqui, a imagem padrão do layout deixa de valer; por isso ela é declarada de novo (13/11/2026).
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Abacaxi",
+    url: "https://abacaxi.cc/newsletter",
+    images: [{ url: "https://abacaxi.cc/hero-abacaxi.png", width: 1200, height: 630 }],
+  },
 };
 
 export default function NewsletterPage() {

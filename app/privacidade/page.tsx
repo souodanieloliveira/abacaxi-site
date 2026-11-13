@@ -9,7 +9,14 @@ export const metadata: Metadata = {
   description:
     "Como a Abacaxi trata os dados pessoais coletados no site abacaxi.cc e na Newsletter da Abacaxi.",
   alternates: { canonical: "https://abacaxi.cc/privacidade" },
-  openGraph: { url: "https://abacaxi.cc/privacidade" },
+  // Ao definir openGraph aqui, a imagem padrão do layout deixa de valer; por isso ela é declarada de novo (13/11/2026).
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Abacaxi",
+    url: "https://abacaxi.cc/privacidade",
+    images: [{ url: "https://abacaxi.cc/hero-abacaxi.png", width: 1200, height: 630 }],
+  },
 };
 
 const ATUALIZADA_EM = "12 de novembro de 2026";
