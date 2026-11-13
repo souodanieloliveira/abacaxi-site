@@ -9,7 +9,26 @@ export const metadata: Metadata = {
   description:
     "Conheça o Limite de Gastos: um jeito simples de saber quanto pode gastar por semana e de manter o plano de pé até o fim do mês.",
   alternates: { canonical: "https://abacaxi.cc/ebook" },
-  openGraph: { url: "https://abacaxi.cc/ebook" },
+  // Imagem de compartilhamento própria (13/11/2026): o livro, da conversa de Conteúdo, em 1200 × 630.
+  // Ao definir openGraph aqui, a imagem padrão do layout deixa de valer; por isso ela é declarada de novo.
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Abacaxi",
+    url: "https://abacaxi.cc/ebook",
+    images: [
+      {
+        url: "https://abacaxi.cc/ebook/compartilhamento.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Capa do ebook Quanto tempo dura seu orçamento?",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://abacaxi.cc/ebook/compartilhamento.jpg"],
+  },
 };
 
 export default function EbookPage() {
