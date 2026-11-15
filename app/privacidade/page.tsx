@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ATUALIZADA_EM = "12 de novembro de 2026";
+const ATUALIZADA_EM = "15 de novembro de 2026";
 
 export default function PrivacidadePage() {
   return (
@@ -71,6 +71,11 @@ export default function PrivacidadePage() {
                 consentimento, para liberar o acesso ao material pedido e enviá-lo para o seu e-mail.
               </li>
               <li>
+                <strong>Calculadora de Limite de Gastos:</strong> nome, e-mail, WhatsApp (se você
+                informar) e o registro do seu consentimento, para liberar o acesso à calculadora. Os
+                valores que você preenche nela ficam só no seu navegador e não são enviados à Abacaxi.
+              </li>
+              <li>
                 <strong>Formulário de contato:</strong> nome, empresa (se você informar), e-mail,
                 mensagem e serviço de interesse, para responder ao seu contato.
               </li>
@@ -97,7 +102,7 @@ export default function PrivacidadePage() {
 
             <h2>Com quem compartilhamos</h2>
             <p>
-              Só com os serviços que usamos para operar: Brevo (newsletter e materiais), Airtable (contatos e lista
+              Só com os serviços que usamos para operar: Brevo (newsletter, materiais e calculadora), Airtable (contatos e lista
               de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam dos formulários do site) e Vercel
               (hospedagem). Alguns guardam os dados fora
               do Brasil. Não vendemos nem cedemos seus dados a ninguém.
@@ -107,6 +112,7 @@ export default function PrivacidadePage() {
             <ul>
               <li>Newsletter: enquanto a sua inscrição estiver ativa.</li>
               <li>Materiais (ebook e outros): 12 meses.</li>
+              <li>Calculadora de Limite de Gastos: 12 meses.</li>
               <li>Contatos que não viram clientes: 12 meses.</li>
               <li>Lista de espera: 12 meses.</li>
             </ul>

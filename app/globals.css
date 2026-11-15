@@ -632,3 +632,82 @@ a:focus-visible {
     padding: 32px;
   }
 }
+
+/* Calculadora de Limite de Gastos (/calculadora), 15/11/2026 */
+.calc-wrap { max-width: 640px; margin: 0 auto; }
+.calc-eyebrow { margin: 0 0 12px; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+.calc-h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; color: var(--color-text-main); margin: 0 0 16px; }
+.calc-lede { margin: 0; font-size: 1.125rem; line-height: 1.7; }
+.calc { margin-top: 32px; scroll-margin-top: 96px; }
+.calc-card { background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; }
+.calc-titulo { font-size: 1.25rem; font-weight: 700; color: var(--color-text-accent); margin: 0 0 6px; line-height: 1.3; }
+.calc-titulo--cenario { font-size: 1.375rem; color: var(--color-text-main); margin-top: 4px; }
+.calc-desc { margin: 0 0 20px; line-height: 1.6; opacity: 0.8; }
+.calc-texto { margin: 0 0 20px; line-height: 1.7; }
+.calc-label { display: block; font-size: 0.875rem; font-weight: 500; margin: 16px 0 6px; }
+.calc-input { width: 100%; padding: 11px 13px; border: 1px solid var(--color-border-light); border-radius: 8px; font: inherit; font-size: 1rem; color: var(--color-text-main); background: #ffffff; }
+.calc-input:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; border-color: var(--color-primary); }
+.calc-item { background: var(--color-background); border: 1px solid var(--color-border-light); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.calc-duas { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.calc-iguais { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.calc-mt { margin-top: 8px; }
+.calc-valor { max-width: 140px; }
+.calc-dia { max-width: 96px; }
+.calc-tipo { max-width: 140px; }
+.calc-mini { display: block; font-size: 0.8125rem; font-weight: 500; opacity: 0.85; }
+.calc-mini .calc-input { margin-top: 4px; }
+.calc-add { background: var(--color-background-soft); color: var(--color-text-accent); border: 0; border-radius: 8px; padding: 9px 14px; font: inherit; font-size: 0.9375rem; font-weight: 500; cursor: pointer; }
+.calc-remover { display: block; margin: 6px 0 0 auto; background: none; border: 0; font: inherit; font-size: 0.8125rem; opacity: 0.6; cursor: pointer; }
+.calc-total { text-align: right; font-weight: 700; margin-top: 10px; }
+.calc-botao { display: block; width: 100%; text-align: center; margin-top: 16px; border: 0; font: inherit; font-weight: 500; cursor: pointer; }
+.calc-botao.btn-secondary { border: 1px solid var(--color-button); margin-top: 10px; }
+.calc-botao:disabled { opacity: 0.6; cursor: default; }
+.calc-voltar { display: block; margin: 16px auto 0; background: none; border: 0; font: inherit; font-size: 0.9375rem; color: var(--color-text-accent); cursor: pointer; }
+.calc-consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 0.9375rem; line-height: 1.5; }
+.calc-consent input { margin-top: 4px; width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--color-primary); }
+.calc-consent a { color: var(--color-text-accent); text-decoration: underline; }
+.calc-erro { margin: 12px 0 0; color: #B42318; font-size: 0.9375rem; }
+.calc-nota { margin: 12px 0 0; font-size: 0.8125rem; opacity: 0.7; text-align: center; }
+.calc-isca { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.calc-progresso { margin-bottom: 14px; }
+.calc-trilho { background: var(--color-border-light); border-radius: 99px; height: 6px; }
+.calc-preenchido { background: var(--color-primary); border-radius: 99px; height: 6px; transition: width 0.3s; }
+.calc-etapa { font-size: 0.8125rem; margin-top: 6px; opacity: 0.7; }
+.calc-contador-bloco + .calc-contador-bloco { margin-top: 8px; }
+.calc-contador { display: flex; align-items: center; gap: 14px; }
+.calc-contador button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--color-primary); background: #ffffff; color: var(--color-primary); font-size: 1.375rem; line-height: 1; cursor: pointer; }
+.calc-contador-valor { font-size: 1.5rem; font-weight: 700; min-width: 28px; text-align: center; }
+.calc-contador-rotulo { opacity: 0.7; }
+.calc-res-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.calc-res { border-radius: 12px; padding: 16px; text-align: center; }
+.calc-res--vigente { background: var(--color-primary); color: #ffffff; }
+.calc-res--proximo { background: var(--color-background-soft); color: var(--color-dark); }
+.calc-res-rotulo { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.85; margin-bottom: 8px; }
+.calc-res-valor { font-size: 1.625rem; font-weight: 800; line-height: 1.1; }
+.calc-res-sub { font-size: 0.8125rem; opacity: 0.8; margin-top: 4px; }
+.calc-neg { color: #B42318; }
+.calc-neg-claro { color: #FFD3CF; }
+.calc-detalhe { background: var(--color-background); border-radius: 10px; padding: 12px 14px; font-size: 0.9375rem; margin-bottom: 4px; }
+.calc-detalhe > div { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--color-border-light); }
+.calc-detalhe > div:last-child { border-bottom: 0; }
+.calc-detalhe-total { font-weight: 700; }
+.calc-selo { display: inline-block; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.calc-selo--perigo { background: #FDE8E7; color: #912018; }
+.calc-selo--atencao { background: #FFF1DE; color: #8A4B00; }
+.calc-selo--ok { background: #E7F6EC; color: #1B6B3A; }
+.calc-selo--melhor { background: var(--color-background-soft); color: var(--color-dark); }
+.calc-fazer { background: var(--color-background-soft); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.calc-fazer h3 { margin: 0 0 8px; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-dark); }
+.calc-fazer ul { margin: 0; padding-left: 18px; }
+.calc-fazer li { padding: 3px 0; line-height: 1.5; }
+.calc-resumo { background: var(--color-background); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.9375rem; }
+.calc-resumo > div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+.calc-cta { background: var(--color-dark); color: #ffffff; border-radius: 12px; padding: 22px; text-align: center; }
+.calc-cta p { margin: 0 0 16px; line-height: 1.6; font-family: var(--font-fraunces), Georgia, serif; font-style: italic; }
+@media (min-width: 640px) {
+  .calc-card { padding: 32px; }
+}
+@media (max-width: 480px) {
+  .calc-res-grade { grid-template-columns: 1fr; }
+  .calc-h1 { font-size: 1.875rem; }
+}
