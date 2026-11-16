@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+
+// Cabeçalho refeito em 16/11/2026 (Daniel: "o header móvel também não está funcionando visualmente").
+// Antes, ele só aparecia depois de rolar a página. Agora fica visível desde o topo e acompanha a rolagem.
+// No celular: logo, botão "Fale conosco" e ícone de menu; o menu abre em tela cheia e não fecha ao rolar.
+// Roxo-escuro com o logo claro do rodapé (opção C, Daniel em 16/11/2026 14:10).
 
 const navLinks = [
   { href: "/pessoas", label: "Pessoas", title: "Serviços para pessoas físicas" },
@@ -12,56 +19,29 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const [visible, setVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
+  // Com o menu aberto, a página de trás não rola; Esc fecha o menu.
   useEffect(() => {
-    const onScroll = () => {
-      setVisible(window.scrollY > 40);
-      setMenuOpen(false);
+    if (!menuOpen) return;
+    const anterior = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
     };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = anterior;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   return (
-    <header
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-
-        backgroundColor: "#ffffff",
-        borderBottom: "1px solid var(--color-border-light)",
-
-        transform: visible ? "translateY(0)" : "translateY(-100%)",
-        opacity: visible ? 1 : 0,
-        transition: "transform 0.25s ease, opacity 0.2s ease",
-
-        pointerEvents: visible ? "auto" : "none",
-      }}
-    >
-      <nav
-        className="container"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: 80,
-          overflow: "hidden",
-        }}
-      >
-        <Link href="/" title="Abacaxi – Página inicial" style={{ display: "block" }}>
-          <img
-            src="/logo-abacaxi-header.png"
-            alt="Abacaxi"
-            width={2272}
-            height={522}
-            style={{ height: 40, width: "auto", display: "block" }}
-          />
+    <header className="site-header">
+      <nav className="container site-header__barra" aria-label="Principal">
+        <Link href="/" title="Abacaxi – Página inicial" className="site-header__logo" onClick={() => setMenuOpen(false)}>
+          <img src="/logo-abacaxi-rodape.png" alt="Abacaxi" width={866} height={200} />
         </Link>
 
         <div className="nav-links">
@@ -75,51 +55,47 @@ export default function Header() {
           </Link>
         </div>
 
-        <button
-          className="nav-hamburger"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
+        <div className="site-header__celular">
+          <Link href="/contato" className="site-header__contato" title="Fale com a Abacaxi" onClick={() => setMenuOpen(false)}>
+            Fale conosco
+          </Link>
+          <button
+            type="button"
+            className="nav-hamburger"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            aria-controls="menu-celular"
+          >
+            {menuOpen ? <X size={26} strokeWidth={2} /> : <Menu size={26} strokeWidth={2} />}
+          </button>
+        </div>
       </nav>
 
       {menuOpen && (
-        <div
-          style={{
-            background: "#ffffff",
-            borderTop: "1px solid var(--color-border-light)",
-            padding: "16px 24px 24px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          {navLinks.map(({ href, label, title }) => (
+        <div id="menu-celular" className="site-header__menu">
+          <div className="container">
+            {navLinks.map(({ href, label, title }) => (
+              <Link
+                key={href}
+                href={href}
+                title={title}
+                onClick={() => setMenuOpen(false)}
+                className="site-header__item"
+                aria-current={pathname === href ? "page" : undefined}
+              >
+                {label}
+              </Link>
+            ))}
             <Link
-              key={href}
-              href={href}
-              title={title}
+              href="/contato"
+              title="Fale com a Abacaxi"
               onClick={() => setMenuOpen(false)}
-              style={{
-                padding: "14px 0",
-                fontSize: "1.125rem",
-                fontWeight: 500,
-                color: "var(--color-dark)",
-                borderBottom: "1px solid var(--color-border-light)",
-              }}
+              className="btn-primary site-header__botao-menu"
             >
-              {label}
+              Fale com a Abacaxi
             </Link>
-          ))}
-          <Link
-            href="/contato"
-            title="Fale com a Abacaxi"
-            onClick={() => setMenuOpen(false)}
-            className="btn-primary"
-            style={{ marginTop: 20, textAlign: "center" }}
-          >
-            Fale com a Abacaxi
-          </Link>
+          </div>
         </div>
       )}
     </header>

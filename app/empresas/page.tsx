@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { siteContent } from "../../content/site";
+import PaginaHero from "../../components/PaginaHero";
 
 export const metadata: Metadata = {
   title: "Para Empresas",
@@ -23,61 +23,13 @@ export default function EmpresasPage() {
 
   return (
     <>
-      {/* HERO — imagem com overlay escuro */}
-      <section
-        style={{
-          position: "relative",
-          minHeight: "60vh",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "flex-end",
-        }}
-      >
-        <Image
-          src={empresas.hero.image}
-          alt="Equipe em reunião de planejamento financeiro"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "var(--color-dark)",
-            opacity: 0.6,
-          }}
-        />
-        <div style={{ position: "relative", width: "100%", paddingBottom: "6vh" }}>
-          <div className="container">
-            <div style={{ maxWidth: 720 }}>
-              <h1
-                style={{
-                  fontSize: "2.25rem",
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  color: "#ffffff",
-                  marginBottom: 20,
-                  marginTop: 0,
-                }}
-              >
-                {empresas.hero.title}
-              </h1>
-              <p
-                style={{
-                  fontSize: "1.125rem",
-                  color: "rgba(255,255,255,0.85)",
-                  margin: 0,
-                  lineHeight: 1.7,
-                }}
-              >
-                {empresas.hero.subtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PaginaHero
+        rotulo="Para o seu negócio"
+        titulo={empresas.hero.title}
+        frase={empresas.hero.subtitle}
+        imagem={empresas.hero.image}
+        alt="Equipe em reunião de planejamento financeiro"
+      />
 
       {/* SERVIÇOS */}
       {empresas.services.map((service, i) => {

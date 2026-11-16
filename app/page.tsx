@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Sunset, Briefcase, Scissors, Heart } from "lucide-react";
 import { siteContent } from "../content/site";
 import EmailCapture from "../components/EmailCapture";
+import PaginaHero from "../components/PaginaHero";
 
 export const metadata: Metadata = {
   title: { absolute: "Abacaxi – Roteiro Financeiro para Momentos Decisivos" },
@@ -23,44 +23,25 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section
-        style={{
-          position: "relative",
-          minHeight: "85vh",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "flex-end",
-        }}
-      >
-        <Image
-          src={home.hero.image}
-          alt="Duas mulheres conversando sentadas em situação descontraída, alegres e sorrindo"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-        />
-        <div style={{ width: "100%", paddingBottom: "6vh" }}>
-          <div className="container">
-          <div className="hero-card">
-            <h1 className="hero-title">
-              {home.hero.title}
-            </h1>
+      {/* HERO — texto sobre fundo liso e foto inteira (16/11/2026, a partir do exemplo da Robinhood). */}
+      <PaginaHero
+        principal
+        titulo={home.hero.title}
+        frase={home.hero.paragraph1}
+        imagem={home.hero.image}
+        alt="Duas mulheres conversando sentadas em situação descontraída, alegres e sorrindo"
+        botao={{ texto: home.hero.cta, href: "/contato", title: "Fale com a Abacaxi" }}
+      />
 
-            <p style={{ fontSize: "1rem", marginBottom: 10 }}>
-              {home.hero.paragraph1}
-            </p>
-
-            <p style={{ marginBottom: 20 }}>
-              {home.hero.paragraph2}
-            </p>
-
-            <Link href="/contato" className="btn-primary" title="Fale com a Abacaxi">
-              {home.hero.cta}
-            </Link>
-          </div>
-          </div>
+      {/* NÚMEROS — os mesmos da página Sobre (Daniel, 16/11/2026 14:10: "podemos colocar alguns na inicial também"). */}
+      <section className="home-numeros" aria-label="A Abacaxi em números">
+        <div className="container home-numeros__grade">
+          {siteContent.sobre.numeros.map((n) => (
+            <div key={n.label} className="home-numeros__item">
+              <p className="home-numeros__valor">{n.valor}</p>
+              <p className="home-numeros__rotulo">{n.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -68,20 +49,15 @@ export default function Home() {
       <div style={{ background: "var(--color-dark)", color: "#ffffff" }}>
         <div className="container" style={{ paddingTop: 72, paddingBottom: 72 }}>
 
-          {/* tagline centralizado com linhas */}
-          <div style={{ display: "flex", alignItems: "center", gap: 24, marginBottom: 56 }}>
-            <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.25)" }} />
-            <h2 className="accent-serif" style={{ margin: 0, fontSize: "1.125rem", fontWeight: 400, whiteSpace: "nowrap" }}>
-              Como a Abacaxi pode ajudar
-            </h2>
-            <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.25)" }} />
-          </div>
+          {/* Título da seção na Fraunces normal, como o da primeira tela (16/11/2026 14:10). */}
+          <h2 className="home-servicos__titulo">Como a Abacaxi pode ajudar</h2>
+          <p className="home-servicos__intro">{home.hero.paragraph2}</p>
 
           <div className="services-grid">
             {home.services.map((service) => (
               <div
                 key={service.title}
-                className="service-card"
+                className="service-card home-servicos__cartao"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -91,27 +67,9 @@ export default function Home() {
                   overflow: "hidden",
                 }}
               >
-                {/* faixa do título */}
-                <div
-                  style={{
-                    background: "var(--color-secondary)",
-                    padding: "14px 24px",
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontSize: "1.25rem",
-                      fontWeight: 700,
-                      color: "#ffffff",
-                      margin: 0,
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-                </div>
-
                 {/* corpo do card */}
-                <div style={{ padding: "24px 24px 28px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
+                <div style={{ padding: "28px 24px 28px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
+                <h3 className="home-servicos__cartao-titulo">{service.title}</h3>
                 {service.subtitle && (
                   <p className="accent-serif" style={{ fontWeight: 500, opacity: 0.9, marginBottom: 8 }}>
                     {service.subtitle}

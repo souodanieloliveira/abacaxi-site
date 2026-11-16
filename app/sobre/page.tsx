@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { siteContent } from "../../content/site";
+import PaginaHero from "../../components/PaginaHero";
 
 export const metadata: Metadata = {
   title: "Sobre Nós",
@@ -23,50 +23,12 @@ export default function SobrePage() {
 
   return (
     <>
-      {/* HERO — imagem com overlay escuro */}
-      <section
-        style={{
-          position: "relative",
-          minHeight: "60vh",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "flex-end",
-        }}
-      >
-        <Image
-          src={sobre.hero.image}
-          alt="Equipe Abacaxi em ambiente de trabalho"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "var(--color-dark)",
-            opacity: 0.6,
-          }}
-        />
-        <div style={{ position: "relative", width: "100%", paddingBottom: "6vh" }}>
-          <div className="container">
-            <div style={{ maxWidth: 720 }}>
-              <h1
-                style={{
-                  fontSize: "2.25rem",
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  color: "#ffffff",
-                  margin: 0,
-                }}
-              >
-                {sobre.hero.title}
-              </h1>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PaginaHero
+        rotulo="Sobre a Abacaxi"
+        titulo={sobre.hero.title}
+        imagem={sobre.hero.image}
+        alt="Equipe Abacaxi em ambiente de trabalho"
+      />
 
       {/* ORIGEM — Por que a Abacaxi existe */}
       <div style={{ background: "#ffffff" }}>
