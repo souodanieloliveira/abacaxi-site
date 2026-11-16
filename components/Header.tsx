@@ -8,7 +8,8 @@ import { Menu, X } from "lucide-react";
 // Cabeçalho refeito em 16/11/2026 (Daniel: "o header móvel também não está funcionando visualmente").
 // Antes, ele só aparecia depois de rolar a página. Agora fica visível desde o topo e acompanha a rolagem.
 // No celular: logo, botão "Fale conosco" e ícone de menu; o menu abre em tela cheia e não fecha ao rolar.
-// Roxo-escuro com o logo claro do rodapé (opção C, Daniel em 16/11/2026 14:10).
+// Roxo-escuro (opção C, Daniel em 16/11/2026 14:10), com o logo sem "planejamento financeiro" e texto branco
+// (14:20). No celular, o botão é de contorno branco, para o laranja não brigar com o do logo (14:20).
 
 const navLinks = [
   { href: "/pessoas", label: "Pessoas", title: "Serviços para pessoas físicas" },
@@ -41,7 +42,7 @@ export default function Header() {
     <header className="site-header">
       <nav className="container site-header__barra" aria-label="Principal">
         <Link href="/" title="Abacaxi – Página inicial" className="site-header__logo" onClick={() => setMenuOpen(false)}>
-          <img src="/logo-abacaxi-rodape.png" alt="Abacaxi" width={866} height={200} />
+          <img src="/logo-abacaxi-header-claro.png" alt="Abacaxi" width={2272} height={522} />
         </Link>
 
         <div className="nav-links">

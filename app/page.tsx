@@ -45,8 +45,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVIÇOS — faixa escura full-width */}
-      <div style={{ background: "var(--color-dark)", color: "#ffffff" }}>
+      {/* SERVIÇOS — faixa clara (16/11/2026 14:20: números escuros, a seção seguinte mais clara, alternando). */}
+      <div className="home-servicos" style={{ background: "#ffffff", color: "var(--color-dark)" }}>
         <div className="container" style={{ paddingTop: 72, paddingBottom: 72 }}>
 
           {/* Título da seção na Fraunces normal, como o da primeira tela (16/11/2026 14:10). */}
@@ -61,8 +61,8 @@ export default function Home() {
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  background: "rgba(255,255,255,0.07)",
-                  border: "1px solid rgba(255,255,255,0.15)",
+                  background: "var(--color-background)",
+                  border: "1px solid var(--color-border-light)",
                   borderRadius: 12,
                   overflow: "hidden",
                 }}
@@ -71,12 +71,12 @@ export default function Home() {
                 <div style={{ padding: "28px 24px 28px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                 <h3 className="home-servicos__cartao-titulo">{service.title}</h3>
                 {service.subtitle && (
-                  <p className="accent-serif" style={{ fontWeight: 500, opacity: 0.9, marginBottom: 8 }}>
+                  <p className="accent-serif" style={{ fontWeight: 500, color: "var(--color-primary)", marginBottom: 8 }}>
                     {service.subtitle}
                   </p>
                 )}
 
-                <p style={{ opacity: 0.75, flexGrow: 1, marginBottom: 24 }}>
+                <p style={{ color: "var(--color-text-main)", opacity: 0.8, flexGrow: 1, marginBottom: 24 }}>
                   {service.description}
                 </p>
 
@@ -92,7 +92,7 @@ export default function Home() {
                     alignItems: "center",
                     gap: 12,
                     fontWeight: 700,
-                    color: "#ffffff",
+                    color: "var(--color-dark)",
                   }}
                 >
                   Saiba mais
@@ -104,7 +104,7 @@ export default function Home() {
                       width: 32,
                       height: 32,
                       borderRadius: "50%",
-                      border: "2px solid #ffffff",
+                      border: "2px solid var(--color-dark)",
                       fontSize: "0.9rem",
                     }}
                   >
@@ -118,8 +118,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* STATEMENT */}
-      <div style={{ background: "linear-gradient(to bottom, var(--color-background-soft), #ffffff)" }}>
+      {/* STATEMENT — faixa escura, alternando com a seção clara anterior (16/11/2026). */}
+      <div className="home-statement" style={{ background: "var(--color-dark)" }}>
         <div
           className="container flex-responsive"
           style={{
@@ -136,8 +136,8 @@ export default function Home() {
           <p
             style={{
               fontSize: "1.125rem",
-              color: "var(--color-text-main)",
-              opacity: 0.8,
+              color: "#ffffff",
+              opacity: 0.85,
               margin: 0,
             }}
           >
