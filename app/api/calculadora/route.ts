@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { digitosWhatsappValidos } from "../../../components/calculadora/whatsapp";
 
 // Cadastro de quem acessa a Calculadora de Limite de Gastos (/calculadora) na lista própria do Brevo.
 // Decisões da conversa Conteúdo (turnos 26 a 30) e assumidas pela conversa Site em 15/11/2026:
@@ -32,7 +33,7 @@ function nomeValido(n: string) {
 function normalizarWhatsapp(bruto: string): string | null {
   let d = bruto.replace(/\D/g, "");
   if (d.startsWith("55") && (d.length === 12 || d.length === 13)) d = d.slice(2);
-  if ((d.length !== 10 && d.length !== 11) || d[0] === "0") return null;
+  if (!digitosWhatsappValidos(d)) return null;
   return `+55${d}`;
 }
 
@@ -87,11 +88,24 @@ export async function POST(request: Request) {
   try {
     let resposta = await enviarAoBrevo(chave, { ...base, attributes: atributos });
 
-    // O Brevo recusa um WhatsApp já usado por outro contato; nesse caso, grava sem ele.
+    // Recusa com WhatsApp: grava o contato sem o número (16/11/2026 12:49).
+    // - número já usado por outro contato ("duplicate_parameter"): segue sem avisar, como antes;
+    // - qualquer outro motivo (número que o Brevo considera inválido): avisa a pessoa para corrigir.
+    // O motivo fica no registro do Vercel, sem os dígitos.
     if (resposta.status === 400 && whatsapp) {
+      const motivo = (await resposta.json().catch(() => ({}))) as { code?: string; message?: string };
+      const repetido = motivo.code === "duplicate_parameter";
+      console.warn(
+        "Brevo recusou o WhatsApp da calculadora:",
+        motivo.code ?? "sem código",
+        (motivo.message ?? "").replace(/\d/g, "#"),
+      );
       const { WHATSAPP: _descartado, ...semWhatsapp } = atributos;
       void _descartado;
       resposta = await enviarAoBrevo(chave, { ...base, attributes: semWhatsapp });
+      if (resposta.ok && !repetido) {
+        return NextResponse.json({ error: "WhatsApp inválido.", campo: "whatsapp" }, { status: 422 });
+      }
     }
 
     if (!resposta.ok) {
