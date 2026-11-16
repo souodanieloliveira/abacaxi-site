@@ -64,6 +64,10 @@ function parametroPorPessoa(ganhos: number) {
 const AVISO_PDF =
   "Este resultado é uma estimativa feita a partir dos valores que você informou. Tem finalidade meramente educacional. Não constitui recomendação de investimento. Para uma análise pessoal e personalizada, solicite um atendimento.";
 
+// Pedido de Daniel em 16/11/2026 12:09: deixar claro de onde vêm as recomendações de ajuste.
+const AVISO_CENARIOS =
+  "As recomendações de ajuste são baseadas na experiência de atendimento da Abacaxi e não representam, necessariamente, a sua realidade individual ou a da sua família.";
+
 const NOMES_ETAPAS = ["", "Pessoas", "Recebimentos", "Compromissos", "Faturas", "Parcelas", "Anuais", "Resultado", "Seu momento"];
 const TOTAL_ETAPAS = 8;
 
@@ -196,7 +200,7 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
 <span class="badge">${sc.bt}</span>
 <p style="margin:6px 0 10px"><strong>${sc.tit}</strong></p>
 <p style="color:#6B6475;margin-bottom:12px">${sc.txt}</p>
-<div class="box"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#8500DB">O que fazer</strong><ul>${sc.ac.map((a) => `<li>${a}</li>`).join("")}</ul></div>
+<div class="box"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#8500DB">O que fazer</strong><ul>${sc.ac.map((a) => `<li>${a}</li>`).join("")}</ul><p style="margin:10px 0 0;font-size:12px;color:#6B6475">${AVISO_CENARIOS}</p></div>
 <div class="aviso">${AVISO_PDF}</div>
 <div class="footer">Abacaxi Serviços Financeiros · abacaxi.cc</div>
 </body></html>`;
@@ -391,6 +395,7 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
             <div className="calc-fazer">
               <h3>O que fazer</h3>
               <ul>{sc.ac.map((a) => <li key={a}>{a}</li>)}</ul>
+              <p className="calc-aviso-cenario">{AVISO_CENARIOS}</p>
             </div>
             <div className="calc-resumo">
               <div><span>Limite semanal — mês vigente</span><strong>{fc(c.lsv)}</strong></div>
