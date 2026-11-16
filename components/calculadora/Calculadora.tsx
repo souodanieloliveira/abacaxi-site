@@ -41,18 +41,22 @@ const C: Record<number, Cenario> = {
   8: { tom: "perigo", bt: "Ação Urgente", tit: "A fatura está maior do que todos os seus compromissos", txt: "Os gastos no cartão — fora as parcelas — estão muito acima do que o orçamento suporta.", ac: ["Projete quanto de parcela está embutida na fatura atual", "Revise os compromissos e ajuste o que for possível", "Ajuste os gastos diários com urgência — esse mês está comprometido"] },
 };
 
-// Parâmetro de limite semanal por pessoa, por faixa de ganhos mensais (é referência, não limite).
-// Faixas graduais pedidas por Daniel em 16/11/2026 11:54; R$ 900 por semana para 3 pessoas com
-// R$ 9 mil de ganhos considerado adequado (11:51).
+// Parâmetro de limite semanal para 1 pessoa, por faixa de ganhos mensais (é referência, não limite).
+// Faixas graduais (16/11/2026 11:54) aumentadas em 50% e regra 50/50 (opção b, aprovada às 12:07):
+// metade do parâmetro é da casa (fixa) e metade se repete por pessoa. Assim, R$ 9 mil de ganhos e
+// 3 pessoas têm referência de R$ 900 por semana, considerada adequada por Daniel (11:51).
 const FAIXAS: [number, number][] = [
-  [3000, 200],
-  [6000, 250],
-  [10000, 300],
-  [15000, 400],
-  [20000, 500],
-  [30000, 650],
-  [Infinity, 850],
+  [3000, 300],
+  [6000, 375],
+  [10000, 450],
+  [15000, 600],
+  [20000, 750],
+  [30000, 975],
+  [Infinity, 1275],
 ];
+function referenciaDaCasa(ganhos: number, pessoas: number) {
+  return parametroPorPessoa(ganhos) * (0.5 + 0.5 * pessoas);
+}
 function parametroPorPessoa(ganhos: number) {
   return (FAIXAS.find(([teto]) => ganhos <= teto) ?? FAIXAS[FAIXAS.length - 1])[1];
 }
@@ -111,8 +115,8 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
   function cenario(c: ReturnType<typeof calcular>) {
     const { tg, tc, tp, tf, lsv } = c;
     const np = Math.max((adultos || 1) + (criancas || 0), 1);
-    const lpp = lsv / np;
-    const bm = parametroPorPessoa(tg);
+    const lpp = lsv; // limite semanal da casa, comparado com a referência da casa (regra 50/50)
+    const bm = referenciaDaCasa(tg, np);
     const mc = comps.length ? Math.max(...comps.map((x) => pc(x.val))) : 0;
     if (tc > tg) return 1;
     if (tf > tc && tf > 0) return 8;
