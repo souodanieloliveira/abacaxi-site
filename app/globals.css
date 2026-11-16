@@ -728,16 +728,19 @@ a:focus-visible {
 .home-servicos__intro { margin: 0 auto 48px; max-width: 40rem; text-align: center; font-size: 1.0625rem; line-height: 1.6; opacity: 0.85; }
 
 @media (min-width: 1024px) {
-  /* Foto maior no computador (Daniel, 16/11/2026 14:20): a primeira tela usa uma largura maior que o resto do site. */
-  .home-hero__grade.container { max-width: 1280px; }
-  .home-hero__grade { flex-direction: row; align-items: center; gap: 56px; padding-top: 64px; padding-bottom: 80px; }
-  .home-hero__texto { flex: 0 0 38%; text-align: left; }
+  /* Foto maior no computador (Daniel, 16/11/2026 14:20), mantendo a largura do resto do site (versão B, 14:26):
+     coluna de texto mais estreita e foto quadrada. */
+  .home-hero__grade { flex-direction: row; align-items: center; gap: 40px; padding-top: 64px; padding-bottom: 80px; }
+  .home-hero__texto { flex: 0 0 35%; text-align: left; }
   .home-hero__titulo { font-size: 2.5rem; }
-  .home-hero--principal .home-hero__titulo { font-size: 3rem; }
+  .home-hero--principal .home-hero__titulo { font-size: 2.625rem; }
   .home-hero--principal .home-hero__texto { text-align: left; }
   .home-hero__frase, .home-hero--principal .home-hero__frase { margin-left: 0; font-size: 1.25rem; }
   /* Opção 1 de Daniel (16/11/2026 14:06): foto maior, quadrada, ao lado do texto. */
-  .home-hero__foto { flex: 1 1 0; aspect-ratio: 5 / 4; border-radius: 24px; }
+  .home-hero__foto { flex: 1 1 0; aspect-ratio: 1 / 1; border-radius: 24px; }
+  /* Páginas internas: títulos mais longos, coluna de texto um pouco maior e foto 5:4. */
+  .home-hero:not(.home-hero--principal) .home-hero__texto { flex-basis: 42%; }
+  .home-hero:not(.home-hero--principal) .home-hero__foto { aspect-ratio: 5 / 4; }
 }
 
 /* Cabeçalho (16/11/2026): visível desde o topo, acompanha a rolagem. */
