@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { digitosWhatsappValidos } from "./whatsapp";
 
 // Lógica, etapas, cenários e textos copiados do protótipo da conversa Conteúdo
 // (artifact "Calculadora de Limite de Gastos | Abacaxi"). Parâmetros por pessoa aprovados por Daniel
@@ -71,8 +72,7 @@ function mascaraWhatsapp(bruto: string) {
   return `(${ddd}) ${resto.slice(0, corte)}-${resto.slice(corte)}`;
 }
 function whatsappValido(v: string) {
-  const d = v.replace(/\D/g, "");
-  return (d.length === 10 || d.length === 11) && d[0] !== "0";
+  return digitosWhatsappValidos(v.replace(/\D/g, ""));
 }
 
 function fc(n: number) {
@@ -199,11 +199,19 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
     if (!consent) return setErro("Marque a caixa de consentimento para continuar.");
     setEnviando(true);
     try {
-      await fetch("/api/calculadora", {
+      const resposta = await fetch("/api/calculadora", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: contato ? wpp.trim() : "", contatoWhatsapp: contato, consentimento: true, site: isca }),
       });
+      // O Brevo recusou o número (16/11/2026 12:49): a pessoa corrige antes de seguir.
+      if (resposta.status === 422) {
+        const dados = await resposta.json().catch(() => ({}));
+        if (dados.campo === "whatsapp") {
+          setEnviando(false);
+          return setErro("Confira o WhatsApp, com DDD.");
+        }
+      }
     } catch {
       // Falha de rede não impede o uso da calculadora.
     }
