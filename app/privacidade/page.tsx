@@ -71,9 +71,10 @@ export default function PrivacidadePage() {
                 consentimento, para liberar o acesso ao material pedido e enviá-lo para o seu e-mail.
               </li>
               <li>
-                <strong>Calculadora de Limite de Gastos:</strong> nome, e-mail, WhatsApp (se você
-                informar) e o registro do seu consentimento, para liberar o acesso à calculadora. Os
-                valores que você preenche nela ficam só no seu navegador e não são enviados à Abacaxi.
+                <strong>Calculadora de Limite de Gastos:</strong> nome, e-mail e o registro do seu
+                consentimento, para liberar o acesso à calculadora; e o seu WhatsApp, só se você
+                informar e autorizar, para entrarmos em contato por ele. Os valores que você preenche
+                na calculadora ficam só no seu navegador e não são enviados à Abacaxi.
               </li>
               <li>
                 <strong>Formulário de contato:</strong> nome, empresa (se você informar), e-mail,

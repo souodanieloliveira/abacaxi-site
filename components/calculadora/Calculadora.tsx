@@ -41,6 +41,25 @@ const C: Record<number, Cenario> = {
   8: { tom: "perigo", bt: "Ação Urgente", tit: "A fatura está maior do que todos os seus compromissos", txt: "Os gastos no cartão — fora as parcelas — estão muito acima do que o orçamento suporta.", ac: ["Projete quanto de parcela está embutida na fatura atual", "Revise os compromissos e ajuste o que for possível", "Ajuste os gastos diários com urgência — esse mês está comprometido"] },
 };
 
+// Parâmetro de limite semanal por pessoa, por faixa de ganhos mensais (é referência, não limite).
+// Faixas graduais pedidas por Daniel em 16/11/2026 11:54; R$ 900 por semana para 3 pessoas com
+// R$ 9 mil de ganhos considerado adequado (11:51).
+const FAIXAS: [number, number][] = [
+  [3000, 200],
+  [6000, 250],
+  [10000, 300],
+  [15000, 400],
+  [20000, 500],
+  [30000, 650],
+  [Infinity, 850],
+];
+function parametroPorPessoa(ganhos: number) {
+  return (FAIXAS.find(([teto]) => ganhos <= teto) ?? FAIXAS[FAIXAS.length - 1])[1];
+}
+
+const AVISO_PDF =
+  "Este resultado é uma estimativa feita a partir dos valores que você informou. Tem finalidade meramente educacional. Não constitui recomendação de investimento. Para uma análise pessoal e personalizada, solicite um atendimento.";
+
 const NOMES_ETAPAS = ["", "Pessoas", "Recebimentos", "Compromissos", "Faturas", "Parcelas", "Anuais", "Resultado", "Seu momento"];
 const TOTAL_ETAPAS = 8;
 
@@ -50,6 +69,7 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
   const [email, setEmail] = useState("");
   const [wpp, setWpp] = useState("");
   const [consent, setConsent] = useState(false);
+  const [contato, setContato] = useState(false);
   const [isca, setIsca] = useState("");
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
@@ -79,7 +99,8 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
         const i = parseInt(a.ini) || 0, f = parseInt(a.fim) || 0;
         if (!i || !f) return s;
         const meses = f >= i ? f - i + 1 : 12 - i + f + 1;
-        return m >= i && m <= f ? s + pc(a.val) / meses : s;
+        const dentro = f >= i ? m >= i && m <= f : m >= i || m <= f; // período que vira o ano (ex.: novembro a fevereiro)
+        return dentro ? s + pc(a.val) / meses : s;
       }, 0);
     const av = anu(ma), ap = anu(mp);
     const lmv = tg - tc - av - tf, lsv = lmv / 4.33;
@@ -91,7 +112,7 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
     const { tg, tc, tp, tf, lsv } = c;
     const np = Math.max((adultos || 1) + (criancas || 0), 1);
     const lpp = lsv / np;
-    const bm = tg <= 3000 ? 200 : tg <= 8000 ? 300 : 850;
+    const bm = parametroPorPessoa(tg);
     const mc = comps.length ? Math.max(...comps.map((x) => pc(x.val))) : 0;
     if (tc > tg) return 1;
     if (tf > tc && tf > 0) return 8;
@@ -110,12 +131,13 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
     if (!nome.trim() || !email.trim()) return setErro("Preencha o nome e o e-mail.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) return setErro("Confira o e-mail.");
     if (!consent) return setErro("Marque a caixa de consentimento para continuar.");
+    if (contato && !wpp.trim()) return setErro("Informe o WhatsApp ou desmarque a autorização de contato.");
     setEnviando(true);
     try {
       await fetch("/api/calculadora", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome: nome.trim(), email: email.trim(), whatsapp: wpp.trim(), consentimento: true, site: isca }),
+        body: JSON.stringify({ nome: nome.trim(), email: email.trim(), whatsapp: contato ? wpp.trim() : "", contatoWhatsapp: contato, consentimento: true, site: isca }),
       });
     } catch {
       // Falha de rede não impede o uso da calculadora.
@@ -144,7 +166,8 @@ h2{font-size:15px;color:#3D1A6E;border-bottom:2px solid #ECE4FA;padding-bottom:5
 .box{background:#F4F0FB;border-radius:8px;padding:12px;margin-top:8px}
 .box ul{padding-left:16px;margin:6px 0 0}
 .box li{margin-bottom:5px}
-.footer{margin-top:28px;padding-top:12px;border-top:1px solid #E3DCF2;font-size:11px;color:#6B6475;text-align:center}
+.aviso{margin-top:28px;padding:12px 14px;background:#F4F0FB;border-radius:8px;font-size:12px;line-height:1.5;color:#3D1A6E;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.footer{margin-top:16px;padding-top:12px;border-top:1px solid #E3DCF2;font-size:11px;color:#6B6475;text-align:center}
 </style></head><body>
 <img class="logo" src="${location.origin}/logo-abacaxi-email.png" alt="Abacaxi">
 <h1>Calculadora de Limite de Gastos</h1>
@@ -170,7 +193,8 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
 <p style="margin:6px 0 10px"><strong>${sc.tit}</strong></p>
 <p style="color:#6B6475;margin-bottom:12px">${sc.txt}</p>
 <div class="box"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#8500DB">O que fazer</strong><ul>${sc.ac.map((a) => `<li>${a}</li>`).join("")}</ul></div>
-<div class="footer">Abacaxi Serviços Financeiros · abacaxi.cc · Conteúdo meramente educacional.</div>
+<div class="aviso">${AVISO_PDF}</div>
+<div class="footer">Abacaxi Serviços Financeiros · abacaxi.cc</div>
 </body></html>`;
     const w = window.open("", "_blank", "width=700,height=900");
     if (w) {
@@ -199,7 +223,7 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           <input className="calc-input" id="c-nome" autoComplete="name" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Como podemos te chamar?" />
           <label className="calc-label" htmlFor="c-email">E-mail</label>
           <input className="calc-input" id="c-email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" />
-          <label className="calc-label" htmlFor="c-wpp">WhatsApp</label>
+          <label className="calc-label" htmlFor="c-wpp">WhatsApp (opcional)</label>
           <input className="calc-input" id="c-wpp" type="tel" inputMode="tel" autoComplete="tel" value={wpp} onChange={(e) => setWpp(e.target.value)} placeholder="(62) 90000-0000" />
           <input type="text" name="site" tabIndex={-1} autoComplete="off" value={isca} onChange={(e) => setIsca(e.target.value)} className="calc-isca" aria-hidden="true" />
           <label className="calc-consent">
@@ -208,6 +232,10 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
               Quero acessar a calculadora. Saiba como tratamos seus dados em nossa{" "}
               <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.
             </span>
+          </label>
+          <label className="calc-consent">
+            <input type="checkbox" checked={contato} onChange={(e) => setContato(e.target.checked)} />
+            <span>Aceito que a Abacaxi entre em contato comigo pelo WhatsApp. (opcional)</span>
           </label>
           {erro && <p className="calc-erro" role="alert">{erro}</p>}
           <button className="btn-primary calc-botao" type="submit" disabled={enviando}>

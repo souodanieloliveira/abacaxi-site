@@ -14,6 +14,7 @@ type Corpo = {
   email?: string;
   whatsapp?: string;
   consentimento?: boolean;
+  contatoWhatsapp?: boolean; // segunda caixa: aceita contato pelo WhatsApp
   site?: string; // campo-isca: pessoas não veem; robôs costumam preencher
 };
 
@@ -62,7 +63,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Configuração do servidor incompleta." }, { status: 500 });
   }
 
-  const whatsapp = body.whatsapp ? normalizarWhatsapp(body.whatsapp) : null;
+  // O número só é guardado com a autorização de contato (segunda caixa, 16/11/2026): ter WHATSAPP
+  // na lista da calculadora indica que a pessoa aceitou o contato.
+  const whatsapp = body.contatoWhatsapp === true && body.whatsapp ? normalizarWhatsapp(body.whatsapp) : null;
   const atributos: Record<string, unknown> = { NOME: nome, OPT_IN: true };
   if (whatsapp) atributos.WHATSAPP = whatsapp;
 
