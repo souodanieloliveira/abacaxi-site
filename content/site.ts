@@ -1,9 +1,12 @@
 export const siteContent = {
   home: {
     hero: {
-      title: "Roteiro Financeiro para Momentos Decisivos",
+      // Tela inicial refeita em 16/11/2026 (Daniel, 13:56): tagline de 26/10 no título; a primeira frase
+      // fica na primeira tela; a segunda desce para a seção "Como a Abacaxi pode ajudar".
+      eyebrow: "Planejamento financeiro",
+      title: "Roteiro financeiro para os momentos que decidem uma vida.",
       paragraph1:
-        "Não importa o que vem em seguida, te ajudamos a navegar com tranquilidade",
+        "Não importa o que vem em seguida, te ajudamos a navegar com tranquilidade.",
       paragraph2:
         "Ajudamos pessoas, empresas e instituições a organizar suas finanças, planejar o futuro e tomar decisões com mais clareza.",
       cta: "Vamos Conversar",

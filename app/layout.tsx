@@ -23,6 +23,8 @@ const fraunces = localFont({
   src: [
     { path: "./fonts/fraunces-latin-400-italic.woff2", weight: "400", style: "italic" },
     { path: "./fonts/fraunces-latin-500-italic.woff2", weight: "500", style: "italic" },
+    // Fraunces normal para o título da tela inicial (opção A, Daniel em 16/11/2026 13:58).
+    { path: "./fonts/fraunces-latin-500-normal.woff2", weight: "500", style: "normal" },
   ],
   variable: "--font-fraunces",
   display: "swap",

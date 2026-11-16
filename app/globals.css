@@ -712,3 +712,75 @@ a:focus-visible {
   .calc-res-grade { grid-template-columns: 1fr; }
   .calc-h1 { font-size: 1.875rem; }
 }
+
+/* Tela inicial (16/11/2026): texto sobre fundo lavanda e foto inteira, sem sobreposição. */
+.home-hero { background: var(--color-background); }
+.home-hero__grade { display: flex; flex-direction: column; gap: 40px; padding-top: 48px; padding-bottom: 56px; }
+.home-hero__texto { text-align: left; }
+.home-hero--principal .home-hero__texto { text-align: center; }
+.home-hero__rotulo { margin: 0 0 16px; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-dark); opacity: 0.7; }
+.home-hero__titulo { margin: 0 0 20px; font-family: var(--font-fraunces), Georgia, serif; font-style: normal; font-weight: 500; font-size: 2rem; line-height: 1.12; letter-spacing: -0.01em; color: var(--color-dark); text-wrap: balance; }
+.home-hero__frase { margin: 0 0 28px; max-width: 30rem; font-size: 1.125rem; line-height: 1.55; color: var(--color-dark); text-wrap: pretty; }
+.home-hero__botao { border-radius: 999px; padding-left: 32px; padding-right: 32px; }
+.home-hero--principal .home-hero__titulo { font-size: 2.5rem; line-height: 1.08; }
+.home-hero--principal .home-hero__frase { margin-left: auto; margin-right: auto; }
+.home-hero__foto { position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; }
+.home-servicos__intro { margin: 0 auto 48px; max-width: 40rem; text-align: center; font-size: 1.0625rem; line-height: 1.6; opacity: 0.85; }
+
+@media (min-width: 1024px) {
+  /* Foto maior no computador (Daniel, 16/11/2026 14:20), mantendo a largura do resto do site (versão B, 14:26):
+     coluna de texto mais estreita e foto quadrada. */
+  .home-hero__grade { flex-direction: row; align-items: center; gap: 40px; padding-top: 64px; padding-bottom: 80px; }
+  .home-hero__texto { flex: 0 0 35%; text-align: left; }
+  .home-hero__titulo { font-size: 2.5rem; }
+  .home-hero--principal .home-hero__titulo { font-size: 2.625rem; }
+  .home-hero--principal .home-hero__texto { text-align: left; }
+  .home-hero__frase, .home-hero--principal .home-hero__frase { margin-left: 0; font-size: 1.25rem; }
+  /* Opção 1 de Daniel (16/11/2026 14:06): foto maior, quadrada, ao lado do texto. */
+  .home-hero__foto { flex: 1 1 0; aspect-ratio: 1 / 1; border-radius: 24px; }
+  /* Páginas internas: títulos mais longos, coluna de texto um pouco maior e foto 5:4. */
+  .home-hero:not(.home-hero--principal) .home-hero__texto { flex-basis: 42%; }
+  .home-hero:not(.home-hero--principal) .home-hero__foto { aspect-ratio: 5 / 4; }
+}
+
+/* Cabeçalho (16/11/2026): visível desde o topo, acompanha a rolagem. */
+/* Cabeçalho roxo-escuro com o logo claro (opção C, Daniel em 16/11/2026 14:10). */
+.site-header { position: sticky; top: 0; z-index: 1000; background: var(--color-dark); color: #ffffff; }
+.site-header__barra { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.site-header__logo { display: block; }
+.site-header__logo img { display: block; height: 28px; width: auto; }
+.site-header__celular { display: flex; align-items: center; gap: 8px; }
+.site-header__contato { display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border-radius: 999px; background: transparent; border: 1.5px solid rgba(255,255,255,0.85); color: #ffffff; font-weight: 600; font-size: 0.9375rem; }
+.site-header__menu { position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--color-dark); overflow-y: auto; padding: 8px 0 32px; }
+.site-header__item { display: block; padding: 18px 0; font-size: 1.375rem; font-weight: 500; color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.site-header__item[aria-current="page"] { color: var(--color-secondary); }
+.site-header__botao-menu { display: block; margin-top: 28px; text-align: center; border-radius: 999px; }
+.site-header .nav-hamburger { width: 44px; height: 44px; color: #ffffff; }
+.site-header .nav-links a:not(.btn-primary) { color: #ffffff; }
+.site-header .nav-links a:not(.btn-primary):hover { color: var(--color-secondary); }
+
+@media (min-width: 768px) {
+  .site-header__barra { height: 80px; }
+  .site-header__logo img { height: 40px; }
+  .site-header__celular { display: none; }
+  .site-header__menu { display: none; }
+}
+
+/* Botão do cabeçalho no computador arredondado, como o da tela inicial (Daniel, 16/11/2026 14:02). */
+.nav-links .btn-primary { border-radius: 999px; padding: 12px 24px; }
+
+/* Números na página inicial (16/11/2026). */
+/* Faixa escura (Daniel, 16/11/2026 14:20: "esta faixa pode ser escura e a seção seguinte, mais clara"). */
+.home-numeros { background: var(--color-dark); }
+.home-numeros__grade { display: grid; grid-template-columns: 1fr; gap: 28px; padding-top: 40px; padding-bottom: 40px; text-align: center; }
+.home-numeros__valor { margin: 0; font-family: var(--font-fraunces), Georgia, serif; font-style: normal; font-weight: 500; font-size: 2.75rem; line-height: 1; color: #ffffff; }
+.home-numeros__rotulo { margin: 8px 0 0; font-size: 1rem; color: rgba(255,255,255,0.8); }
+@media (min-width: 768px) { .home-numeros__grade { grid-template-columns: repeat(3, 1fr); padding-top: 48px; padding-bottom: 48px; } .home-numeros__valor { font-size: 3.25rem; } }
+
+/* "Como a Abacaxi pode ajudar" (16/11/2026): título na Fraunces normal e cartões sem a faixa laranja. */
+.home-servicos__titulo { margin: 0 0 16px; text-align: center; font-family: var(--font-fraunces), Georgia, serif; font-style: normal; font-weight: 500; font-size: 2rem; line-height: 1.15; color: var(--color-dark); }
+.home-servicos__cartao { border-top: 4px solid var(--color-secondary) !important; }
+.home-servicos__cartao-titulo { margin: 0 0 10px; font-size: 1.375rem; font-weight: 700; color: var(--color-dark); }
+.home-statement .statement-heading { color: #ffffff; }
+.home-statement .statement-divider { background: rgba(255,255,255,0.25); }
+@media (min-width: 1024px) { .home-servicos__titulo { font-size: 2.5rem; } }
