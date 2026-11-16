@@ -19,12 +19,20 @@ type Corpo = {
 };
 
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+// Nome e sobrenome (16/11/2026 12:21): só letras, espaço, apóstrofo e hífen; 2 a 80 caracteres; duas palavras ou mais.
+const NOME_VALIDO = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
+
+function nomeValido(n: string) {
+  if (n.length < 2 || n.length > 80 || !NOME_VALIDO.test(n)) return false;
+  const partes = n.split(" ");
+  return partes.length >= 2 && partes[0].replace(/['-]/g, "").length >= 2 && partes[partes.length - 1].replace(/['-]/g, "").length >= 2;
+}
 
 // Celular ou fixo brasileiro com DDD (10 ou 11 dígitos), com ou sem +55. Formato aceito pelo Brevo: +55DDDNÚMERO.
 function normalizarWhatsapp(bruto: string): string | null {
   let d = bruto.replace(/\D/g, "");
   if (d.startsWith("55") && (d.length === 12 || d.length === 13)) d = d.slice(2);
-  if (d.length !== 10 && d.length !== 11) return null;
+  if ((d.length !== 10 && d.length !== 11) || d[0] === "0") return null;
   return `+55${d}`;
 }
 
@@ -47,13 +55,19 @@ export async function POST(request: Request) {
   // Robô: responde como se tivesse dado certo e não grava nada.
   if (body.site) return NextResponse.json({ ok: true });
 
-  const nome = body.nome?.trim().slice(0, 200) ?? "";
-  const email = body.email?.trim().toLowerCase().slice(0, 254) ?? "";
-  if (!nome || !EMAIL_VALIDO.test(email)) {
-    return NextResponse.json({ error: "Nome e e-mail válidos são obrigatórios." }, { status: 400 });
+  const nome = body.nome?.trim().replace(/\s+/g, " ") ?? "";
+  const email = body.email?.trim().toLowerCase() ?? "";
+  if (!nomeValido(nome) || email.length > 254 || !EMAIL_VALIDO.test(email)) {
+    return NextResponse.json({ error: "Nome e sobrenome e e-mail válidos são obrigatórios." }, { status: 400 });
   }
   if (body.consentimento !== true) {
     return NextResponse.json({ error: "Consentimento obrigatório." }, { status: 400 });
+  }
+
+  // Com a autorização marcada, o número precisa ser válido (16/11/2026 12:21): recusa em vez de descartar sem avisar.
+  const whatsapp = body.contatoWhatsapp === true ? normalizarWhatsapp(body.whatsapp ?? "") : null;
+  if (body.contatoWhatsapp === true && !whatsapp) {
+    return NextResponse.json({ error: "WhatsApp inválido." }, { status: 400 });
   }
 
   const chave = process.env.BREVO_API_KEY;
@@ -65,7 +79,6 @@ export async function POST(request: Request) {
 
   // O número só é guardado com a autorização de contato (segunda caixa, 16/11/2026): ter WHATSAPP
   // na lista da calculadora indica que a pessoa aceitou o contato.
-  const whatsapp = body.contatoWhatsapp === true && body.whatsapp ? normalizarWhatsapp(body.whatsapp) : null;
   const atributos: Record<string, unknown> = { NOME: nome, OPT_IN: true };
   if (whatsapp) atributos.WHATSAPP = whatsapp;
 

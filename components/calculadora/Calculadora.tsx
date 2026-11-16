@@ -21,6 +21,60 @@ const uid = () => ++_id;
 function pc(s: string) {
   return parseFloat(String(s || "").replace(/\./g, "").replace(",", ".")) || 0;
 }
+// Limites dos campos aprovados por Daniel em 16/11/2026 12:21 (nome e sobrenome obrigatórios).
+const MAX_DESC = 60;
+const NOME_VALIDO = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
+const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+// Nome e sobrenome: só letras (com acento), espaço, apóstrofo e hífen; 2 a 80 caracteres;
+// pelo menos duas palavras, a primeira e a última com 2 letras ou mais.
+function nomeValido(bruto: string) {
+  const n = bruto.trim().replace(/\s+/g, " ");
+  if (n.length < 2 || n.length > 80 || !NOME_VALIDO.test(n)) return false;
+  const partes = n.split(" ");
+  return partes.length >= 2 && partes[0].replace(/['-]/g, "").length >= 2 && partes[partes.length - 1].replace(/['-]/g, "").length >= 2;
+}
+
+// Valor em reais: só números e uma vírgula, até 2 casas e até R$ 9.999.999,99, com ponto de milhar automático.
+function mascaraValor(bruto: string) {
+  const limpo = bruto.replace(/[^\d,]/g, "");
+  const virgula = limpo.indexOf(",");
+  let inteiro = (virgula >= 0 ? limpo.slice(0, virgula) : limpo).replace(/^0+(?=\d)/, "").slice(0, 7);
+  const dec = virgula >= 0 ? limpo.slice(virgula + 1).replace(/,/g, "").slice(0, 2) : null;
+  if (!inteiro && dec !== null) inteiro = "0";
+  inteiro = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return dec !== null ? `${inteiro},${dec}` : inteiro;
+}
+
+// Dia do mês: só números de 1 a 31.
+function mascaraDia(bruto: string, anterior: string) {
+  const d = bruto.replace(/\D/g, "").replace(/^0+/, "").slice(0, 2);
+  if (!d) return "";
+  return Number(d) <= 31 ? d : anterior;
+}
+
+// Número de parcelas: só números de 1 a 120.
+function mascaraParcela(bruto: string, anterior: string) {
+  const d = bruto.replace(/\D/g, "").replace(/^0+/, "").slice(0, 3);
+  if (!d) return "";
+  return Number(d) <= 120 ? d : anterior;
+}
+
+// WhatsApp: só números, formatado como (62) 99999-9999 ou (62) 9999-9999.
+function mascaraWhatsapp(bruto: string) {
+  const d = bruto.replace(/\D/g, "").slice(0, 11);
+  if (d.length <= 2) return d.length ? `(${d}` : "";
+  const ddd = d.slice(0, 2);
+  const resto = d.slice(2);
+  if (resto.length <= 4) return `(${ddd}) ${resto}`;
+  const corte = resto.length === 9 ? 5 : 4;
+  return `(${ddd}) ${resto.slice(0, corte)}-${resto.slice(corte)}`;
+}
+function whatsappValido(v: string) {
+  const d = v.replace(/\D/g, "");
+  return (d.length === 10 || d.length === 11) && d[0] !== "0";
+}
+
 function fc(n: number) {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(n);
 }
@@ -90,6 +144,7 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
   const [anus, setAnus] = useState<Anu[]>([{ id: 1, desc: "", val: "", ini: "1", fim: "12" }]);
 
   function ir(n: number) {
+    setErro("");
     setStep(n);
     if (typeof window !== "undefined") {
       document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -137,15 +192,17 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
     e.preventDefault();
     setErro("");
     if (!nome.trim() || !email.trim()) return setErro("Preencha o nome e o e-mail.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) return setErro("Confira o e-mail.");
-    if (!consent) return setErro("Marque a caixa de consentimento para continuar.");
+    if (!nomeValido(nome)) return setErro("Informe seu nome e sobrenome, só com letras.");
+    if (email.trim().length > 254 || !EMAIL_VALIDO.test(email.trim())) return setErro("Confira o e-mail.");
     if (contato && !wpp.trim()) return setErro("Informe o WhatsApp ou desmarque a autorização de contato.");
+    if (contato && !whatsappValido(wpp)) return setErro("Confira o WhatsApp, com DDD.");
+    if (!consent) return setErro("Marque a caixa de consentimento para continuar.");
     setEnviando(true);
     try {
       await fetch("/api/calculadora", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome: nome.trim(), email: email.trim(), whatsapp: contato ? wpp.trim() : "", contatoWhatsapp: contato, consentimento: true, site: isca }),
+        body: JSON.stringify({ nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: contato ? wpp.trim() : "", contatoWhatsapp: contato, consentimento: true, site: isca }),
       });
     } catch {
       // Falha de rede não impede o uso da calculadora.
@@ -227,12 +284,12 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
         <form className="calc-card" onSubmit={acessar} noValidate>
           <h2 className="calc-titulo">Vamos começar</h2>
           <p className="calc-desc">Preencha seus dados para acessar a calculadora. É rápido e gratuito.</p>
-          <label className="calc-label" htmlFor="c-nome">Seu nome</label>
-          <input className="calc-input" id="c-nome" autoComplete="name" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Como podemos te chamar?" />
+          <label className="calc-label" htmlFor="c-nome">Nome e sobrenome</label>
+          <input className="calc-input" id="c-nome" autoComplete="name" maxLength={80} value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome e sobrenome" />
           <label className="calc-label" htmlFor="c-email">E-mail</label>
-          <input className="calc-input" id="c-email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" />
+          <input className="calc-input" id="c-email" type="email" inputMode="email" autoComplete="email" maxLength={254} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" />
           <label className="calc-label" htmlFor="c-wpp">WhatsApp (opcional)</label>
-          <input className="calc-input" id="c-wpp" type="tel" inputMode="tel" autoComplete="tel" value={wpp} onChange={(e) => setWpp(e.target.value)} placeholder="(62) 90000-0000" />
+          <input className="calc-input" id="c-wpp" type="tel" inputMode="tel" autoComplete="tel" maxLength={15} value={wpp} onChange={(e) => setWpp(mascaraWhatsapp(e.target.value))} placeholder="(62) 90000-0000" />
           <input type="text" name="site" tabIndex={-1} autoComplete="off" value={isca} onChange={(e) => setIsca(e.target.value)} className="calc-isca" aria-hidden="true" />
           <label className="calc-consent">
             <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
@@ -270,8 +327,8 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           {recs.map((r, i) => (
             <div className="calc-item" key={r.id}>
               <div className="calc-duas">
-                <input className="calc-input" aria-label="Descrição" value={r.desc} onChange={(e) => setRecs(atualiza(recs, i, { desc: e.target.value }))} placeholder="Ex.: Salário, Freela, Aluguel recebido…" />
-                <input className="calc-input calc-valor" aria-label="Valor" inputMode="decimal" value={r.val} onChange={(e) => setRecs(atualiza(recs, i, { val: e.target.value }))} placeholder="R$ 0,00" />
+                <input className="calc-input" aria-label="Descrição" maxLength={MAX_DESC} value={r.desc} onChange={(e) => setRecs(atualiza(recs, i, { desc: e.target.value }))} placeholder="Ex.: Salário, Freela, Aluguel recebido…" />
+                <input className="calc-input calc-valor" aria-label="Valor" inputMode="decimal" maxLength={12} value={r.val} onChange={(e) => setRecs(atualiza(recs, i, { val: mascaraValor(e.target.value) }))} placeholder="R$ 0,00" />
               </div>
               {recs.length > 1 && <Remover onClick={() => setRecs(recs.filter((_, j) => j !== i))} />}
             </div>
@@ -288,10 +345,10 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           <p className="calc-desc">Aluguel, financiamento, escola, plano de saúde, academia… Só conta o que tem um dia certo pra sair todo mês.</p>
           {comps.map((c, i) => (
             <div className="calc-item" key={c.id}>
-              <input className="calc-input" aria-label="Descrição" value={c.desc} onChange={(e) => setComps(atualiza(comps, i, { desc: e.target.value }))} placeholder="Ex.: Aluguel, Escola, Plano de saúde, Financiamento…" />
+              <input className="calc-input" aria-label="Descrição" maxLength={MAX_DESC} value={c.desc} onChange={(e) => setComps(atualiza(comps, i, { desc: e.target.value }))} placeholder="Ex.: Aluguel, Escola, Plano de saúde, Financiamento…" />
               <div className="calc-duas calc-mt">
-                <input className="calc-input" aria-label="Valor" inputMode="decimal" value={c.val} onChange={(e) => setComps(atualiza(comps, i, { val: e.target.value }))} placeholder="R$ 0,00" />
-                <input className="calc-input calc-dia" aria-label="Dia" type="number" min={1} max={31} value={c.dia} onChange={(e) => setComps(atualiza(comps, i, { dia: e.target.value }))} placeholder="Dia" />
+                <input className="calc-input" aria-label="Valor" inputMode="decimal" maxLength={12} value={c.val} onChange={(e) => setComps(atualiza(comps, i, { val: mascaraValor(e.target.value) }))} placeholder="R$ 0,00" />
+                <input className="calc-input calc-dia" aria-label="Dia" inputMode="numeric" maxLength={2} value={c.dia} onChange={(e) => setComps(atualiza(comps, i, { dia: mascaraDia(e.target.value, c.dia) }))} placeholder="Dia" />
               </div>
               {comps.length > 1 && <Remover onClick={() => setComps(comps.filter((_, j) => j !== i))} />}
             </div>
@@ -308,10 +365,10 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           <p className="calc-desc">O valor total da fatura <strong>deste mês</strong> de cada cartão — o que aparece para pagar agora.</p>
           {fats.map((f, i) => (
             <div className="calc-item" key={f.id}>
-              <input className="calc-input" aria-label="Nome do cartão" value={f.nome} onChange={(e) => setFats(atualiza(fats, i, { nome: e.target.value }))} placeholder="Nome do cartão" />
+              <input className="calc-input" aria-label="Nome do cartão" maxLength={MAX_DESC} value={f.nome} onChange={(e) => setFats(atualiza(fats, i, { nome: e.target.value }))} placeholder="Nome do cartão" />
               <div className="calc-duas calc-mt">
-                <input className="calc-input" aria-label="Valor da fatura" inputMode="decimal" value={f.val} onChange={(e) => setFats(atualiza(fats, i, { val: e.target.value }))} placeholder="Valor da fatura" />
-                <input className="calc-input calc-dia" aria-label="Dia do vencimento" value={f.venc} onChange={(e) => setFats(atualiza(fats, i, { venc: e.target.value }))} placeholder="Dia venc." />
+                <input className="calc-input" aria-label="Valor da fatura" inputMode="decimal" maxLength={12} value={f.val} onChange={(e) => setFats(atualiza(fats, i, { val: mascaraValor(e.target.value) }))} placeholder="Valor da fatura" />
+                <input className="calc-input calc-dia" aria-label="Dia do vencimento" inputMode="numeric" maxLength={2} value={f.venc} onChange={(e) => setFats(atualiza(fats, i, { venc: mascaraDia(e.target.value, f.venc) }))} placeholder="Dia venc." />
               </div>
               {fats.length > 1 && <Remover onClick={() => setFats(fats.filter((_, j) => j !== i))} />}
             </div>
@@ -329,9 +386,9 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           <p className="calc-desc">Parcelas em andamento e assinaturas recorrentes — o que já está comprometido, independente do valor da fatura.</p>
           {pars.map((p, i) => (
             <div className="calc-item" key={p.id}>
-              <input className="calc-input" aria-label="Descrição" value={p.desc} onChange={(e) => setPars(atualiza(pars, i, { desc: e.target.value }))} placeholder="Ex.: Notebook, Curso online, Netflix…" />
+              <input className="calc-input" aria-label="Descrição" maxLength={MAX_DESC} value={p.desc} onChange={(e) => setPars(atualiza(pars, i, { desc: e.target.value }))} placeholder="Ex.: Notebook, Curso online, Netflix…" />
               <div className="calc-duas calc-mt">
-                <input className="calc-input" aria-label="Valor mensal" inputMode="decimal" value={p.val} onChange={(e) => setPars(atualiza(pars, i, { val: e.target.value }))} placeholder="Valor mensal" />
+                <input className="calc-input" aria-label="Valor mensal" inputMode="decimal" maxLength={12} value={p.val} onChange={(e) => setPars(atualiza(pars, i, { val: mascaraValor(e.target.value) }))} placeholder="Valor mensal" />
                 <select className="calc-input calc-tipo" aria-label="Tipo" value={p.tipo} onChange={(e) => setPars(atualiza(pars, i, { tipo: e.target.value as Par["tipo"] }))}>
                   <option value="parcelas">Parcelado</option>
                   <option value="recorrente">Recorrente</option>
@@ -339,8 +396,8 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
               </div>
               {p.tipo === "parcelas" && (
                 <div className="calc-iguais calc-mt">
-                  <input className="calc-input" aria-label="Parcela atual" type="number" min={1} value={p.atual} onChange={(e) => setPars(atualiza(pars, i, { atual: e.target.value }))} placeholder="Parcela atual (ex: 3)" />
-                  <input className="calc-input" aria-label="Total de parcelas" type="number" min={1} value={p.total} onChange={(e) => setPars(atualiza(pars, i, { total: e.target.value }))} placeholder="Total (ex: 10)" />
+                  <input className="calc-input" aria-label="Parcela atual" inputMode="numeric" maxLength={3} value={p.atual} onChange={(e) => setPars(atualiza(pars, i, { atual: mascaraParcela(e.target.value, p.atual) }))} placeholder="Parcela atual (ex: 3)" />
+                  <input className="calc-input" aria-label="Total de parcelas" inputMode="numeric" maxLength={3} value={p.total} onChange={(e) => setPars(atualiza(pars, i, { total: mascaraParcela(e.target.value, p.total) }))} placeholder="Total (ex: 10)" />
                 </div>
               )}
               {pars.length > 1 && <Remover onClick={() => setPars(pars.filter((_, j) => j !== i))} />}
@@ -348,7 +405,14 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           ))}
           <button type="button" className="calc-add" onClick={() => setPars([...pars, { id: uid(), desc: "", val: "", tipo: "parcelas", atual: "", total: "" }])}>+ Adicionar parcela ou recorrente</button>
           <Total valor={pars.reduce((s, p) => s + pc(p.val), 0)} rotulo="Total mensal" />
-          <Avancar onClick={() => ir(6)} />
+          {erro && <p className="calc-erro" role="alert">{erro}</p>}
+          <Avancar
+            onClick={() => {
+              const errada = pars.some((p) => p.tipo === "parcelas" && p.atual && p.total && Number(p.atual) > Number(p.total));
+              if (errada) return setErro("A parcela atual não pode ser maior que o total de parcelas.");
+              ir(6);
+            }}
+          />
           <button type="button" className="btn-secondary calc-botao" onClick={() => { setPars([{ id: uid(), desc: "", val: "", tipo: "parcelas", atual: "", total: "" }]); ir(6); }}>Não tenho parcelas nem recorrentes</button>
         </div>
       )}
@@ -359,8 +423,8 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
           <p className="calc-desc">IPTU, IPVA, seguro, matrícula… Coloque o valor total e o período em que ele acontece.</p>
           {anus.map((a, i) => (
             <div className="calc-item" key={a.id}>
-              <input className="calc-input" aria-label="Descrição" value={a.desc} onChange={(e) => setAnus(atualiza(anus, i, { desc: e.target.value }))} placeholder="Ex.: IPTU, IPVA, Matrícula, Seguro…" />
-              <input className="calc-input calc-mt" aria-label="Valor total" inputMode="decimal" value={a.val} onChange={(e) => setAnus(atualiza(anus, i, { val: e.target.value }))} placeholder="Valor total" />
+              <input className="calc-input" aria-label="Descrição" maxLength={MAX_DESC} value={a.desc} onChange={(e) => setAnus(atualiza(anus, i, { desc: e.target.value }))} placeholder="Ex.: IPTU, IPVA, Matrícula, Seguro…" />
+              <input className="calc-input calc-mt" aria-label="Valor total" inputMode="decimal" maxLength={12} value={a.val} onChange={(e) => setAnus(atualiza(anus, i, { val: mascaraValor(e.target.value) }))} placeholder="Valor total" />
               <div className="calc-iguais calc-mt">
                 <label className="calc-mini">Começa em
                   <select className="calc-input" value={a.ini} onChange={(e) => setAnus(atualiza(anus, i, { ini: e.target.value }))}>
