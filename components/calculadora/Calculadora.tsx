@@ -449,7 +449,7 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
             </div>
           ))}
           <button type="button" className="calc-add" onClick={() => setAnus([...anus, { id: uid(), desc: "", val: "", ini: "1", fim: "12" }])}>+ Adicionar valor anual</button>
-          <button type="button" className="btn-primary calc-botao" onClick={() => ir(7)}>Calcular</button>
+          <button type="button" className="btn-primary calc-botao" onClick={() => ir(7)} data-umami-event="calculadora-calcular">Calcular</button>
           <button type="button" className="btn-secondary calc-botao" onClick={() => { setAnus([{ id: uid(), desc: "", val: "", ini: "1", fim: "12" }]); ir(7); }}>Não tenho gastos anuais</button>
         </div>
       )}
@@ -475,7 +475,7 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
             </div>
             <div className="calc-cta">
               <p>&ldquo;Se quiser fazer essa conta com alguém ao lado, ou se os seus números caíram num dos cenários mais difíceis, a gente pode conversar.&rdquo;</p>
-              <a href={bookingUrl} className="btn-primary" target="_blank" rel="noopener noreferrer">Agendar conversa com a Abacaxi</a>
+              <a href={bookingUrl} className="btn-primary" data-umami-event="calculadora-agendar" target="_blank" rel="noopener noreferrer">Agendar conversa com a Abacaxi</a>
             </div>
             <button type="button" className="btn-secondary calc-botao" onClick={gerarPDF}>Salvar resultado em PDF</button>
             <button type="button" className="calc-voltar" onClick={() => ir(7)}>← Voltar ao resultado</button>

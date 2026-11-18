@@ -190,6 +190,7 @@ export default function EmpresasPage() {
           <div style={{ flexShrink: 0 }}>
             <Link
               href={empresas.ctaFinal.ctaHref}
+              data-umami-event="cta-final"
               style={{
                 background: "#ffffff",
                 color: "var(--color-dark)",

@@ -24,7 +24,7 @@ export default function PaginaHero({ rotulo, titulo, frase, imagem, alt, botao, 
           <h1 className="home-hero__titulo">{titulo}</h1>
           {frase && <p className="home-hero__frase">{frase}</p>}
           {botao && (
-            <Link href={botao.href} className="btn-primary home-hero__botao" title={botao.title}>
+            <Link href={botao.href} data-umami-event="cta-topo" className="btn-primary home-hero__botao" title={botao.title}>
               {botao.texto}
             </Link>
           )}

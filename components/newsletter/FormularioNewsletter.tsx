@@ -130,6 +130,7 @@ export default function FormularioNewsletter() {
                   className="sib-form-block__button sib-form-block__button-with-loader btn-primary ebook-form__botao"
                   form="sib-form"
                   type="submit"
+                  data-umami-event="newsletter-assinar"
                 >
                   <svg
                     className="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"

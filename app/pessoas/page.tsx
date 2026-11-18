@@ -192,6 +192,7 @@ export default function PessoasPage() {
           <div style={{ flexShrink: 0 }}>
             <Link
               href={pessoas.ctaFinal.ctaHref}
+              data-umami-event="cta-final"
               style={{
                 background: "#ffffff",
                 color: "var(--color-dark)",

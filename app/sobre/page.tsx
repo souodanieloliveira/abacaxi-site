@@ -288,6 +288,7 @@ export default function SobrePage() {
           <div style={{ flexShrink: 0 }}>
             <Link
               href={sobre.ctaFinal.ctaHref}
+              data-umami-event="cta-final"
               style={{
                 background: "#ffffff",
                 color: "var(--color-dark)",

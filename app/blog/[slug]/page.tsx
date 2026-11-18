@@ -241,7 +241,7 @@ export default async function PostPage({ params }: Props) {
               O primeiro passo é uma conversa. Sempre gratuita.
             </p>
           </div>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" data-umami-event="post-agendar">
             Agendar uma conversa
           </a>
         </div>

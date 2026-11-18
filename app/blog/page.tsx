@@ -122,6 +122,7 @@ export default function BlogPage() {
                     </p>
                     <Link
                       href={`/blog/${post.slug}`}
+                      data-umami-event="blog-ler-texto"
                       style={{ color: "var(--color-text-accent)", fontWeight: 600 }}
                     >
                       Ler o texto →

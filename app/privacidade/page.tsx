@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ATUALIZADA_EM = "15 de novembro de 2026";
+const ATUALIZADA_EM = "18 de novembro de 2026";
 
 export default function PrivacidadePage() {
   return (
@@ -98,14 +98,19 @@ export default function PrivacidadePage() {
                 navegador, sistema e tipo de dispositivo). Ele não usa cookies de terceiros; cada visita
                 é reconhecida por um código temporário, descartado em 24 horas.
               </li>
+              <li>
+                <strong>Uso das páginas:</strong> usamos o Umami para saber quanto tempo as pessoas passam em
+                cada página, de onde vieram (por exemplo, de qual rede social) e em quais botões clicaram, de
+                forma agregada. Ele não usa cookies nem guarda dados que identifiquem você.
+              </li>
             </ul>
             <p>Não usamos cookies de rastreamento nem ferramentas de publicidade no site.</p>
 
             <h2>Com quem compartilhamos</h2>
             <p>
               Só com os serviços que usamos para operar: Brevo (newsletter, materiais e calculadora), Airtable (contatos e lista
-              de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam dos formulários do site) e Vercel
-              (hospedagem). Alguns guardam os dados fora
+              de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam dos formulários do site), Vercel
+              (hospedagem e contagem de visitas) e Umami (uso das páginas). Alguns guardam os dados fora
               do Brasil. Não vendemos nem cedemos seus dados a ninguém.
             </p>
 

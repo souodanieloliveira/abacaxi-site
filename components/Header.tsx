@@ -51,13 +51,13 @@ export default function Header() {
               {label}
             </Link>
           ))}
-          <Link href="/contato" className="btn-primary" title="Fale com a Abacaxi">
+          <Link href="/contato" data-umami-event="contato-cabecalho" className="btn-primary" title="Fale com a Abacaxi">
             Fale com a Abacaxi
           </Link>
         </div>
 
         <div className="site-header__celular">
-          <Link href="/contato" className="site-header__contato" title="Fale com a Abacaxi" onClick={() => setMenuOpen(false)}>
+          <Link href="/contato" data-umami-event="contato-cabecalho" className="site-header__contato" title="Fale com a Abacaxi" onClick={() => setMenuOpen(false)}>
             Fale conosco
           </Link>
           <button
@@ -89,7 +89,7 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/contato"
+              href="/contato" data-umami-event="contato-cabecalho"
               title="Fale com a Abacaxi"
               onClick={() => setMenuOpen(false)}
               className="btn-primary site-header__botao-menu"

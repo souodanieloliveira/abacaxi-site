@@ -481,6 +481,7 @@ export default function Home() {
           <div style={{ flexShrink: 0 }}>
             <Link
               href={home.ctaFinal.ctaHref}
+              data-umami-event="cta-final"
               title="Fale com a Abacaxi"
               style={{
                 background: "#ffffff",

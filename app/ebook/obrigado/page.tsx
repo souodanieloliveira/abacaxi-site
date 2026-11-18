@@ -54,13 +54,14 @@ export default function EbookObrigadoPage() {
           <div className="ebook-botoes">
             <a
               href={EBOOK_PDF}
+              data-umami-event="ebook-abrir"
               className="btn-secondary ebook-somente-celular"
               target="_blank"
               rel="noopener"
             >
               Abrir o ebook
             </a>
-            <a href={EBOOK_PDF} className="btn-primary" download>
+            <a href={EBOOK_PDF} className="btn-primary" download data-umami-event="ebook-baixar">
               Baixar o ebook (PDF)
             </a>
           </div>

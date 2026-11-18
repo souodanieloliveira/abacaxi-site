@@ -101,6 +101,7 @@ export default function ContatoPage() {
               </p>
               <a
                 href={contato.canais.whatsapp.href}
+                data-umami-event="whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -152,6 +153,7 @@ export default function ContatoPage() {
               </p>
               <a
                 href={contato.canais.email.href}
+                data-umami-event="email"
                 style={{
                   display: "inline-block",
                   border: "1.5px solid var(--color-text-accent)",
