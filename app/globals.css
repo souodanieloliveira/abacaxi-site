@@ -838,10 +838,10 @@ a:focus-visible {
   .home-hero.home-hero--sem-foto .home-hero__texto { flex: 1 1 auto; }
 }
 
-/* Cartão "Vamos Conversar" da página inicial (18/11/2026): no celular, botão na largura toda. */
+/* Cartão "Vamos Conversar" da página inicial (18/11/2026): no celular, frase centralizada e botão na largura toda. */
 @media (max-width: 767px) {
   .home-coroa-cta { align-items: stretch; }
-  .home-coroa-cta a { text-align: center; }
+  .home-coroa-cta p, .home-coroa-cta a { text-align: center; }
 }
 
 /* Título de "Momentos" na página inicial (18/11/2026): uma frase por linha. */
