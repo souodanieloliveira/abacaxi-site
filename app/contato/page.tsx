@@ -23,13 +23,11 @@ export default function ContatoPage() {
 
   return (
     <>
-      {/* 18/11/2026 (Daniel): mesma primeira tela das demais páginas (texto e foto). */}
+      {/* 18/11/2026 (Daniel): mesma primeira tela das demais páginas, sem foto (o formulário fica logo abaixo). */}
       <PaginaHero
         rotulo="Fale com a Abacaxi"
         titulo={contato.hero.title}
         frase={contato.hero.subtitle}
-        imagem="/hero-abacaxi.png"
-        alt="Duas mulheres conversando e sorrindo diante de um notebook"
       />
 
       {/* CONTEÚDO — formulário + canais */}

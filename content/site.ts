@@ -213,7 +213,9 @@ export const siteContent = {
 
   sobre: {
     hero: {
-      title: "Existimos para que as pessoas decidam a própria vida financeira com clareza e segurança.",
+      // 18/11/2026 (Daniel): título novo; o propósito desce para a frase abaixo do título.
+      title: "Desde 2019, a Abacaxi atende pessoas e empresas que se preocupam com suas finanças.",
+      subtitle: "Existimos para que as pessoas decidam a própria vida financeira com clareza e segurança.",
       // Placeholder — substituir por foto da equipe ou ambiente Abacaxi
       image: "/hero-abacaxi.png",
     },

@@ -829,3 +829,9 @@ a:focus-visible {
 @media (min-width: 768px) {
   .cta-titulo { white-space: pre-line; }
 }
+
+/* Primeira tela sem foto (Contato, 18/11/2026). */
+.home-hero--sem-foto .home-hero__texto { max-width: 40rem; }
+@media (min-width: 1024px) {
+  .home-hero.home-hero--sem-foto .home-hero__texto { flex: 1 1 auto; }
+}
