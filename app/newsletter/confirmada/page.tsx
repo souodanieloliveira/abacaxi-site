@@ -12,7 +12,7 @@ export default function ConfirmadaPage() {
     <AvisoNewsletter
       titulo="Inscrição Confirmada"
       texto={[
-        "Você vai receber a próxima edição da Newsletter da Abacaxi na sua caixa de entrada.",
+        "Você vai receber a próxima edição da descasca. na sua caixa de entrada.",
         "Enquanto isso, confira as edições anteriores no link abaixo.",
       ]}
       botao={{ texto: "Ler o blog", href: "/blog" }}

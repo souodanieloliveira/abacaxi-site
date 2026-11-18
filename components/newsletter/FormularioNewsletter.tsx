@@ -90,7 +90,7 @@ export default function FormularioNewsletter() {
                         <input type="checkbox" className="input_replaced" value="1" id="OPT_IN" name="OPT_IN" required />
                         <span className="checkbox checkbox_tick_positive"></span>
                         <span className="ebook-form__consentimento">
-                          Quero receber a Newsletter da Abacaxi por e-mail. Posso cancelar quando quiser. Saiba
+                          Quero receber a descasca., a newsletter da Abacaxi, por e-mail. Posso cancelar quando quiser. Saiba
                           como tratamos seus dados em nossa{" "}
                           <a target="_blank" href="https://abacaxi.cc/privacidade" rel="nofollow noopener">
                             Política de Privacidade

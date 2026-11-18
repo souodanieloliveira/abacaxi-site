@@ -143,7 +143,7 @@ export default async function PostPage({ params }: Props) {
                   <time dateTime={post.newsletter.sentAt}>
                     {formatDate(post.newsletter.sentAt)}
                   </time>
-                  , como parte da {NEWSLETTER_NAME} (edição {post.newsletter.edition}).
+                  , na edição {post.newsletter.edition} da {NEWSLETTER_NAME}, a newsletter da Abacaxi.
                 </em>
               </p>
             )}

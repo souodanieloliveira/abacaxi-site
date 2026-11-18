@@ -18,18 +18,18 @@ export default function NewsletterBox() {
         style={{
           fontSize: "1.25rem",
           fontWeight: 700,
-          color: "var(--color-text-accent)",
+          color: "var(--color-dark)",
           margin: "0 0 8px",
         }}
       >
-        Receba os próximos textos por e-mail
+        Receba a {NEWSLETTER_NAME} por e-mail
       </h2>
       <p style={{ margin: "0 0 20px", opacity: 0.85, lineHeight: 1.7 }}>
-        A {NEWSLETTER_NAME} chega a cada duas semanas, com um texto sobre decisões
-        financeiras que valem a reflexão.
+        A {NEWSLETTER_NAME}, a newsletter da Abacaxi, chega a cada duas semanas, com um texto
+        sobre decisões financeiras que valem a reflexão.
       </p>
       <a href="/newsletter" className="btn-primary">
-        Assinar a newsletter
+        Assinar a {NEWSLETTER_NAME}
       </a>
     </aside>
   );

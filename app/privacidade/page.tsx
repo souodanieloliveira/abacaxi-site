@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
-// Política de Privacidade do site e da Newsletter da Abacaxi.
+// Política de Privacidade do site e da descasca., a newsletter da Abacaxi.
 // Texto aprovado por Daniel em 30/10/2026 (conversa "Site abacaxi.cc"); item Materiais aprovado em 11/11/2026 e ajustado em 12/11/2026 (envio por e-mail).
 // Dados de contratações específicas ficam em contratos particulares; Encontros e cursos terão página própria.
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
   description:
-    "Como a Abacaxi trata os dados pessoais coletados no site abacaxi.cc e na Newsletter da Abacaxi.",
+    "Como a Abacaxi trata os dados pessoais coletados no site abacaxi.cc e na descasca., a newsletter da Abacaxi.",
   alternates: { canonical: "https://abacaxi.cc/privacidade" },
   // Ao definir openGraph aqui, a imagem padrão do layout deixa de valer; por isso ela é declarada de novo (13/11/2026).
   openGraph: {
@@ -48,7 +48,7 @@ export default function PrivacidadePage() {
           <div className="post-body" style={{ maxWidth: 720 }}>
             <p>
               Esta política explica como a Abacaxi trata os dados pessoais coletados no site
-              abacaxi.cc e na Newsletter da Abacaxi. Os dados dos clientes relativos a contratações
+              abacaxi.cc e na descasca., a newsletter da Abacaxi. Os dados dos clientes relativos a contratações
               específicas serão tratados em contratos particulares.
             </p>
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-// Página curta da Newsletter da Abacaxi (depois do envio do formulário ou do
+// Página curta da descasca., a newsletter da Abacaxi (depois do envio do formulário ou do
 // clique no link de confirmação do Brevo). Decisão de 11/11/2026.
 // 12/11/2026 18:13: coluna mais larga e linhas equilibradas (text-wrap: balance), para não sobrar
 // uma linha curta no fim das frases (pedido de Daniel, vista no computador).
@@ -34,7 +34,7 @@ export default function AvisoNewsletter({
               opacity: 0.6,
             }}
           >
-            Newsletter da Abacaxi
+            descasca. · Newsletter da Abacaxi
           </p>
           <h1
             style={{
