@@ -106,6 +106,7 @@ export default function RootLayout({
           src="/u/script.js"
           data-website-id="1e3b0515-10f1-47a6-9751-acb607c7a6e1"
           data-domains="abacaxi.cc"
+          data-host-url="/u"
           strategy="afterInteractive"
         />
       </body>
