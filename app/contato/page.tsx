@@ -33,8 +33,8 @@ export default function ContatoPage() {
       {/* CONTEÚDO — formulário + canais */}
       <div style={{ background: "#ffffff" }}>
         <div
-          className="container flex-responsive"
-          style={{ paddingTop: 56, paddingBottom: 56, alignItems: "flex-start" }}
+          className="container flex-responsive flex-topo"
+          style={{ paddingTop: 56, paddingBottom: 56 }}
         >
           {/* Formulário */}
           <div style={{ flex: 1 }}>

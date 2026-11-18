@@ -227,12 +227,12 @@ export default function Calculadora({ bookingUrl }: { bookingUrl: string }) {
 <style>
 body{font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:40px auto;color:#1A1A1A;font-size:14px}
 .logo{width:150px;height:auto;margin-bottom:18px}
-h1{color:#8500DB;font-size:20px;margin:0 0 3px}
+h1{color:#3D1A6E;font-size:20px;margin:0 0 3px}
 .sub{color:#6B6475;font-size:12px;margin-bottom:22px}
 h2{font-size:15px;color:#3D1A6E;border-bottom:2px solid #ECE4FA;padding-bottom:5px;margin:20px 0 10px}
 .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #F4F0FB}
 .total{font-weight:bold;border-top:2px solid #E3DCF2;border-bottom:none;padding-top:8px}
-.hero{background:#8500DB;color:#fff;border-radius:10px;padding:18px;text-align:center;margin:16px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hero{background:#3D1A6E;color:#fff;border-radius:10px;padding:18px;text-align:center;margin:16px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .hero .big{font-size:30px;font-weight:800}
 .hero .s{color:rgba(255,255,255,.85);font-size:12px;margin-top:4px}
 .badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;background:#ECE4FA;color:#3D1A6E;margin-bottom:8px}
@@ -265,7 +265,7 @@ ${c.ap > 0 ? `<div class="row" style="margin-top:8px"><span>− Anuais (próximo
 <span class="badge">${sc.bt}</span>
 <p style="margin:6px 0 10px"><strong>${sc.tit}</strong></p>
 <p style="color:#6B6475;margin-bottom:12px">${sc.txt}</p>
-<div class="box"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#8500DB">O que fazer</strong><ul>${sc.ac.map((a) => `<li>${a}</li>`).join("")}</ul><p style="margin:10px 0 0;font-size:12px;color:#6B6475">${AVISO_CENARIOS}</p></div>
+<div class="box"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#3D1A6E">O que fazer</strong><ul>${sc.ac.map((a) => `<li>${a}</li>`).join("")}</ul><p style="margin:10px 0 0;font-size:12px;color:#6B6475">${AVISO_CENARIOS}</p></div>
 <div class="aviso">${AVISO_PDF}</div>
 <div class="footer">Abacaxi Serviços Financeiros · abacaxi.cc</div>
 </body></html>`;

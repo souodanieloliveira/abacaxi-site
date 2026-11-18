@@ -103,7 +103,7 @@ export default function RootLayout({
         {/* Umami (18/11/2026, Daniel): visitas, tempo na página, cliques marcados (data-umami-event) e campanhas
             (utm), sem cookies. Conta só abacaxi.cc, para as prévias da Vercel não entrarem nos números. */}
         <Script
-          src="https://cloud.umami.is/script.js"
+          src="/u/script.js"
           data-website-id="1e3b0515-10f1-47a6-9751-acb607c7a6e1"
           data-domains="abacaxi.cc"
           strategy="afterInteractive"

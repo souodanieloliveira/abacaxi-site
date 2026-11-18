@@ -82,7 +82,7 @@ export const siteContent = {
     },
 
     momentos: {
-      statement: "Você tem objetivos e preocupações. Nós traçamos caminhos.",
+      statement: "Você tem objetivos e preocupações.\nNós traçamos caminhos.",
       items: [
         {
           icon: "Sunset",
