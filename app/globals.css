@@ -784,3 +784,11 @@ a:focus-visible {
 .home-statement .statement-heading { color: #ffffff; }
 .home-statement .statement-divider { background: rgba(255,255,255,0.25); }
 @media (min-width: 1024px) { .home-servicos__titulo { font-size: 2.5rem; } }
+
+/* Topo do blog (17/11/2026): o "d." da descasca. à direita, só no computador. */
+.blog-topo { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+.blog-topo__logo { display: none; }
+@media (min-width: 1024px) {
+  .blog-topo__logo { display: block; flex: 0 0 240px; width: 240px; height: 240px; border-radius: 24px; overflow: hidden; }
+  .blog-topo__logo img { display: block; width: 100%; height: 100%; }
+}

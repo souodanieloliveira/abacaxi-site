@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import NewsletterBox from "../../components/blog/NewsletterBox";
 import { AUTHOR, DEFAULT_OG_IMAGE, SITE_URL } from "../../content/blog/config";
@@ -64,25 +65,32 @@ export default function BlogPage() {
               newsletter do LinkedIn. O menu continua "Blog", que é a palavra que o visitante entende de cara.
               Título em Fraunces no Roxo Escuro (#3D1A6E, o --color-dark), com o ponto em laranja: o roxo
               canônico #8500DB fica só para o logo (Daniel, 17/11/2026 21:42). */}
-          <div style={{ maxWidth: 640 }}>
-            <p className="home-hero__rotulo">Blog da Abacaxi</p>
-            <h1
-              style={{
-                fontFamily: "var(--font-fraunces), Georgia, serif",
-                fontWeight: 500,
-                fontSize: "3rem",
-                lineHeight: 1.05,
-                letterSpacing: "-0.02em",
-                color: "var(--color-dark)",
-                marginBottom: 16,
-                marginTop: 0,
-              }}
-            >
-              descasca<span style={{ color: "var(--color-secondary)" }}>.</span>
-            </h1>
-            <p style={{ fontSize: "1.125rem", opacity: 0.8, lineHeight: 1.7, margin: 0 }}>
-              {description}
-            </p>
+          {/* O "d." da descasca. à direita, só no computador (Daniel, 17/11/2026 22:14). No celular ele
+              ficaria abaixo do título, repetindo o nome e empurrando a lista de textos. */}
+          <div className="blog-topo">
+            <div style={{ maxWidth: 640 }}>
+              <p className="home-hero__rotulo">Blog da Abacaxi</p>
+              <h1
+                style={{
+                  fontFamily: "var(--font-fraunces), Georgia, serif",
+                  fontWeight: 500,
+                  fontSize: "3rem",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.02em",
+                  color: "var(--color-dark)",
+                  marginBottom: 16,
+                  marginTop: 0,
+                }}
+              >
+                descasca<span style={{ color: "var(--color-secondary)" }}>.</span>
+              </h1>
+              <p style={{ fontSize: "1.125rem", opacity: 0.8, lineHeight: 1.7, margin: 0 }}>
+                {description}
+              </p>
+            </div>
+            <div className="blog-topo__logo">
+              <Image src="/descasca-logo.png" alt="" width={640} height={640} sizes="240px" priority />
+            </div>
           </div>
         </div>
       </div>
