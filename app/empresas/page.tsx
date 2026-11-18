@@ -175,6 +175,7 @@ export default function EmpresasPage() {
         <div className="container flex-cta section-xl-pad" style={{ gap: 64 }}>
           <div style={{ flex: 1 }}>
             <h2
+              className="cta-titulo"
               style={{
                 fontSize: "2rem",
                 fontWeight: 700,

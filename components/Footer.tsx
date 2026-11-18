@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type React from "react";
+import { siteContent } from "../content/site";
 function InstagramIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -47,7 +48,9 @@ export default function Footer() {
           gap: 32,
         }}
       >
-        {/* linha superior: logo + redes sociais */}
+        {/* linha superior: tagline + redes sociais. 18/11/2026 (Daniel, opção B): o logo saiu do rodapé
+            porque o cabeçalho fixo já mostra o logo; nas páginas curtas os dois apareciam na mesma tela.
+            O nome da empresa continua escrito na linha de baixo. */}
         <div
           style={{
             display: "flex",
@@ -57,16 +60,7 @@ export default function Footer() {
             gap: 24,
           }}
         >
-          <Link href="/" style={{ display: "block" }}>
-            {/* Logo invertido (texto claro) da pasta de marca, para o fundo roxo escuro do rodapé. */}
-            <img
-              src="/logo-abacaxi-rodape.png"
-              alt="Abacaxi – Planejamento Financeiro"
-              width={866}
-              height={200}
-              style={{ height: 48, width: "auto", display: "block" }}
-            />
-          </Link>
+          <p className="footer-tagline">{siteContent.home.hero.title}</p>
 
           <div style={{ display: "flex", gap: 16 }}>
             {socials.map(({ icon: Icon, href, label }) => (

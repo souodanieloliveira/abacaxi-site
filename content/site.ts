@@ -112,7 +112,7 @@ export const siteContent = {
     },
 
     ctaFinal: {
-      headline: "Descubra onde você está, e para onde pode ir.",
+      headline: "Descubra onde você está,\ne para onde pode ir.",
       sub: "Um diagnóstico financeiro gratuito para entender sua situação atual e dar o primeiro passo com clareza.",
       cta: "Quero meu diagnóstico gratuito",
       ctaHref: "/contato",
@@ -187,7 +187,7 @@ export const siteContent = {
       },
     ],
     ctaFinal: {
-      headline: "Pronto para estruturar as finanças da sua empresa?",
+      headline: "Pronto para estruturar\nas finanças da sua empresa?",
       cta: "Agendar conversa gratuita",
       ctaHref: "/contato",
     },
@@ -197,7 +197,7 @@ export const siteContent = {
     hero: {
       title: "Vamos conversar?",
       subtitle:
-        "Preencha o formulário ou escolha o canal que preferir. Respondemos em até 1 dia útil.",
+        "Preencha o formulário ou escolha o canal que preferir. Respondemos em até 1\u00a0dia útil.",
     },
     canais: {
       whatsapp: {
@@ -281,7 +281,8 @@ export const siteContent = {
       { valor: "+500", label: "alunos em workshops e palestras" },
     ],
     ctaFinal: {
-      headline: "Roteiro financeiro para os momentos que decidem uma vida.",
+      // 18/11/2026 (Daniel): a tagline foi para o rodapé; aqui entra a mesma frase do fim da página inicial.
+      headline: "Descubra onde você está,\ne para onde pode ir.",
       cta: "Agendar conversa gratuita",
       ctaHref: "/contato",
     },
@@ -368,7 +369,7 @@ export const siteContent = {
       },
     ],
     ctaFinal: {
-      headline: "Não sabe por onde começar? Comece por uma conversa.",
+      headline: "Não sabe por onde começar?\nComece por uma conversa.",
       cta: "Agendar conversa gratuita",
       ctaHref: "/contato",
     },

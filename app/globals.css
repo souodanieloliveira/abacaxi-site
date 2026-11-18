@@ -792,3 +792,40 @@ a:focus-visible {
   .blog-topo__logo { display: block; flex: 0 0 240px; width: 240px; height: 240px; border-radius: 24px; overflow: hidden; }
   .blog-topo__logo img { display: block; width: 100%; height: 100%; }
 }
+
+/* Cartão das páginas de confirmação da newsletter (18/11/2026), igual ao e-mail do Brevo. */
+.aviso-newsletter {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e3dcf2;
+  border-radius: 12px;
+  padding: 48px 24px;
+}
+@media (min-width: 640px) {
+  .aviso-newsletter { padding: 56px 48px; }
+}
+
+/* Rodapé (18/11/2026): tagline no lugar do logo, que já está no cabeçalho fixo. */
+.footer-tagline {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  font-size: 1.375rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+@media (min-width: 768px) {
+  .footer-tagline { font-size: 1.5rem; max-width: none; }
+}
+
+/* Títulos das faixas finais (18/11/2026, Daniel): quebra de linha fixa a partir do tablet; no celular o
+   texto quebra sozinho, para não sobrar uma palavra solta. */
+.cta-titulo { white-space: normal; }
+@media (min-width: 768px) {
+  .cta-titulo { white-space: pre-line; }
+}

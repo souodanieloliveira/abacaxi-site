@@ -456,6 +456,7 @@ export default function Home() {
         >
           <div style={{ flex: 1 }}>
             <h2
+              className="cta-titulo"
               style={{
                 fontSize: "2rem",
                 fontWeight: 700,
