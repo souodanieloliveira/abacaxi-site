@@ -8,7 +8,7 @@ const description =
   "Textos sobre dinheiro, decisões e planejamento financeiro, escritos por quem atende pessoas todos os dias. Publicados a cada duas semanas.";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "descasca. | Blog",
   description,
   alternates: {
     canonical: `${SITE_URL}/blog`,
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: `${SITE_URL}/blog`,
-    title: "Blog | Abacaxi",
+    title: "descasca. | Blog da Abacaxi",
     description,
     images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | Abacaxi",
+    title: "descasca. | Blog da Abacaxi",
     description,
     images: [DEFAULT_OG_IMAGE.url],
   },
@@ -34,7 +34,8 @@ export default function BlogPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Blog da Abacaxi",
+    name: "descasca.",
+    alternateName: "Blog da Abacaxi",
     url: `${SITE_URL}/blog`,
     description,
     inLanguage: "pt-BR",
@@ -59,17 +60,25 @@ export default function BlogPage() {
 
       <div style={{ background: "var(--color-background-soft)" }}>
         <div className="container" style={{ paddingTop: 72, paddingBottom: 72 }}>
+          {/* O blog leva o nome "descasca." (Daniel, 17/11/2026 22:10), o mesmo do Medium, do Substack e da
+              newsletter do LinkedIn. O menu continua "Blog", que é a palavra que o visitante entende de cara.
+              Título em Fraunces no Roxo Escuro (#3D1A6E, o --color-dark), com o ponto em laranja: o roxo
+              canônico #8500DB fica só para o logo (Daniel, 17/11/2026 21:42). */}
           <div style={{ maxWidth: 640 }}>
+            <p className="home-hero__rotulo">Blog da Abacaxi</p>
             <h1
               style={{
-                fontSize: "2.25rem",
-                fontWeight: 700,
-                lineHeight: 1.2,
+                fontFamily: "var(--font-fraunces), Georgia, serif",
+                fontWeight: 500,
+                fontSize: "3rem",
+                lineHeight: 1.05,
+                letterSpacing: "-0.02em",
+                color: "var(--color-dark)",
                 marginBottom: 16,
                 marginTop: 0,
               }}
             >
-              Blog
+              descasca<span style={{ color: "var(--color-secondary)" }}>.</span>
             </h1>
             <p style={{ fontSize: "1.125rem", opacity: 0.8, lineHeight: 1.7, margin: 0 }}>
               {description}
