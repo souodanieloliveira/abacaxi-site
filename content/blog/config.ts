@@ -8,7 +8,8 @@ export const NEWSLETTER_SIGNUP_URL =
   process.env.NEXT_PUBLIC_NEWSLETTER_URL ||
   "https://68c8a4be.sibforms.com/serve/MUIFAFUrluGqCNQYm3nDLL702qEaDTXC7FL_JJi9Gy1wfwhBM6NGmKNTvd7obA_cXkZJd6N1Y5JWxjo8F4NoShHN4Ia3WoVnj9r9UEnXL2Fq5rzQxsUCe5qbn2Qx9yIOoDO_kvker4AkKzQta8Z7gwxl1ltOwD1rrhuEwp_v2Foa4RsQxYmH0RlQr3lXuGfWf4GDs8bY6GIjV54TCg==";
 
-export const NEWSLETTER_NAME = "Newsletter da Abacaxi";
+// A newsletter se chama "descasca." (Daniel, 17/11/2026 22:22), como o blog, o Medium, o Substack e o LinkedIn.
+export const NEWSLETTER_NAME = "descasca.";
 
 export const AUTHOR = {
   name: "Daniel Oliveira",
