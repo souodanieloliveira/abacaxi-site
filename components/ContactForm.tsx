@@ -96,6 +96,7 @@ export default function ContactForm({ servico }: Props) {
       <div>
         <button
           type="submit"
+          data-umami-event="contato-enviar"
           disabled={loading}
           style={{
             background: "var(--color-button)",

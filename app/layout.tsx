@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ChromeGate from "../components/ChromeGate";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 // Fontes servidas pelo próprio site (arquivos em app/fonts, licença SIL OFL 1.1), em vez de baixadas do
 // Google Fonts a cada build: o download falhou em builds de 11 e 12/11/2026. Decisão de Daniel em 12/11/2026.
@@ -99,6 +100,14 @@ export default function RootLayout({
         </ChromeGate>
         {/* Contagem de visitas (Vercel Web Analytics), sem cookies de terceiros. Decisão de 30/10/2026. */}
         <Analytics />
+        {/* Umami (18/11/2026, Daniel): visitas, tempo na página, cliques marcados (data-umami-event) e campanhas
+            (utm), sem cookies. Conta só abacaxi.cc, para as prévias da Vercel não entrarem nos números. */}
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="1e3b0515-10f1-47a6-9751-acb607c7a6e1"
+          data-domains="abacaxi.cc"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

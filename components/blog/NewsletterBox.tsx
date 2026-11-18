@@ -28,7 +28,7 @@ export default function NewsletterBox() {
         A {NEWSLETTER_NAME}, a newsletter da Abacaxi, chega a cada duas semanas, com um texto
         sobre decisões financeiras que valem a reflexão.
       </p>
-      <a href="/newsletter" className="btn-primary">
+      <a href="/newsletter" className="btn-primary" data-umami-event="newsletter-quadro">
         Assinar a {NEWSLETTER_NAME}
       </a>
     </aside>

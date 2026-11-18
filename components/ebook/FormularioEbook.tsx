@@ -128,6 +128,7 @@ export default function FormularioEbook() {
                   className="sib-form-block__button sib-form-block__button-with-loader btn-primary ebook-form__botao"
                   form="sib-form"
                   type="submit"
+                  data-umami-event="ebook-acessar"
                 >
                   <svg
                     className="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
