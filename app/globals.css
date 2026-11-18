@@ -10,7 +10,8 @@
   --color-button: #FF8B13;
 
   --color-text-main: #1A1A1A;
-  --color-text-accent: #8500DB;
+  /* 18/11/2026 (Daniel): o roxo do logo (#8500DB) fica só no logo; textos e destaques no Roxo Escuro. */
+  --color-text-accent: #3D1A6E;
 
   --color-background: #F4F0FB;
   --color-background-soft: #ECE4FA;
@@ -67,7 +68,8 @@ a {
 .flex-responsive-reverse {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  /* 18/11/2026: no celular, cada bloco ocupa a largura toda (antes encolhia e ficava à esquerda). */
+  align-items: stretch;
   gap: 32px;
 }
 
@@ -328,7 +330,7 @@ a {
 
 .post-table th {
   padding: 8px;
-  border-bottom: 2px solid var(--color-primary, #8500DB);
+  border-bottom: 2px solid var(--color-dark);
   color: var(--color-dark);
   text-align: left;
 }
@@ -834,4 +836,32 @@ a:focus-visible {
 .home-hero--sem-foto .home-hero__texto { max-width: 40rem; }
 @media (min-width: 1024px) {
   .home-hero.home-hero--sem-foto .home-hero__texto { flex: 1 1 auto; }
+}
+
+/* Cartão "Vamos Conversar" da página inicial (18/11/2026): no celular, botão na largura toda. */
+@media (max-width: 767px) {
+  .home-coroa-cta { align-items: stretch; }
+  .home-coroa-cta a { text-align: center; }
+}
+
+/* Título de "Momentos" na página inicial (18/11/2026): uma frase por linha. */
+.home-momentos__titulo {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  font-size: 1.625rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+  text-align: center;
+  white-space: pre-line;
+  text-wrap: balance;
+  margin: 0 0 40px;
+}
+@media (min-width: 768px) {
+  .home-momentos__titulo { font-size: 2.25rem; margin-bottom: 48px; }
+}
+
+/* Colunas alinhadas pelo topo no computador (Contato, 18/11/2026); no celular, largura toda. */
+@media (min-width: 768px) {
+  .flex-responsive.flex-topo { align-items: flex-start; }
 }

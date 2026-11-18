@@ -148,7 +148,7 @@ export default function Home() {
 
       {/* JORNADA COROA */}
       <div style={{ background: "#ffffff" }}>
-        <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
+        <div className="container" style={{ paddingTop: 56, paddingBottom: 24 }}>
           <div style={{ marginBottom: 56, textAlign: "center" }}>
             <p className="accent-serif" style={{ color: "var(--color-text-accent)", marginBottom: 4 }}>
               {home.coroa.subtitle}
@@ -222,7 +222,7 @@ export default function Home() {
           </div>
 
           <div
-            className="flex-cta"
+            className="flex-cta home-coroa-cta"
             style={{
               marginTop: 56,
               marginLeft: "auto",
@@ -265,16 +265,8 @@ export default function Home() {
 
       {/* MOMENTOS */}
       <div style={{ background: "linear-gradient(to bottom, #ffffff, var(--color-background-soft))" }}>
-        <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
-          <h2
-            style={{
-              fontSize: "1.75rem",
-              fontWeight: 700,
-              color: "var(--color-text-accent)",
-              marginBottom: 48,
-              textAlign: "center",
-            }}
-          >
+        <div className="container" style={{ paddingTop: 32, paddingBottom: 56 }}>
+          <h2 className="home-momentos__titulo">
             {home.momentos.statement}
           </h2>
 
