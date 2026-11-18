@@ -3,14 +3,14 @@ import AvisoNewsletter from "../../../components/newsletter/AvisoNewsletter";
 
 // Página depois do clique no link de confirmação (configurada no Brevo).
 export const metadata: Metadata = {
-  title: "Inscrição Confirmada",
+  title: "Inscrição confirmada",
   robots: { index: false, follow: false },
 };
 
 export default function ConfirmadaPage() {
   return (
     <AvisoNewsletter
-      titulo="Inscrição Confirmada"
+      titulo="Inscrição confirmada."
       texto={[
         "Você vai receber a próxima edição da descasca. na sua caixa de entrada.",
         "Enquanto isso, confira as edições anteriores no link abaixo.",

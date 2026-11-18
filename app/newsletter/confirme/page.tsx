@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ConfirmePage() {
   return (
     <AvisoNewsletter
-      titulo="Confira seu e-mail"
+      titulo="Confira seu e-mail."
       texto={["Enviamos um link de confirmação.", "Se não encontrar, olhe a caixa de spam ou de promoções."]}
     />
   );

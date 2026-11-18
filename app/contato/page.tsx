@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteContent } from "../../content/site";
 import ContactForm from "../../components/ContactForm";
+import PaginaHero from "../../components/PaginaHero";
 
 export const metadata: Metadata = {
   title: "Fale Conosco",
@@ -22,35 +23,12 @@ export default function ContatoPage() {
 
   return (
     <>
-      {/* HERO — fundo suave, sem imagem */}
-      <div style={{ background: "var(--color-background-soft)" }}>
-        <div className="container" style={{ paddingTop: 72, paddingBottom: 72 }}>
-          <div style={{ maxWidth: 640 }}>
-            <h1
-              style={{
-                fontSize: "2.25rem",
-                fontWeight: 700,
-                lineHeight: 1.2,
-                color: "var(--color-text-main)",
-                marginBottom: 16,
-                marginTop: 0,
-              }}
-            >
-              {contato.hero.title}
-            </h1>
-            <p
-              style={{
-                fontSize: "1.125rem",
-                opacity: 0.8,
-                lineHeight: 1.7,
-                margin: 0,
-              }}
-            >
-              {contato.hero.subtitle}
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* 18/11/2026 (Daniel): mesma primeira tela das demais páginas, sem foto (o formulário fica logo abaixo). */}
+      <PaginaHero
+        rotulo="Fale com a Abacaxi"
+        titulo={contato.hero.title}
+        frase={contato.hero.subtitle}
+      />
 
       {/* CONTEÚDO — formulário + canais */}
       <div style={{ background: "#ffffff" }}>

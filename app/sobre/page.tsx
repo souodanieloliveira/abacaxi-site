@@ -24,8 +24,9 @@ export default function SobrePage() {
   return (
     <>
       <PaginaHero
-        rotulo="Sobre a Abacaxi"
+        rotulo="Sobre nós"
         titulo={sobre.hero.title}
+        frase={sobre.hero.subtitle}
         imagem={sobre.hero.image}
         alt="Equipe Abacaxi em ambiente de trabalho"
       />
@@ -272,6 +273,7 @@ export default function SobrePage() {
         <div className="container flex-cta section-xl-pad" style={{ gap: 64 }}>
           <div style={{ flex: 1 }}>
             <h2
+              className="cta-titulo"
               style={{
                 fontSize: "2rem",
                 fontWeight: 700,
