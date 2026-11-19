@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ATUALIZADA_EM = "18 de novembro de 2026";
+const ATUALIZADA_EM = "19 de novembro de 2026";
 
 export default function PrivacidadePage() {
   return (
@@ -67,7 +67,7 @@ export default function PrivacidadePage() {
                 enviar a newsletter. Você pode cancelar a qualquer momento pelo link no fim de cada e-mail.
               </li>
               <li>
-                <strong>Materiais (ebook e outros):</strong> nome, e-mail e o registro do seu
+                <strong>Materiais (guias e outros):</strong> nome, e-mail e o registro do seu
                 consentimento, para liberar o acesso ao material pedido e enviá-lo para o seu e-mail.
               </li>
               <li>
@@ -117,7 +117,7 @@ export default function PrivacidadePage() {
             <h2>Por quanto tempo guardamos</h2>
             <ul>
               <li>Newsletter: enquanto a sua inscrição estiver ativa.</li>
-              <li>Materiais (ebook e outros): 12 meses.</li>
+              <li>Materiais (guias e outros): 12 meses.</li>
               <li>Calculadora de Limite de Gastos: 12 meses.</li>
               <li>Contatos que não viram clientes: 12 meses.</li>
               <li>Lista de espera: 12 meses.</li>
