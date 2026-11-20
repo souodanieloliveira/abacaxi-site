@@ -1,19 +1,21 @@
 import { NextResponse } from "next/server";
 import { digitosWhatsappValidos } from "../../../components/calculadora/whatsapp";
-import { AGENDA_ENCONTRO_URL, CAMPANHA, PACOTES, estadoCampanha, reais } from "../../../content/campanha";
+import { cpfValido, digitosCpf } from "../../../components/campanha/cpf";
+import { FUNIL_TABLE_ID, MARCA_CAMPANHA, airtable, criarFatura } from "../../../components/campanha/servidor";
+import { CAMPANHA, PACOTES, PAGAMENTO, estadoCampanha, reais } from "../../../content/campanha";
 
 // Cadastro da compra direta da campanha Black Friday + 13º 2026 (/black-friday-2026).
-// Fluxo aprovado: pacote → formulário → aceite do termo → link de pagamento → agendamento do primeiro encontro.
-// Cada cadastro entra no Funil de Vendas com o campo Campanha preenchido, aguardando o pagamento.
+// Fluxo: pacote → formulário (com CPF) → aceite do termo → fatura da Iugu (Pix ou cartão em até 3x) → página da agenda.
+// Cada cadastro entra no Funil de Vendas com o campo Campanha preenchido, aguardando o pagamento; o aviso de
+// pagamento da Iugu (/api/iugu/fatura) marca o registro como Ganho.
 // O horário vale pelo servidor: antes de 24/11 00h00 e depois de 04/12 23h59 o cadastro é recusado.
-
-const TABLE_ID = "tblPq18e4r0Da3V5v"; // Funil de Vendas (base Abacaxi)
 
 type Corpo = {
   pacote?: string;
   nome?: string;
   email?: string;
   whatsapp?: string;
+  cpf?: string;
   termo?: boolean;
   consentimento?: boolean;
   site?: string; // campo-isca
@@ -53,7 +55,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Corpo inválido." }, { status: 400 });
   }
 
-  if (body.site) return NextResponse.json({ ok: true, linkPagamento: "", agenda: "" });
+  if (body.site) return NextResponse.json({ ok: true, url: "" });
 
   // Fora da produção (prévia da Vercel ou local), o período não é conferido e o registro sai marcado [TESTE].
   const teste = process.env.VERCEL_ENV !== "production";
@@ -70,13 +72,13 @@ export async function POST(request: Request) {
   if (!nomeValido(nome)) return NextResponse.json({ error: "Informe nome e sobrenome." }, { status: 400 });
   if (email.length > 254 || !EMAIL_VALIDO.test(email)) return NextResponse.json({ error: "Confira o e-mail." }, { status: 400 });
   if (!whatsapp) return NextResponse.json({ error: "Confira o WhatsApp, com DDD." }, { status: 400 });
+  if (!cpfValido(body.cpf ?? "")) return NextResponse.json({ error: "Confira o CPF." }, { status: 400 });
   if (body.termo !== true) return NextResponse.json({ error: "É preciso aceitar o termo." }, { status: 400 });
   if (body.consentimento !== true) return NextResponse.json({ error: "Consentimento obrigatório." }, { status: 400 });
 
-  const token = process.env.AIRTABLE_TOKEN;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  if (!token || !baseId) {
-    console.error("AIRTABLE_TOKEN ou AIRTABLE_BASE_ID não configurados.");
+  const iuguToken = process.env.IUGU_API_TOKEN;
+  if (!iuguToken) {
+    console.error("IUGU_API_TOKEN não configurado.");
     return NextResponse.json({ error: "Configuração do servidor incompleta." }, { status: 500 });
   }
 
@@ -84,36 +86,76 @@ export async function POST(request: Request) {
   const hoje = hojeBrasilia();
   const prazo = hoje === CAMPANHA.ultimoDia ? CAMPANHA.prazoPagamentoUltimoDia : hoje;
   const rotuloPacote = pacote.encontros === 1 ? "1 encontro" : `${pacote.encontros} encontros`;
+  const aguardando = `${email} — ${whatsapp} — ${rotuloPacote} por ${reais(pacote.precoCampanha)} — aguardando pagamento (prazo ${dataBR(prazo)})`;
 
-  const fields: Record<string, unknown> = {
-    "Nome do Lead": `${teste ? "[TESTE] " : ""}${nome} — Black Friday (${rotuloPacote})`,
-    Origem: "Site",
-    Fase: "Fechamento",
-    Status: "Qualificado",
-    Temperatura: "Quente",
-    "Serviço de Interesse": "Encontros Individuais",
-    "Valor Estimado": pacote.precoCampanha,
-    Campanha: CAMPANHA.nome,
-    "Data de Fechamento Esperada": prazo,
-    "Próxima Ação": `${email} — ${whatsapp} — ${rotuloPacote} por ${reais(pacote.precoCampanha)} — aguardando pagamento (prazo ${dataBR(prazo)})`,
-  };
-
+  // 1. Registro no Funil de Vendas.
+  let registroId = "";
   try {
-    const res = await fetch(`https://api.airtable.com/v0/${baseId}/${TABLE_ID}`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ fields, typecast: true }),
+    const res = await airtable("POST", FUNIL_TABLE_ID, {
+      typecast: true,
+      fields: {
+        "Nome do Lead": `${teste ? "[TESTE] " : ""}${nome} — Black Friday (${rotuloPacote})`,
+        Origem: "Site",
+        Fase: "Fechamento",
+        Status: "Qualificado",
+        Temperatura: "Quente",
+        "Serviço de Interesse": "Encontros Individuais",
+        "Valor Estimado": pacote.precoCampanha,
+        Campanha: CAMPANHA.nome,
+        "Data de Fechamento Esperada": prazo,
+        "Próxima Ação": aguardando,
+      },
     });
     if (!res.ok) {
       console.error("Erro do Airtable (black-friday):", res.status, await res.text());
       return NextResponse.json({ error: "Não foi possível registrar agora." }, { status: 502 });
     }
+    registroId = ((await res.json()) as { id: string }).id;
   } catch (erro) {
     console.error("Falha ao chamar o Airtable (black-friday):", erro);
     return NextResponse.json({ error: "Não foi possível registrar agora." }, { status: 502 });
   }
 
-  // O prazo só aparece para quem se cadastra no último dia (paga até seg 07/12).
-  const prazoVisivel = hoje === CAMPANHA.ultimoDia ? dataBR(prazo) : "";
-  return NextResponse.json({ ok: true, linkPagamento: pacote.linkPagamento, agenda: AGENDA_ENCONTRO_URL, prazo: prazoVisivel });
+  // 2. Fatura na Iugu. Os endereços de retorno usam o próprio site (abacaxi.cc na produção; a prévia, nos testes).
+  const site = process.env.VERCEL_ENV === "production" ? "https://abacaxi.cc" : new URL(request.url).origin;
+  const digitosWpp = whatsapp.slice(3); // +55DD...
+  const fatura = await criarFatura(iuguToken, {
+    email,
+    due_date: prazo,
+    items: [
+      {
+        description: `${pacote.encontros === 1 ? "1 Encontro Individual" : `${pacote.encontros} Encontros Individuais`} — ${CAMPANHA.nome}`,
+        quantity: 1,
+        price_cents: pacote.precoCampanha * 100,
+      },
+    ],
+    payable_with: PAGAMENTO.formas,
+    max_installments_value: PAGAMENTO.maxParcelas,
+    payer: { cpf_cnpj: digitosCpf(body.cpf ?? ""), name: nome, email, phone_prefix: digitosWpp.slice(0, 2), phone: digitosWpp.slice(2) },
+    return_url: `${site}${PAGAMENTO.paginaAgendar}`,
+    expired_url: `${site}${CAMPANHA.caminho}`,
+    notification_url: `${site}/api/iugu/fatura`,
+    custom_variables: [
+      { name: "campanha", value: MARCA_CAMPANHA },
+      { name: "registro_funil", value: registroId },
+    ],
+  }).catch((erro) => {
+    console.error("Falha ao chamar a Iugu (black-friday):", erro);
+    return null;
+  });
+
+  if (!fatura?.ok) {
+    if (fatura) console.error("Erro da Iugu (black-friday):", fatura.status, JSON.stringify(fatura.dados.errors ?? fatura.dados));
+    await airtable("PATCH", `${FUNIL_TABLE_ID}/${registroId}`, {
+      fields: { "Próxima Ação": `${aguardando} — fatura da Iugu NÃO criada (erro no site)` },
+    }).catch(() => {});
+    return NextResponse.json({ error: "Não foi possível abrir o pagamento agora. Tente de novo em instantes." }, { status: 502 });
+  }
+
+  // 3. Liga a fatura ao registro do Funil.
+  await airtable("PATCH", `${FUNIL_TABLE_ID}/${registroId}`, {
+    fields: { "Próxima Ação": `${aguardando} — fatura Iugu ${fatura.dados.id} — ${fatura.dados.secure_url}` },
+  }).catch((erro) => console.error("Falha ao ligar a fatura ao Funil:", erro));
+
+  return NextResponse.json({ ok: true, url: fatura.dados.secure_url });
 }

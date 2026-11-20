@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { digitosWhatsappValidos } from "../calculadora/whatsapp";
+import { cpfValido, mascaraCpf } from "./cpf";
 import { MODO_TESTE_NAVEGADOR, PACOTES, estadoCampanha, reais, type EstadoCampanha, type Pacote } from "../../content/campanha";
 
 // Compra direta da campanha Black Friday + 13º 2026: escolha do pacote → formulário → aceite do termo →
-// link de pagamento (Mercado Pago) → agendamento do primeiro encontro. O estado da campanha (antes, aberta,
+// pagamento na Iugu (fatura criada pelo servidor; Pix ou cartão) → página da agenda (retorno da Iugu). O estado da campanha (antes, aberta,
 // encerrada) é conferido no navegador e de novo no servidor (/api/black-friday).
 
 const NOME_VALIDO = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
@@ -32,20 +33,18 @@ function rotulo(p: Pacote) {
   return p.encontros === 1 ? "1 Encontro Individual" : `${p.encontros} Encontros Individuais`;
 }
 
-type Resultado = { linkPagamento: string; agenda: string; prazo: string };
-
 export default function CompraCampanha({ conversaUrl }: { conversaUrl: string }) {
   const [estado, setEstado] = useState<EstadoCampanha | null>(null);
   const [pacote, setPacote] = useState<Pacote["id"] | "">("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [wpp, setWpp] = useState("");
+  const [cpf, setCpf] = useState("");
   const [termo, setTermo] = useState(false);
   const [consent, setConsent] = useState(false);
   const [isca, setIsca] = useState("");
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
-  const [resultado, setResultado] = useState<Resultado | null>(null);
 
   useEffect(() => {
     const atualizar = () => setEstado(MODO_TESTE_NAVEGADOR ? "aberta" : estadoCampanha());
@@ -67,6 +66,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
     if (!nomeValido(nome)) return setErro("Informe seu nome e sobrenome, só com letras.");
     if (email.trim().length > 254 || !EMAIL_VALIDO.test(email.trim())) return setErro("Confira o e-mail.");
     if (!digitosWhatsappValidos(wpp.replace(/\D/g, ""))) return setErro("Confira o WhatsApp, com DDD.");
+    if (!cpfValido(cpf)) return setErro("Confira o CPF.");
     if (!termo) return setErro("Para seguir, leia e aceite o termo de compra.");
     if (!consent) return setErro("Marque a caixa de consentimento para continuar.");
     setEnviando(true);
@@ -74,7 +74,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
       const r = await fetch("/api/black-friday", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pacote, nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: wpp, termo: true, consentimento: true, site: isca }),
+        body: JSON.stringify({ pacote, nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: wpp, cpf, termo: true, consentimento: true, site: isca }),
       });
       const dados = await r.json().catch(() => ({}));
       if (!r.ok) {
@@ -82,8 +82,13 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
         if (r.status === 410) setEstado("encerrada");
         return setErro(dados.error ?? "Não foi possível registrar agora. Tente de novo em instantes.");
       }
-      setResultado({ linkPagamento: dados.linkPagamento ?? "", agenda: dados.agenda ?? "", prazo: dados.prazo ?? "" });
-      document.getElementById("bf-compra")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (!dados.url) {
+        setEnviando(false);
+        return setErro("Não foi possível abrir o pagamento agora. Tente de novo em instantes.");
+      }
+      // Pagamento na página da Iugu, na mesma aba; depois do pagamento, a Iugu traz a pessoa para a agenda.
+      window.location.href = dados.url;
+      return;
     } catch {
       setErro("Sem conexão. Tente de novo em instantes.");
     }
@@ -106,7 +111,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
             </p>
             <p className="bf-pacote__preco">{reais(p.precoCampanha)}</p>
             <p className="bf-pacote__economia">{reais(p.precoCheio - p.precoCampanha)} de desconto</p>
-            {estado === "aberta" && !resultado && (
+            {estado === "aberta" && (
               <button type="button" className={pacote === p.id ? "btn-primary bf-pacote__botao" : "btn-secondary bf-pacote__botao"} onClick={() => escolher(p.id)} data-umami-event={`bf-pacote-${p.id}`}>
                 {pacote === p.id ? "Escolhido" : "Escolher"}
               </button>
@@ -122,7 +127,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
         </div>
       )}
 
-      {estado === "encerrada" && !resultado && (
+      {estado === "encerrada" && (
         <div className="bf-aviso">
           <p className="bf-aviso__titulo">Campanha encerrada.</p>
           <p>
@@ -135,7 +140,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
         </div>
       )}
 
-      {estado === "aberta" && !resultado && (
+      {estado === "aberta" && (
         <form id="bf-dados" className="calc-card bf-form" onSubmit={enviar} noValidate>
           <h2 className="calc-titulo">Seus dados</h2>
           <p className="calc-desc">
@@ -147,6 +152,8 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
           <input className="calc-input" id="bf-email" type="email" inputMode="email" autoComplete="email" maxLength={254} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" />
           <label className="calc-label" htmlFor="bf-wpp">WhatsApp</label>
           <input className="calc-input" id="bf-wpp" type="tel" inputMode="tel" autoComplete="tel" maxLength={15} value={wpp} onChange={(e) => setWpp(mascaraWhatsapp(e.target.value))} placeholder="(62) 90000-0000" />
+          <label className="calc-label" htmlFor="bf-cpf">CPF</label>
+          <input className="calc-input" id="bf-cpf" inputMode="numeric" autoComplete="off" maxLength={14} value={cpf} onChange={(e) => setCpf(mascaraCpf(e.target.value))} placeholder="000.000.000-00" />
           <input type="text" name="site" tabIndex={-1} autoComplete="off" value={isca} onChange={(e) => setIsca(e.target.value)} className="calc-isca" aria-hidden="true" />
           <label className="calc-consent">
             <input type="checkbox" checked={termo} onChange={(e) => setTermo(e.target.checked)} />
@@ -162,37 +169,14 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
               <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.
             </span>
           </label>
+          <p className="calc-desc">Na próxima tela, o pagamento é feito na página da Iugu, por Pix ou cartão de crédito em até 3 vezes sem juros.</p>
           {erro && <p className="calc-erro" role="alert">{erro}</p>}
           <button className="btn-primary calc-botao" type="submit" disabled={enviando} data-umami-event="bf-cadastrar">
-            {enviando ? "Registrando…" : "Continuar para o pagamento"}
+            {enviando ? "Abrindo o pagamento…" : "Continuar para o pagamento"}
           </button>
         </form>
       )}
 
-      {resultado && escolhido && (
-        <div className="calc-card bf-form">
-          <h2 className="calc-titulo">Cadastro feito.</h2>
-          <p className="calc-desc">
-            Faltam dois passos para garantir {rotulo(escolhido).toLowerCase()} por {reais(escolhido.precoCampanha)}.
-          </p>
-          <p className="bf-passo">1. Faça o pagamento{resultado.prazo ? ` até ${resultado.prazo}` : ""}.</p>
-          {resultado.linkPagamento ? (
-            <a className="btn-primary calc-botao" href={resultado.linkPagamento} target="_blank" rel="noopener" data-umami-event="bf-pagar">
-              Pagar pelo Mercado Pago
-            </a>
-          ) : (
-            <p className="calc-desc">Você vai receber o link de pagamento pelo WhatsApp.</p>
-          )}
-          <p className="bf-passo">2. Depois do pagamento, agende o seu primeiro encontro.</p>
-          {resultado.agenda ? (
-            <a className="btn-secondary calc-botao" href={resultado.agenda} target="_blank" rel="noopener" data-umami-event="bf-agendar">
-              Agendar o primeiro encontro
-            </a>
-          ) : (
-            <p className="calc-desc">Você vai receber o link para agendar pelo WhatsApp.</p>
-          )}
-        </div>
-      )}
     </div>
   );
 }

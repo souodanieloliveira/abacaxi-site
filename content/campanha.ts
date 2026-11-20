@@ -19,19 +19,27 @@ export type Pacote = {
   encontros: number;
   precoCheio: number;
   precoCampanha: number;
-  // Link de pagamento do Mercado Pago (criado por Daniel, recebido em 20/11/2026 13:14).
-  linkPagamento: string;
 };
 
 export const PACOTES: Pacote[] = [
-  { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420, linkPagamento: "https://mpago.li/2JqzCeL" },
-  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736, linkPagamento: "https://mpago.li/23A1CrS" },
-  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948, linkPagamento: "https://mpago.li/2WeRiWB" },
+  { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420 },
+  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736 },
+  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948 },
 ];
 
 // Agenda do primeiro Encontro Individual (página de agendamento criada por Daniel, recebida em 20/11/2026 13:14).
+// AGENDA_EMBED_URL é o endereço do código "Inline booking page" (20/11/2026 14:10), embutido em /black-friday-2026/agendar.
 export const AGENDA_ENCONTRO_URL =
-  "https://calendar.google.com/appointments/schedules/AcZssZ0soj6n5NBkVT9rpjQ_Pj4AXYORFS93w25kDl2B4nblgvi0etA3BLzWzWony4buotZMRl7p5vHR";
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0soj6n5NBkVT9rpjQ_Pj4AXYORFS93w25kDl2B4nblgvi0etA3BLzWzWony4buotZMRl7p5vHR";
+export const AGENDA_EMBED_URL = `${AGENDA_ENCONTRO_URL}?gv=true`;
+
+// Pagamento pela Iugu (20/11/2026 14:03 a 14:10): a cada cadastro, o site cria uma fatura com Pix e cartão
+// (sem boleto), cartão em até 3 vezes (juros com a Abacaxi) e retorno para a página da agenda.
+export const PAGAMENTO = {
+  formas: ["pix", "credit_card"],
+  maxParcelas: 3,
+  paginaAgendar: "/black-friday-2026/agendar",
+} as const;
 
 export type EstadoCampanha = "antes" | "aberta" | "encerrada";
 

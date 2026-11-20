@@ -21,7 +21,7 @@ const ITENS: { titulo: string; texto: string }[] = [
   {
     titulo: "Preço",
     texto:
-      "O valor do pacote escolhido, com o desconto da campanha: R$ 420 (1 encontro), R$ 736 (2 encontros) ou R$ 948 (3 encontros). O pagamento é feito pelo link do Mercado Pago. A compra só vale depois que o pagamento é confirmado.",
+      "O valor do pacote escolhido, com o desconto da campanha: R$ 420 (1 encontro), R$ 736 (2 encontros) ou R$ 948 (3 encontros). O pagamento é feito na página de pagamento da Iugu, por Pix ou cartão de crédito em até 3 vezes sem juros. A compra só vale depois que o pagamento é confirmado.",
   },
   {
     titulo: "Validade",
@@ -31,7 +31,7 @@ const ITENS: { titulo: string; texto: string }[] = [
   {
     titulo: "Agendamento e remarcação",
     texto:
-      "O primeiro encontro é agendado pelo link enviado depois do pagamento, conforme a disponibilidade da agenda. A remarcação pode ser feita com pelo menos 24 horas de antecedência. Falta sem aviso conta como encontro realizado.",
+      "O primeiro encontro é agendado na página que abre depois do pagamento ou pelo link enviado por e-mail, conforme a disponibilidade da agenda. A remarcação pode ser feita com pelo menos 24 horas de antecedência. Falta sem aviso conta como encontro realizado.",
   },
   {
     titulo: "Arrependimento",
@@ -46,7 +46,7 @@ const ITENS: { titulo: string; texto: string }[] = [
   {
     titulo: "Seus dados",
     texto:
-      "Nome, e-mail e WhatsApp são usados para a compra, o agendamento e o contato sobre os encontros, conforme a Política de Privacidade (abacaxi.cc/privacidade).",
+      "Nome, e-mail, WhatsApp e CPF são usados para a compra, a cobrança, a nota fiscal, o agendamento e o contato sobre os encontros, conforme a Política de Privacidade (abacaxi.cc/privacidade).",
   },
 ];
 

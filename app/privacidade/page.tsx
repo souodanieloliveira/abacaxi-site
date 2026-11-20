@@ -77,10 +77,11 @@ export default function PrivacidadePage() {
                 na calculadora ficam só no seu navegador e não são enviados à Abacaxi.
               </li>
               <li>
-                <strong>Compra de Encontros Individuais (campanhas):</strong> nome, e-mail, WhatsApp e o
-                registro do aceite do termo de compra, para registrar a compra, enviar o link de pagamento,
-                agendar e falar com você sobre os encontros. O pagamento é feito no Mercado Pago, que trata os
-                dados do pagamento.
+                <strong>Compra de Encontros Individuais (campanhas):</strong> nome, e-mail, WhatsApp, CPF e o
+                registro do aceite do termo de compra, para registrar a compra, gerar a cobrança, emitir a nota fiscal,
+                agendar e falar com você sobre os encontros. O pagamento é feito na Iugu, que recebe o seu nome,
+                e-mail, WhatsApp e CPF para gerar a cobrança e trata os dados do pagamento. O CPF não fica guardado
+                no site.
               </li>
               <li>
                 <strong>Formulário de contato:</strong> nome, empresa (se você informar), e-mail,
@@ -114,7 +115,7 @@ export default function PrivacidadePage() {
 
             <h2>Com quem compartilhamos</h2>
             <p>
-              Só com os serviços que usamos para operar: Brevo (newsletter, materiais e calculadora), Mercado Pago (pagamento das compras), Airtable (contatos, compras e lista
+              Só com os serviços que usamos para operar: Brevo (newsletter, materiais, calculadora e e-mails das compras), Iugu (pagamento das compras), Airtable (contatos, compras e lista
               de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam dos formulários do site), Vercel
               (hospedagem e contagem de visitas) e Umami (uso das páginas). Alguns guardam os dados fora
               do Brasil. Não vendemos nem cedemos seus dados a ninguém.
