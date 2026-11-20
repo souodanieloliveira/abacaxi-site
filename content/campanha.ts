@@ -19,18 +19,19 @@ export type Pacote = {
   encontros: number;
   precoCheio: number;
   precoCampanha: number;
-  // Link de pagamento do Mercado Pago (criado por Daniel). Vazio até ele mandar.
+  // Link de pagamento do Mercado Pago (criado por Daniel, recebido em 20/11/2026 13:14).
   linkPagamento: string;
 };
 
 export const PACOTES: Pacote[] = [
-  { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420, linkPagamento: "" },
-  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736, linkPagamento: "" },
-  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948, linkPagamento: "" },
+  { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420, linkPagamento: "https://mpago.li/2JqzCeL" },
+  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736, linkPagamento: "https://mpago.li/23A1CrS" },
+  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948, linkPagamento: "https://mpago.li/2WeRiWB" },
 ];
 
-// Agenda do primeiro Encontro Individual (página de agendamento criada por Daniel). Vazia até ele mandar.
-export const AGENDA_ENCONTRO_URL = "";
+// Agenda do primeiro Encontro Individual (página de agendamento criada por Daniel, recebida em 20/11/2026 13:14).
+export const AGENDA_ENCONTRO_URL =
+  "https://calendar.google.com/appointments/schedules/AcZssZ0soj6n5NBkVT9rpjQ_Pj4AXYORFS93w25kDl2B4nblgvi0etA3BLzWzWony4buotZMRl7p5vHR";
 
 export type EstadoCampanha = "antes" | "aberta" | "encerrada";
 
