@@ -1,11 +1,12 @@
-// Campanha Black Friday + 13º 2026 (escopo do Log de Marketing, 19/11/2026 21:40 e 22:03; decisões da
+// Campanha Black Friday 2026 (escopo do Log de Marketing, 19/11/2026 21:40 e 22:03; decisões da
 // conversa Site em 19/11/2026 22:37 e 20/11/2026 01:55).
 // Período: 00h00 de ter 24/11 a 23h59 de sex 04/12 (horário de Brasília). Quem se cadastra na sexta paga
 // até seg 07/12. Depois do fim, a página mostra "campanha encerrada".
 
 export const CAMPANHA = {
   // Mesmo texto da opção do campo Campanha no Funil de Vendas (Airtable).
-  nome: "Black Friday + 13º 2026",
+  // Sem "13º" nos nomes (Daniel, 20/11/2026 14:29: "A promoção é de Black Friday").
+  nome: "Black Friday 2026",
   caminho: "/black-friday-2026",
   inicio: "2026-11-24T00:00:00-03:00",
   fim: "2026-12-04T23:59:59-03:00",

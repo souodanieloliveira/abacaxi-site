@@ -4,7 +4,7 @@ import { cpfValido, digitosCpf } from "../../../components/campanha/cpf";
 import { FUNIL_TABLE_ID, MARCA_CAMPANHA, airtable, criarFatura } from "../../../components/campanha/servidor";
 import { CAMPANHA, PACOTES, PAGAMENTO, estadoCampanha, reais } from "../../../content/campanha";
 
-// Cadastro da compra direta da campanha Black Friday + 13º 2026 (/black-friday-2026).
+// Cadastro da compra direta da campanha Black Friday 2026 (/black-friday-2026).
 // Fluxo: pacote → formulário (com CPF) → aceite do termo → fatura da Iugu (Pix ou cartão em até 3x) → página da agenda.
 // Cada cadastro entra no Funil de Vendas com o campo Campanha preenchido, aguardando o pagamento; o aviso de
 // pagamento da Iugu (/api/iugu/fatura) marca o registro como Ganho.
@@ -124,7 +124,7 @@ export async function POST(request: Request) {
     due_date: prazo,
     items: [
       {
-        description: `${pacote.encontros === 1 ? "1 Encontro Individual" : `${pacote.encontros} Encontros Individuais`} — ${CAMPANHA.nome}`,
+        description: `${pacote.encontros === 1 ? "1 Encontro Individual" : `${pacote.encontros} Encontros Individuais`} - ${CAMPANHA.nome}`, // hífen: o travessão saiu como "?" na fatura (20/11/2026)
         quantity: 1,
         price_cents: pacote.precoCampanha * 100,
       },

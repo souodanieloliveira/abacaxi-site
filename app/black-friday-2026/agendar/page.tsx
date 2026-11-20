@@ -13,7 +13,7 @@ export default function AgendarPage() {
     <div style={{ background: "var(--color-background-soft)", minHeight: "70vh" }}>
       <div className="container" style={{ paddingTop: 72, paddingBottom: 96 }}>
         <div className="bf-wrap">
-          <p className="calc-eyebrow">Black Friday + 13º · 2026</p>
+          <p className="calc-eyebrow">Black Friday · 2026</p>
           <h1 className="calc-h1">Agora, agende o seu primeiro encontro.</h1>
           <p className="calc-lede">Escolha o dia e o horário que funcionam para você. O encontro é online, por videochamada, e dura 60 minutos.</p>
           <div className="bf-agenda">

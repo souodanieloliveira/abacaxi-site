@@ -3,11 +3,11 @@ import Link from "next/link";
 import CompraCampanha from "../../components/campanha/CompraCampanha";
 import { BOOKING_URL } from "../../content/blog/config";
 
-// Página da campanha Black Friday + 13º 2026 (escopo do Log de Marketing, 19/11/2026 21:40 e 22:03).
+// Página da campanha Black Friday 2026 (escopo do Log de Marketing, 19/11/2026 21:40 e 22:03).
 // Endereço com o ano (Daniel, 19/11/2026 22:37: "coloque o ano também"). Depois de 04/12, a página continua
 // no ar e mostra "campanha encerrada" no lugar do formulário.
 export const metadata: Metadata = {
-  title: "Black Friday + 13º: Encontros Individuais com desconto",
+  title: "Black Friday: Encontros Individuais com desconto",
   description:
     "De 24 de novembro a 4 de dezembro de 2026, Encontros Individuais de planejamento financeiro com R$ 100, R$ 200 ou R$ 300 de desconto. O único desconto do ano.",
   alternates: { canonical: "https://abacaxi.cc/black-friday-2026" },
@@ -35,7 +35,7 @@ export default function BlackFridayPage() {
             </Link>
           </nav>
 
-          <p className="calc-eyebrow">Black Friday + 13º · 2026</p>
+          <p className="calc-eyebrow">Black Friday · 2026</p>
           <h1 className="calc-h1">Encontros Individuais com o único desconto do ano.</h1>
           <p className="calc-lede">
             De 24 de novembro a 4 de dezembro de 2026, os Encontros Individuais de planejamento financeiro saem com

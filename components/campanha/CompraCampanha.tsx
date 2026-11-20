@@ -5,7 +5,7 @@ import { digitosWhatsappValidos } from "../calculadora/whatsapp";
 import { cpfValido, mascaraCpf } from "./cpf";
 import { MODO_TESTE_NAVEGADOR, PACOTES, estadoCampanha, reais, type EstadoCampanha, type Pacote } from "../../content/campanha";
 
-// Compra direta da campanha Black Friday + 13º 2026: escolha do pacote → formulário → aceite do termo →
+// Compra direta da campanha Black Friday 2026: escolha do pacote → formulário → aceite do termo →
 // pagamento na Iugu (fatura criada pelo servidor; Pix ou cartão) → página da agenda (retorno da Iugu). O estado da campanha (antes, aberta,
 // encerrada) é conferido no navegador e de novo no servidor (/api/black-friday).
 
@@ -131,7 +131,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
         <div className="bf-aviso">
           <p className="bf-aviso__titulo">Campanha encerrada.</p>
           <p>
-            A Black Friday + 13º da Abacaxi terminou em 4 de dezembro de 2026. Se quiser conversar sobre o seu momento,{" "}
+            A Black Friday da Abacaxi terminou em 4 de dezembro de 2026. Se quiser conversar sobre o seu momento,{" "}
             <a href={conversaUrl} target="_blank" rel="noopener" data-umami-event="bf-conversa">
               agende uma conversa gratuita
             </a>

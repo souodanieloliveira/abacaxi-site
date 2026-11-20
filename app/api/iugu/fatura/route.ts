@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { FUNIL_TABLE_ID, MARCA_CAMPANHA, adicionarCompradorBrevo, airtable, buscarFatura, variavel } from "../../../../components/campanha/servidor";
 
-// Aviso de pagamento da Iugu para as faturas da campanha Black Friday + 13º 2026 (20/11/2026, "5. sim").
+// Aviso de pagamento da Iugu para as faturas da campanha Black Friday 2026 (20/11/2026, "5. sim").
 // O endereço vai em cada fatura (notification_url). O conteúdo do aviso não é tomado como verdade: a rota busca a
 // fatura na própria Iugu, com o token da Abacaxi, e só age se ela estiver paga e for da campanha. Faturas dos
 // outros clientes são ignoradas.

@@ -866,7 +866,7 @@ a:focus-visible {
   .flex-responsive.flex-topo { align-items: flex-start; }
 }
 
-/* Campanha Black Friday + 13º 2026 (/black-friday-2026, 20/11/2026). Celular primeiro. */
+/* Campanha Black Friday 2026 (/black-friday-2026, 20/11/2026). Celular primeiro. */
 .bf-wrap { max-width: 880px; margin: 0 auto; }
 .bf-atalhos { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 32px; }
 .bf-atalhos__rotulo { font-size: 0.875rem; font-weight: 700; opacity: 0.6; }
