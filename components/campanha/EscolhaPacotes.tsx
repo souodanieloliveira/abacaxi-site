@@ -6,6 +6,9 @@ import { useEstadoCampanha } from "./useEstadoCampanha";
 
 // Etapa 1 da compra (20/11/2026 15:21): a pessoa escolhe o pacote; os dados ficam na etapa 2 (/black-friday-2026/comprar),
 // para medir no Umami onde o fluxo quebra.
+// Pacote em destaque (Daniel, 20/11/2026 15:39: "pode destacar").
+const PACOTE_DESTAQUE = "2";
+
 export default function EscolhaPacotes({ conversaUrl }: { conversaUrl: string }) {
   const estado = useEstadoCampanha();
 
@@ -16,7 +19,8 @@ export default function EscolhaPacotes({ conversaUrl }: { conversaUrl: string })
       )}
       <div className="bf-pacotes">
         {PACOTES.map((p) => (
-          <div key={p.id} className="bf-pacote">
+          <div key={p.id} className={"bf-pacote" + (p.id === PACOTE_DESTAQUE ? " bf-pacote--destaque" : "")}>
+            {p.id === PACOTE_DESTAQUE && <span className="bf-pacote__selo">Recomendado</span>}
             <p className="bf-pacote__nome">{rotuloPacote(p)}</p>
             <p className="bf-pacote__desc">{p.descricao}</p>
             <p className="bf-pacote__cheio">

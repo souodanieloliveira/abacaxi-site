@@ -11,7 +11,8 @@ import { usePathname } from "next/navigation";
 export default function ChromeGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/auth")) {
+  // /black-friday-2026: página de venda com moldura própria (app/black-friday-2026/layout.tsx), 20/11/2026.
+  if (pathname?.startsWith("/auth") || pathname?.startsWith("/black-friday-2026")) {
     return null;
   }
 
