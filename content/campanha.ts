@@ -41,7 +41,9 @@ export const PACOTES: Pacote[] = [
 // troca aprovada às 17:03, no lugar da agenda do Google). O agendamento gera o evento "Reunião agendada" no contato do
 // Brevo, usado pela automação #2 para mandar o e-mail da agenda só a quem não agendou. A mesma página é embutida em
 // /black-friday-2026/agendar. Link trocado por Daniel para daniel-abacaxi em 20/11/2026 17:30.
-export const AGENDA_ENCONTRO_URL = "https://meet.brevo.com/daniel-abacaxi";
+// 20/11/2026 17:50: link direto do tipo de reunião "Encontro Individual" (abre no calendário), no quadro e no link
+// "Abrir a agenda em outra aba" ("a mesma página para ser consistente").
+export const AGENDA_ENCONTRO_URL = "https://meet.brevo.com/daniel-abacaxi/encontro-individual-1";
 export const AGENDA_EMBED_URL = AGENDA_ENCONTRO_URL;
 
 // Pagamento pela Iugu (20/11/2026 14:03 a 14:10): a cada cadastro, o site cria uma fatura com Pix e cartão

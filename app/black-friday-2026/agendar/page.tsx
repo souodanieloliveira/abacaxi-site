@@ -21,6 +21,7 @@ export default function AgendarPage() {
           <p className="calc-lede bf-agenda__passo">Na janela abaixo, escolha o dia e o horário que funcionam melhor para você.</p>
           <p className="calc-lede bf-agenda__passo">O encontro é online, por videochamada, e dura 60 minutos.</p>
           <div className="bf-agenda">
+            <p className="bf-agenda__topo">Escolha o dia e o horário</p>
             <iframe src={AGENDA_EMBED_URL} title="Agenda do primeiro Encontro Individual" className="bf-agenda__quadro" loading="lazy" />
           </div>
           <p className="bf-agenda__alternativa">
