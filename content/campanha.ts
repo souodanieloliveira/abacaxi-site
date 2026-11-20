@@ -20,12 +20,17 @@ export type Pacote = {
   encontros: number;
   precoCheio: number;
   precoCampanha: number;
+  // Para quem o pacote faz sentido (texto aprovado por Daniel em 20/11/2026 15:21).
+  descricao: string;
 };
 
 export const PACOTES: Pacote[] = [
-  { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420 },
-  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736 },
-  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948 },
+  { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420,
+    descricao: "Para uma questão pontual: entender para onde o dinheiro está indo, rever o orçamento ou tirar uma dúvida específica." },
+  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736,
+    descricao: "Para organizar e ajustar: no primeiro, a gente monta o retrato do seu orçamento; no segundo, vê como foi colocar em prática e ajusta o que for preciso." },
+  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948,
+    descricao: "Para mudar a relação com o dinheiro: organizar, ajustar e acompanhar por mais tempo, com espaço para tratar de dívidas, reserva ou o uso do 13º." },
 ];
 
 // Agenda do primeiro Encontro Individual (página de agendamento criada por Daniel, recebida em 20/11/2026 13:14).
@@ -40,6 +45,7 @@ export const PAGAMENTO = {
   formas: ["pix", "credit_card"],
   maxParcelas: 3,
   paginaAgendar: "/black-friday-2026/agendar",
+  paginaDados: "/black-friday-2026/comprar",
 } as const;
 
 export type EstadoCampanha = "antes" | "aberta" | "encerrada";
@@ -56,4 +62,8 @@ export function estadoCampanha(agora: Date = new Date()): EstadoCampanha {
 
 export function reais(valor: number) {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(valor);
+}
+
+export function rotuloPacote(p: Pacote) {
+  return p.encontros === 1 ? "1 Encontro Individual" : `${p.encontros} Encontros Individuais`;
 }

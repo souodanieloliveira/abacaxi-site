@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CompraCampanha from "../../components/campanha/CompraCampanha";
+import EscolhaPacotes from "../../components/campanha/EscolhaPacotes";
 import { BOOKING_URL } from "../../content/blog/config";
 
 // Página da campanha Black Friday 2026 (escopo do Log de Marketing, 19/11/2026 21:40 e 22:03).
 // Endereço com o ano (Daniel, 19/11/2026 22:37: "coloque o ano também"). Depois de 04/12, a página continua
-// no ar e mostra "campanha encerrada" no lugar do formulário.
+// no ar e mostra "campanha encerrada" no lugar dos botões.
+// 20/11/2026 15:21: página de venda em etapas (escolha do pacote aqui; dados em /comprar), sem atalhos para o guia e
+// a calculadora e sem a conversa gratuita, com a explicação de cada pacote.
 export const metadata: Metadata = {
   title: "Black Friday: Encontros Individuais com desconto",
   description:
@@ -25,37 +27,31 @@ export default function BlackFridayPage() {
     <div style={{ background: "var(--color-background-soft)", minHeight: "70vh" }}>
       <div className="container" style={{ paddingTop: 72, paddingBottom: 96 }}>
         <div className="bf-wrap">
-          <nav className="bf-atalhos" aria-label="Materiais gratuitos">
-            <span className="bf-atalhos__rotulo">Gratuito:</span>
-            <Link href="/guia" className="bf-atalho" data-umami-event="bf-guia">
-              Guia: quanto tempo dura seu orçamento?
-            </Link>
-            <Link href="/calculadora" className="bf-atalho" data-umami-event="bf-calculadora">
-              Calculadora de Limite de Gastos
-            </Link>
-          </nav>
-
           <p className="calc-eyebrow">Black Friday · 2026</p>
           <h1 className="calc-h1">Encontros Individuais com o único desconto do ano.</h1>
           <p className="calc-lede">
-            De 24 de novembro a 4 de dezembro de 2026, os Encontros Individuais de planejamento financeiro saem com
-            R$ 100, R$ 200 ou R$ 300 de desconto.
+            De 24 de novembro a 4 de dezembro, os Encontros Individuais de planejamento financeiro saem com R$ 100,
+            R$ 200 ou R$ 300 de desconto.
           </p>
-          <ul className="bf-regras">
-            <li>Desconto único no ano.</li>
-            <li>Os encontros valem por 60 dias, contados da data da compra.</li>
-            <li>Encontros online, por videochamada, de 60 minutos.</li>
-          </ul>
+          <a href="#bf-pacotes" className="btn-primary bf-cta" data-umami-event="bf-escolher-topo">
+            Escolher meu pacote
+          </a>
 
-          <CompraCampanha conversaUrl={BOOKING_URL} />
-
-          <div className="bf-duvida">
-            <p className="bf-duvida__titulo">Ainda com dúvida sobre qual pacote faz sentido?</p>
-            <p>Converse com a gente antes. A conversa é gratuita e serve para entender o seu momento.</p>
-            <a href={BOOKING_URL} target="_blank" rel="noopener" className="btn-secondary" data-umami-event="bf-conversa">
-              Agendar uma conversa gratuita
-            </a>
+          <div className="bf-como">
+            <h2 className="bf-como__titulo">Como funciona um Encontro Individual</h2>
+            <p>
+              São 60 minutos, online, por videochamada, olhando o seu dinheiro com calma. A gente entende o seu momento,
+              olha os números e sai do encontro com os próximos passos definidos. Os encontros valem por 60 dias,
+              contados da compra.
+            </p>
           </div>
+
+          <h2 className="bf-como__titulo bf-pacotes__titulo">Escolha o seu pacote</h2>
+          <EscolhaPacotes conversaUrl={BOOKING_URL} />
+
+          <p className="bf-rodape">
+            Desconto único no ano. <Link href="/black-friday-2026/termo">Termos e Condições</Link>.
+          </p>
         </div>
       </div>
     </div>

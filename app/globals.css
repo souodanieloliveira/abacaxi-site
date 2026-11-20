@@ -897,6 +897,24 @@ a:focus-visible {
 .bf-termo li { margin-bottom: 12px; }
 .bf-termo__data { margin-top: 24px; opacity: 0.6; font-size: 0.875rem; }
 #bf-compra { scroll-margin-top: 96px; }
+.bf-wrap--estreito { max-width: 640px; }
+.bf-cta { display: inline-block; margin-top: 24px; }
+.bf-como { margin-top: 40px; background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; line-height: 1.7; }
+.bf-como p { margin: 0; }
+.bf-como__titulo { font-size: 1.25rem; font-weight: 700; color: var(--color-text-accent); margin: 0 0 8px; }
+.bf-pacotes__titulo { margin-top: 40px; }
+.bf-pacote__desc { margin: 0 0 12px; font-size: 0.9375rem; line-height: 1.6; }
+.bf-rodape { margin-top: 24px; font-size: 0.875rem; opacity: 0.75; }
+.bf-rodape a { color: var(--color-text-accent); text-decoration: underline; }
+.bf-resumo { margin-top: 24px; background: #ffffff; border: 2px solid var(--color-button); border-radius: 12px; padding: 20px; }
+.bf-resumo p { margin: 0; }
+.bf-resumo__rotulo { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
+.bf-resumo__nome { font-weight: 700; color: var(--color-text-accent); font-size: 1.125rem; margin-top: 4px !important; }
+.bf-resumo__preco { margin-top: 4px !important; font-size: 1.25rem; font-weight: 800; }
+.bf-resumo__preco s { font-weight: 400; opacity: 0.5; font-size: 1rem; margin-right: 6px; }
+.bf-resumo__trocar { display: inline-block; margin-top: 8px; font-size: 0.9375rem; color: var(--color-text-accent); text-decoration: underline; }
+.bf-agenda__passo { margin-top: 12px; }
+.bf-form .calc-consent + .calc-desc { margin-top: 16px; }
 .bf-agenda { margin-top: 32px; background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; overflow: hidden; }
 .bf-agenda__quadro { display: block; width: 100%; height: 900px; border: 0; }
 .bf-agenda__alternativa { margin-top: 16px; font-size: 0.9375rem; }

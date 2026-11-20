@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 import { digitosWhatsappValidos } from "../calculadora/whatsapp";
 import { cpfValido, mascaraCpf } from "./cpf";
-import { MODO_TESTE_NAVEGADOR, PACOTES, estadoCampanha, reais, type EstadoCampanha, type Pacote } from "../../content/campanha";
+import { CAMPANHA, MODO_TESTE_NAVEGADOR, reais, rotuloPacote, type Pacote } from "../../content/campanha";
+import { useEstadoCampanha } from "./useEstadoCampanha";
 
-// Compra direta da campanha Black Friday 2026: escolha do pacote → formulário → aceite do termo →
-// pagamento na Iugu (fatura criada pelo servidor; Pix ou cartão) → página da agenda (retorno da Iugu). O estado da campanha (antes, aberta,
-// encerrada) é conferido no navegador e de novo no servidor (/api/black-friday).
+// Etapa 2 da compra da campanha Black Friday 2026 (20/11/2026 15:21): dados da pessoa, aceite dos Termos e Condições e
+// consentimento; o servidor (/api/black-friday) cria o registro no Funil e a fatura da Iugu, e a pessoa segue para o pagamento.
 
 const NOME_VALIDO = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -29,13 +30,10 @@ function mascaraWhatsapp(bruto: string) {
   return `(${ddd}) ${resto.slice(0, corte)}-${resto.slice(corte)}`;
 }
 
-function rotulo(p: Pacote) {
-  return p.encontros === 1 ? "1 Encontro Individual" : `${p.encontros} Encontros Individuais`;
-}
-
-export default function CompraCampanha({ conversaUrl }: { conversaUrl: string }) {
-  const [estado, setEstado] = useState<EstadoCampanha | null>(null);
-  const [pacote, setPacote] = useState<Pacote["id"] | "">("");
+export default function FormularioCompra({ pacote }: { pacote: Pacote }) {
+  const estadoBase = useEstadoCampanha();
+  const [encerradaNoEnvio, setEncerradaNoEnvio] = useState(false);
+  const estado = encerradaNoEnvio ? "encerrada" : estadoBase;
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [wpp, setWpp] = useState("");
@@ -46,40 +44,26 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
 
-  useEffect(() => {
-    const atualizar = () => setEstado(MODO_TESTE_NAVEGADOR ? "aberta" : estadoCampanha());
-    atualizar();
-    const t = setInterval(atualizar, 30_000);
-    return () => clearInterval(t);
-  }, []);
-
-  function escolher(id: Pacote["id"]) {
-    setPacote(id);
-    setErro("");
-    document.getElementById("bf-dados")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
     setErro("");
-    if (!pacote) return setErro("Escolha um pacote.");
     if (!nomeValido(nome)) return setErro("Informe seu nome e sobrenome, só com letras.");
     if (email.trim().length > 254 || !EMAIL_VALIDO.test(email.trim())) return setErro("Confira o e-mail.");
     if (!digitosWhatsappValidos(wpp.replace(/\D/g, ""))) return setErro("Confira o WhatsApp, com DDD.");
     if (!cpfValido(cpf)) return setErro("Confira o CPF.");
-    if (!termo) return setErro("Para seguir, leia e aceite o termo de compra.");
+    if (!termo) return setErro("Para seguir, leia e aceite os Termos e Condições.");
     if (!consent) return setErro("Marque a caixa de consentimento para continuar.");
     setEnviando(true);
     try {
       const r = await fetch("/api/black-friday", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pacote, nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: wpp, cpf, termo: true, consentimento: true, site: isca }),
+        body: JSON.stringify({ pacote: pacote.id, nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: wpp, cpf, termo: true, consentimento: true, site: isca }),
       });
       const dados = await r.json().catch(() => ({}));
       if (!r.ok) {
         setEnviando(false);
-        if (r.status === 410) setEstado("encerrada");
+        if (r.status === 410) setEncerradaNoEnvio(true);
         return setErro(dados.error ?? "Não foi possível registrar agora. Tente de novo em instantes.");
       }
       if (!dados.url) {
@@ -95,57 +79,38 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
     setEnviando(false);
   }
 
-  const escolhido = PACOTES.find((p) => p.id === pacote);
-
   return (
-    <div id="bf-compra" className="bf-compra">
+    <div className="bf-compra">
       {MODO_TESTE_NAVEGADOR && (
         <p className="bf-aviso bf-aviso__titulo">Prévia de teste: a campanha aparece aberta e o cadastro entra no Funil marcado [TESTE].</p>
       )}
-      <div className="bf-pacotes">
-        {PACOTES.map((p) => (
-          <div key={p.id} className={"bf-pacote" + (pacote === p.id ? " bf-pacote--escolhido" : "")}>
-            <p className="bf-pacote__nome">{rotulo(p)}</p>
-            <p className="bf-pacote__cheio">
-              de <s>{reais(p.precoCheio)}</s>
-            </p>
-            <p className="bf-pacote__preco">{reais(p.precoCampanha)}</p>
-            <p className="bf-pacote__economia">{reais(p.precoCheio - p.precoCampanha)} de desconto</p>
-            {estado === "aberta" && (
-              <button type="button" className={pacote === p.id ? "btn-primary bf-pacote__botao" : "btn-secondary bf-pacote__botao"} onClick={() => escolher(p.id)} data-umami-event={`bf-pacote-${p.id}`}>
-                {pacote === p.id ? "Escolhido" : "Escolher"}
-              </button>
-            )}
-          </div>
-        ))}
+      <div className="bf-resumo">
+        <p className="bf-resumo__rotulo">Pacote escolhido</p>
+        <p className="bf-resumo__nome">{rotuloPacote(pacote)}</p>
+        <p className="bf-resumo__preco">
+          <s>{reais(pacote.precoCheio)}</s> {reais(pacote.precoCampanha)}
+        </p>
+        <Link href={`${CAMPANHA.caminho}#bf-pacotes`} className="bf-resumo__trocar" data-umami-event="bf-trocar-pacote">
+          Trocar de pacote
+        </Link>
       </div>
 
       {estado === "antes" && (
         <div className="bf-aviso">
           <p className="bf-aviso__titulo">A campanha abre em 24 de novembro de 2026, às 00h.</p>
-          <p>Até lá, conheça o guia gratuito e a calculadora no topo desta página.</p>
         </div>
       )}
 
       {estado === "encerrada" && (
         <div className="bf-aviso">
           <p className="bf-aviso__titulo">Campanha encerrada.</p>
-          <p>
-            A Black Friday da Abacaxi terminou em 4 de dezembro de 2026. Se quiser conversar sobre o seu momento,{" "}
-            <a href={conversaUrl} target="_blank" rel="noopener" data-umami-event="bf-conversa">
-              agende uma conversa gratuita
-            </a>
-            .
-          </p>
+          <p>A Black Friday da Abacaxi terminou em 4 de dezembro de 2026.</p>
         </div>
       )}
 
       {estado === "aberta" && (
-        <form id="bf-dados" className="calc-card bf-form" onSubmit={enviar} noValidate>
+        <form className="calc-card bf-form" onSubmit={enviar} noValidate>
           <h2 className="calc-titulo">Seus dados</h2>
-          <p className="calc-desc">
-            {escolhido ? `Pacote escolhido: ${rotulo(escolhido)}, por ${reais(escolhido.precoCampanha)}.` : "Escolha um pacote acima para continuar."}
-          </p>
           <label className="calc-label" htmlFor="bf-nome">Nome e sobrenome</label>
           <input className="calc-input" id="bf-nome" autoComplete="name" maxLength={80} value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome e sobrenome" />
           <label className="calc-label" htmlFor="bf-email">E-mail</label>
@@ -158,8 +123,8 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
           <label className="calc-consent">
             <input type="checkbox" checked={termo} onChange={(e) => setTermo(e.target.checked)} />
             <span>
-              Li e aceito o{" "}
-              <a href="/black-friday-2026/termo" target="_blank" rel="noopener">termo de compra dos Encontros Individuais</a>.
+              Li e aceito os{" "}
+              <a href="/black-friday-2026/termo" target="_blank" rel="noopener">Termos e Condições</a>.
             </span>
           </label>
           <label className="calc-consent">
@@ -169,14 +134,15 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
               <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.
             </span>
           </label>
-          <p className="calc-desc">Na próxima tela, o pagamento é feito na página da Iugu, por Pix ou cartão de crédito em até 3 vezes sem juros.</p>
+          <p className="calc-desc">
+            Ao clicar no botão abaixo, você será levado à página de pagamento, processada por uma plataforma de terceiros escolhida pela Abacaxi.
+          </p>
           {erro && <p className="calc-erro" role="alert">{erro}</p>}
           <button className="btn-primary calc-botao" type="submit" disabled={enviando} data-umami-event="bf-cadastrar">
-            {enviando ? "Abrindo o pagamento…" : "Continuar para o pagamento"}
+            {enviando ? "Abrindo o pagamento…" : "Ir para o pagamento"}
           </button>
         </form>
       )}
-
     </div>
   );
 }

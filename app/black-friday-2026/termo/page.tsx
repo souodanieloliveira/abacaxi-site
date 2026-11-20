@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 // Texto proposto pela conversa Site e aprovado por Daniel em 20/11/2026 01:55 ("sim. pode confirmar os itens") e 02:03 (duração de 60 minutos),
 // com os itens antes marcados "a confirmar" confirmados como propostos. Não há contrato: a compra é por este termo.
 export const metadata: Metadata = {
-  title: "Termo de compra: Encontros Individuais (Black Friday 2026)",
+  title: "Termos e Condições: Encontros Individuais (Black Friday 2026)",
   robots: { index: false, follow: false },
   alternates: { canonical: "https://abacaxi.cc/black-friday-2026/termo" },
 };
@@ -56,7 +56,7 @@ export default function TermoPage() {
       <div className="container" style={{ paddingTop: 72, paddingBottom: 96 }}>
         <div className="bf-wrap">
           <p className="calc-eyebrow">Black Friday · 2026</p>
-          <h1 className="calc-h1">Termo de compra dos Encontros Individuais</h1>
+          <h1 className="calc-h1">Termos e Condições dos Encontros Individuais</h1>
           <ol className="bf-termo">
             {ITENS.map((item) => (
               <li key={item.titulo}>
