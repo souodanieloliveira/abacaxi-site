@@ -7,6 +7,8 @@ export const CAMPANHA = {
   // Mesmo texto da opção do campo Campanha no Funil de Vendas (Airtable).
   // Sem "13º" nos nomes (Daniel, 20/11/2026 14:29: "A promoção é de Black Friday").
   nome: "Black Friday 2026",
+  // Nome público (páginas, fatura): Daniel, 20/11/2026 15:47: "Vamos usar o nome Black Friday Abacaxi".
+  nomePublico: "Black Friday Abacaxi",
   caminho: "/black-friday-2026",
   inicio: "2026-11-24T00:00:00-03:00",
   fim: "2026-12-04T23:59:59-03:00",
@@ -18,6 +20,8 @@ export const CAMPANHA = {
 export type Pacote = {
   id: "1" | "2" | "3";
   encontros: number;
+  // Preço de tabela (sem o desconto de pacote) e preço da campanha: Daniel, 20/11/2026 15:39–15:47
+  // (descontos de R$ 100, R$ 300 e R$ 500 sobre 520, 1.040 e 1.560; "de" pelo preço de tabela).
   precoCheio: number;
   precoCampanha: number;
   // Para quem o pacote faz sentido (texto aprovado por Daniel em 20/11/2026 15:21).
@@ -27,9 +31,9 @@ export type Pacote = {
 export const PACOTES: Pacote[] = [
   { id: "1", encontros: 1, precoCheio: 520, precoCampanha: 420,
     descricao: "Para uma questão pontual: entender para onde o dinheiro está indo, rever o orçamento ou tirar uma dúvida específica." },
-  { id: "2", encontros: 2, precoCheio: 936, precoCampanha: 736,
+  { id: "2", encontros: 2, precoCheio: 1040, precoCampanha: 740,
     descricao: "Para organizar e ajustar: no primeiro, a gente monta o retrato do seu orçamento; no segundo, vê como foi colocar em prática e ajusta o que for preciso." },
-  { id: "3", encontros: 3, precoCheio: 1248, precoCampanha: 948,
+  { id: "3", encontros: 3, precoCheio: 1560, precoCampanha: 1060,
     descricao: "Para mudar a relação com o dinheiro: organizar, ajustar e acompanhar por mais tempo, com espaço para tratar de dívidas, reserva ou o uso do 13º." },
 ];
 

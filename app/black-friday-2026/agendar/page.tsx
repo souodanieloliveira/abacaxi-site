@@ -14,7 +14,7 @@ export default function AgendarPage() {
     <div style={{ background: "var(--color-background-soft)", minHeight: "70vh" }}>
       <div className="container" style={{ paddingTop: 72, paddingBottom: 96 }}>
         <div className="bf-wrap">
-          <p className="calc-eyebrow">Black Friday · 2026</p>
+          <p className="calc-eyebrow">Black Friday Abacaxi</p>
           <h1 className="calc-h1">Agende o seu encontro.</h1>
           <p className="calc-lede">Seu pagamento foi concluído. Você vai receber o comprovante por e-mail.</p>
           <p className="calc-lede bf-agenda__passo">O próximo passo é agendar o seu encontro.</p>

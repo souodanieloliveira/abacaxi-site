@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 // Texto proposto pela conversa Site e aprovado por Daniel em 20/11/2026 01:55 ("sim. pode confirmar os itens") e 02:03 (duração de 60 minutos),
 // com os itens antes marcados "a confirmar" confirmados como propostos. Não há contrato: a compra é por este termo.
 export const metadata: Metadata = {
-  title: "Termos e Condições: Encontros Individuais (Black Friday 2026)",
+  title: "Termos e Condições: Encontros Individuais (Black Friday Abacaxi)",
   robots: { index: false, follow: false },
   alternates: { canonical: "https://abacaxi.cc/black-friday-2026/termo" },
 };
@@ -21,7 +21,7 @@ const ITENS: { titulo: string; texto: string }[] = [
   {
     titulo: "Preço",
     texto:
-      "O valor do pacote escolhido, com o desconto da campanha: R$ 420 (1 encontro), R$ 736 (2 encontros) ou R$ 948 (3 encontros). O pagamento é feito na página de pagamento da Iugu, por Pix ou cartão de crédito em até 3 vezes sem juros. A compra só vale depois que o pagamento é confirmado.",
+      "O valor do pacote escolhido, com o desconto da campanha: R$ 420 (1 encontro), R$ 740 (2 encontros) ou R$ 1.060 (3 encontros). O pagamento é feito na página de pagamento da Iugu, por Pix ou cartão de crédito em até 3 vezes sem juros. A compra só vale depois que o pagamento é confirmado.",
   },
   {
     titulo: "Validade",
@@ -55,7 +55,7 @@ export default function TermoPage() {
     <div style={{ background: "var(--color-background-soft)" }}>
       <div className="container" style={{ paddingTop: 72, paddingBottom: 96 }}>
         <div className="bf-wrap">
-          <p className="calc-eyebrow">Black Friday · 2026</p>
+          <p className="calc-eyebrow">Black Friday Abacaxi</p>
           <h1 className="calc-h1">Termos e Condições dos Encontros Individuais</h1>
           <ol className="bf-termo">
             {ITENS.map((item) => (

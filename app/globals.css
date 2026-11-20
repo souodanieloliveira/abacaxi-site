@@ -981,3 +981,50 @@ a:focus-visible {
   .lp-barra { display: none; }
   .lp-rodape { padding-bottom: 24px; }
 }
+
+/* Opção B da página de venda (20/11/2026 15:47): mais vibrante. Cores da marca: laranja #FF8B13 e roxo-escuro #3D1A6E. */
+.lpb-hero { position: relative; overflow: hidden; background: #FF8B13; color: #3D1A6E; padding: 48px 0 56px; }
+.lpb-hero__conteudo { position: relative; }
+.lpb-bola { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.18); }
+.lpb-bola--1 { width: 320px; height: 320px; right: -120px; top: -100px; }
+.lpb-bola--2 { width: 180px; height: 180px; left: -70px; bottom: -80px; background: rgba(61, 26, 110, 0.12); }
+.lpb-hero__marca { display: inline-block; margin: 0; background: #3D1A6E; color: #ffffff; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.875rem; padding: 8px 14px; border-radius: 6px; transform: rotate(-2deg); }
+.lpb-hero__titulo { font-weight: 800; font-size: 2.5rem; line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0 16px; color: #3D1A6E; }
+.lpb-hero__preco { margin: 0; font-size: 1.125rem; font-weight: 500; }
+.lpb-hero__preco span { display: block; font-size: 3rem; font-weight: 800; line-height: 1.1; color: #ffffff; text-shadow: 0 2px 0 rgba(61, 26, 110, 0.25); }
+.lpb-hero__prazo { margin: 8px 0 0; font-weight: 700; }
+.lpb-botao { display: block; text-align: center; margin-top: 28px; background: #3D1A6E; color: #ffffff; font-weight: 700; font-size: 1.125rem; padding: 18px 24px; border-radius: 999px; text-decoration: none; box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18); }
+.lpb-botao--laranja { background: #FF8B13; }
+.lpb-letreiro { background: #3D1A6E; color: #ffffff; overflow: hidden; white-space: nowrap; padding: 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.875rem; }
+.lpb-letreiro__trilho { display: inline-block; animation: lpb-rolar 28s linear infinite; }
+.lpb-letreiro__trilho span { margin-right: 12px; }
+@keyframes lpb-rolar { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+@media (prefers-reduced-motion: reduce) { .lpb-letreiro__trilho { animation: none; } }
+.lpb-pontos { background: #3D1A6E; color: #ffffff; padding: 8px 0 40px; }
+.lpb-pontos__grade { display: grid; gap: 24px; }
+.lpb-ponto svg { width: 44px; height: 44px; padding: 10px; border-radius: 50%; background: #FF8B13; color: #ffffff; }
+.lpb-ponto p { margin: 6px 0 0; line-height: 1.6; opacity: 0.9; }
+.lpb-ponto .lpb-ponto__titulo { font-weight: 800; font-size: 1.125rem; opacity: 1; margin-top: 12px; }
+.lpb-titulo { font-weight: 800; font-size: 2rem; letter-spacing: -0.01em; line-height: 1.15; color: #3D1A6E; margin: 0 0 20px; }
+.lpb .bf-pacote { border-radius: 16px; }
+.lpb .bf-pacote__preco { font-size: 2.5rem; }
+.lpb .bf-pacote--destaque { background: #3D1A6E; color: #ffffff; border-color: #3D1A6E; }
+.lpb .bf-pacote--destaque .bf-pacote__nome, .lpb .bf-pacote--destaque .bf-pacote__preco, .lpb .bf-pacote--destaque .bf-pacote__economia { color: #ffffff; }
+.lpb .bf-pacote--destaque .bf-pacote__economia { color: #FFB766; }
+.lpb-depoimento { background: #FF8B13; color: #3D1A6E; margin-top: 56px; padding: 40px 0 48px; }
+.lpb-depoimento__aspas { margin: 0; font-family: var(--font-fraunces), Georgia, serif; font-size: 6rem; line-height: 0.6; color: #ffffff; }
+.lpb-depoimento blockquote { margin: 0; }
+.lpb-depoimento blockquote p { margin: 0; font-size: 1.125rem; line-height: 1.7; font-weight: 500; }
+.lpb-depoimento footer { margin-top: 16px; font-weight: 800; }
+.lpb-quem__foto { border: 6px solid #FF8B13; }
+.lpb-numeros__valor { color: #FF8B13; }
+.lpb-fecho { background: #3D1A6E; color: #ffffff; margin-top: 56px; padding: 48px 0 56px; text-align: center; }
+.lpb-fecho__titulo { font-weight: 800; font-size: 1.75rem; line-height: 1.2; margin: 0; }
+@media (min-width: 768px) {
+  .lpb-hero { padding: 80px 0 96px; }
+  .lpb-hero__titulo { font-size: 4rem; max-width: 760px; }
+  .lpb-hero__preco span { display: inline; font-size: 3rem; }
+  .lpb-botao { display: inline-block; padding-left: 48px; padding-right: 48px; }
+  .lpb-pontos__grade { grid-template-columns: repeat(3, 1fr); }
+  .lpb-titulo { font-size: 2.5rem; }
+}

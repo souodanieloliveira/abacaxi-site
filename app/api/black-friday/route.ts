@@ -124,7 +124,7 @@ export async function POST(request: Request) {
     due_date: prazo,
     items: [
       {
-        description: `${pacote.encontros === 1 ? "1 Encontro Individual" : `${pacote.encontros} Encontros Individuais`} - ${CAMPANHA.nome}`, // hífen: o travessão saiu como "?" na fatura (20/11/2026)
+        description: `${pacote.encontros === 1 ? "1 Encontro Individual" : `${pacote.encontros} Encontros Individuais`} - ${CAMPANHA.nomePublico}`, // hífen: o travessão saiu como "?" na fatura (20/11/2026)
         quantity: 1,
         price_cents: pacote.precoCampanha * 100,
       },

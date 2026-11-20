@@ -13,9 +13,9 @@ import { siteContent } from "../../content/site";
 // com moldura própria (layout.tsx), pacote de 2 encontros em destaque, depoimento, "Quem conduz" e perguntas frequentes.
 // Depois de 04/12, a página continua no ar e mostra "campanha encerrada" no lugar dos botões.
 export const metadata: Metadata = {
-  title: "Black Friday: Encontros Individuais com desconto",
+  title: "Black Friday Abacaxi: Encontros Individuais com desconto",
   description:
-    "De 24 de novembro a 4 de dezembro de 2026, Encontros Individuais de planejamento financeiro com desconto. O único desconto do ano.",
+    "De 24 de novembro a 4 de dezembro de 2026, Encontros Individuais de planejamento financeiro com desconto. A única promoção do ano.",
   alternates: { canonical: "https://abacaxi.cc/black-friday-2026" },
   openGraph: {
     type: "website",
@@ -54,10 +54,10 @@ export default function BlackFridayPage() {
     <main>
       <section className="lp-hero">
         <div className="lp-faixa">
-          <span className="lp-selo">Black Friday</span>
-          <h1 className="lp-hero__titulo">Encontros Individuais com o único desconto do ano.</h1>
+          <span className="lp-selo">Black Friday Abacaxi</span>
+          <h1 className="lp-hero__titulo">Encontros Individuais na única promoção do ano.</h1>
           <p className="lp-hero__texto">
-            Planejamento financeiro com a Abacaxi a partir de <strong>{reais(menorPreco)}</strong>.
+            Planejamento financeiro a partir de <strong>3x de {reais(menorPreco / 3)}</strong> sem juros.
           </p>
           <p className="lp-hero__prazo">De 24 de novembro a 4 de dezembro.</p>
           <a href="#bf-pacotes" className="btn-primary lp-botao" data-umami-event="bf-escolher-topo">
@@ -95,7 +95,7 @@ export default function BlackFridayPage() {
       <section className="lp-faixa lp-secao">
         <blockquote className="lp-depoimento">
           <p>“{depoimento.testimonial}”</p>
-          <footer>{depoimento.testimonialAuthor}</footer>
+          <footer>Ricardo Barcelos</footer>
         </blockquote>
       </section>
 
@@ -132,7 +132,7 @@ export default function BlackFridayPage() {
 
       <section className="lp-fecho">
         <div className="lp-faixa">
-          <p className="lp-fecho__titulo">Desconto único no ano, até 4 de dezembro.</p>
+          <p className="lp-fecho__titulo">A única promoção do ano, até 4 de dezembro.</p>
           <a href="#bf-pacotes" className="btn-primary lp-botao" data-umami-event="bf-escolher-fim">
             Escolher meu pacote
           </a>
