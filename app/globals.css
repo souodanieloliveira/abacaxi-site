@@ -1056,3 +1056,26 @@ a:focus-visible {
 @media (min-width: 768px) {
   .lpc-depoimento .lp-faixa { margin: 0 auto; max-width: 848px; }
 }
+
+/* Faixa da Black Friday Abacaxi abaixo do cabeçalho: uma fila de texto passando, reta, sobre fundo preto, frases
+   alternando laranja e branco (Daniel, 20/11/2026 20:42; cor de teste). Botão fixo à direita, piscando. */
+.bf-faixa { --bf-fundo: #111111; --bf-laranja: var(--color-secondary); position: relative; display: flex; align-items: center; height: 48px; overflow: hidden; background: var(--bf-fundo); text-decoration: none; }
+.bf-faixa__trilho { display: flex; width: max-content; animation: bf-rodar 32s linear infinite; }
+.bf-faixa__metade { display: flex; }
+.bf-faixa__frase { padding: 0; font-size: .9375rem; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; color: #ffffff; }
+.bf-faixa__frase--laranja { color: var(--bf-laranja); }
+.bf-faixa__metade { align-items: center; }
+.bf-faixa__barra { margin: 0 7px; font-weight: 800; color: #ffffff; opacity: .6; }
+@keyframes bf-rodar { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.bf-faixa__botao { position: absolute; right: 0; top: 0; bottom: 0; z-index: 1; display: flex; align-items: center; padding: 0 12px 0 32px; background: linear-gradient(to right, rgba(17,17,17,0), var(--bf-fundo) 28px); }
+.bf-faixa__pilula { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 999px; background: #ffffff; color: var(--bf-fundo); font-weight: 800; font-size: .875rem; white-space: nowrap; animation: bf-piscar 1.2s ease-in-out infinite; }
+@keyframes bf-piscar { 0%, 100% { background: #ffffff; } 50% { background: var(--bf-laranja); } }
+@media (min-width: 768px) {
+  .bf-faixa { height: 52px; }
+  .bf-faixa__botao { padding-right: max(24px, calc((100vw - 1100px) / 2)); }
+  .bf-faixa__frase { font-size: 1rem; }
+  .bf-faixa__trilho { animation-duration: 40s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bf-faixa__trilho, .bf-faixa__pilula { animation: none; }
+}
