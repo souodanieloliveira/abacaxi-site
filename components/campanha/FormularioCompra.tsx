@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { digitosWhatsappValidos } from "../calculadora/whatsapp";
 import { cpfValido, mascaraCpf } from "./cpf";
 import { CAMPANHA, MODO_TESTE_NAVEGADOR, reais, rotuloPacote, type Pacote } from "../../content/campanha";
@@ -43,6 +43,24 @@ export default function FormularioCompra({ pacote }: { pacote: Pacote }) {
   const [isca, setIsca] = useState("");
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
+  // Link da fatura já criada (20/11/2026 16:05): a Iugu às vezes devolve erro 500 na primeira abertura da página;
+  // o link fica guardado para a pessoa tentar de novo ao voltar para esta etapa.
+  const [linkReserva, setLinkReserva] = useState("");
+  const chaveReserva = `bf-pagamento-${pacote.id}`;
+
+  // Link guardado numa visita anterior a esta etapa (no servidor, vazio).
+  const linkSalvo = useSyncExternalStore(
+    () => () => {},
+    () => {
+      try {
+        return sessionStorage.getItem(chaveReserva) ?? "";
+      } catch {
+        return ""; // sem armazenamento no navegador: segue sem o link de reserva
+      }
+    },
+    () => "",
+  );
+  const linkPagamento = linkReserva || linkSalvo;
 
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
@@ -70,7 +88,15 @@ export default function FormularioCompra({ pacote }: { pacote: Pacote }) {
         setEnviando(false);
         return setErro("Não foi possível abrir o pagamento agora. Tente de novo em instantes.");
       }
+      try {
+        sessionStorage.setItem(chaveReserva, dados.url);
+      } catch {
+        // sem armazenamento no navegador
+      }
+      setLinkReserva(dados.url);
+      // Espera curta antes de abrir a fatura recém-criada (erro 500 da Iugu na primeira abertura, 20/11/2026).
       // Pagamento na página da Iugu, na mesma aba; depois do pagamento, a Iugu traz a pessoa para a agenda.
+      await new Promise((r) => setTimeout(r, 2000));
       window.location.href = dados.url;
       return;
     } catch {
@@ -105,6 +131,18 @@ export default function FormularioCompra({ pacote }: { pacote: Pacote }) {
         <div className="bf-aviso">
           <p className="bf-aviso__titulo">Campanha encerrada.</p>
           <p>A Black Friday da Abacaxi terminou em 4 de dezembro de 2026.</p>
+        </div>
+      )}
+
+      {linkPagamento && (
+        <div className="bf-aviso">
+          <p>
+            Se a página de pagamento não abrir,{" "}
+            <a href={linkPagamento} data-umami-event="bf-pagamento-reserva">
+              toque aqui para abrir de novo
+            </a>
+            .
+          </p>
         </div>
       )}
 
