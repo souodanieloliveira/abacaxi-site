@@ -20,6 +20,11 @@ export default function AgendarPage() {
           <p className="calc-lede bf-agenda__passo">O próximo passo é agendar o seu encontro.</p>
           <p className="calc-lede bf-agenda__passo">Na janela abaixo, escolha o dia e o horário que funcionam melhor para você.</p>
           <p className="calc-lede bf-agenda__passo">O encontro é online, por videochamada, e dura 60 minutos.</p>
+          {/* 20/11/2026 16:20: a agenda do Google pede nome, sobrenome e e-mail de novo e não aceita preenchimento pelo
+              endereço (testado às 16:22); a linha explica por quê ("se não der certo, coloque a linha de explicação"). */}
+          <p className="calc-lede bf-agenda__passo">
+            Na agenda, confirme o seu nome e e-mail: é para esse endereço que vai o convite do encontro.
+          </p>
           <div className="bf-agenda">
             <iframe src={AGENDA_EMBED_URL} title="Agenda do primeiro Encontro Individual" className="bf-agenda__quadro" loading="lazy" />
           </div>
