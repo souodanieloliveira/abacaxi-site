@@ -1,27 +1,29 @@
 import type { Metadata } from "next";
 import FormularioEbook from "../../components/ebook/FormularioEbook";
 
-// Página de apresentação do ebook. Textos aprovados por Daniel em 11/11/2026.
+// Página de apresentação do guia (chamado de ebook até 19/11/2026). Textos aprovados por Daniel em 11/11/2026.
+// 19/11/2026: "ebook" passa a "guia" (decisão do Log de Marketing, 19/11); a página também abre em /guia,
+// que passa a ser o endereço principal. /ebook continua funcionando.
 // No celular, alinhada à esquerda, como /ebook/obrigado (12/11/2026 13:51).
 // Formulário do Brevo dentro da página, com o visual do site (12/11/2026 13:57).
 export const metadata: Metadata = {
-  title: "Ebook gratuito: Quanto tempo dura seu orçamento?",
+  title: "Guia gratuito: Quanto tempo dura seu orçamento?",
   description:
     "Conheça o Limite de Gastos: um jeito simples de saber quanto pode gastar por semana e de manter o plano de pé até o fim do mês.",
-  alternates: { canonical: "https://abacaxi.cc/ebook" },
+  alternates: { canonical: "https://abacaxi.cc/guia" },
   // Imagem de compartilhamento própria (13/11/2026): o livro, da conversa de Conteúdo, em 1200 × 630.
   // Ao definir openGraph aqui, a imagem padrão do layout deixa de valer; por isso ela é declarada de novo.
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: "Abacaxi",
-    url: "https://abacaxi.cc/ebook",
+    url: "https://abacaxi.cc/guia",
     images: [
       {
         url: "https://abacaxi.cc/ebook/compartilhamento.jpg",
         width: 1200,
         height: 630,
-        alt: "Capa do ebook Quanto tempo dura seu orçamento?",
+        alt: "Capa do guia Quanto tempo dura seu orçamento?",
       },
     ],
   },
@@ -53,7 +55,7 @@ export default function EbookPage() {
               opacity: 0.6,
             }}
           >
-            Ebook gratuito
+            Guia gratuito
           </p>
           <h1
             style={{
@@ -67,7 +69,7 @@ export default function EbookPage() {
             Quanto tempo dura seu orçamento?
           </h1>
           <p style={{ margin: 0, fontSize: "1.125rem", lineHeight: 1.7 }}>
-            Orçamentos costumam morrer de complexidade. Neste ebook, você conhece o Limite de Gastos:
+            Orçamentos costumam morrer de complexidade. Neste guia, você conhece o Limite de Gastos:
             um jeito simples de saber quanto pode gastar por semana e de manter o plano de pé até o fim
             do mês.
           </p>

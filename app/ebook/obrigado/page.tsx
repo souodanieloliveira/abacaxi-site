@@ -7,7 +7,7 @@ import { EBOOK_PDF } from "../../../content/ebook";
 // Texto da página definido por Daniel em 12/11/2026 13:33. No celular, texto alinhado à esquerda e
 // botões na largura toda (12/11/2026 13:44); no computador, centralizado.
 export const metadata: Metadata = {
-  title: "Seu ebook está pronto!",
+  title: "Seu guia está pronto!",
   robots: { index: false, follow: false },
 };
 
@@ -37,7 +37,7 @@ export default function EbookObrigadoPage() {
               margin: "0 0 16px",
             }}
           >
-            Seu ebook está pronto!
+            Seu guia está pronto!
           </h1>
           {[
             "Você pode ler nesta página e fazer o download.",
@@ -59,10 +59,10 @@ export default function EbookObrigadoPage() {
               target="_blank"
               rel="noopener"
             >
-              Abrir o ebook
+              Abrir o guia
             </a>
             <a href={EBOOK_PDF} className="btn-primary" download data-umami-event="ebook-baixar">
-              Baixar o ebook (PDF)
+              Baixar o guia (PDF)
             </a>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function EbookObrigadoPage() {
         <div className="ebook-leitor">
           <iframe
             src={`${EBOOK_PDF}#view=FitH`}
-            title="Ebook Quanto tempo dura seu orçamento?"
+            title="Guia Quanto tempo dura seu orçamento?"
             style={{ width: "100%", height: "100%", border: 0, display: "block" }}
           />
         </div>
