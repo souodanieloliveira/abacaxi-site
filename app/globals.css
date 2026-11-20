@@ -865,3 +865,40 @@ a:focus-visible {
 @media (min-width: 768px) {
   .flex-responsive.flex-topo { align-items: flex-start; }
 }
+
+/* Campanha Black Friday + 13º 2026 (/black-friday-2026, 20/11/2026). Celular primeiro. */
+.bf-wrap { max-width: 880px; margin: 0 auto; }
+.bf-atalhos { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 32px; }
+.bf-atalhos__rotulo { font-size: 0.875rem; font-weight: 700; opacity: 0.6; }
+.bf-atalho { display: inline-block; padding: 8px 14px; border-radius: 999px; background: #ffffff; border: 1px solid var(--color-border-light); color: var(--color-text-accent); font-size: 0.9375rem; font-weight: 500; text-decoration: none; }
+.bf-atalho:hover { border-color: var(--color-text-accent); }
+.bf-regras { margin: 20px 0 0; padding-left: 20px; line-height: 1.7; }
+.bf-compra { margin-top: 32px; }
+.bf-pacotes { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.bf-pacote { background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; display: flex; flex-direction: column; gap: 4px; }
+.bf-pacote--escolhido { border: 2px solid var(--color-button); padding: 23px 19px; }
+.bf-pacote__nome { margin: 0 0 8px; font-weight: 700; color: var(--color-text-accent); font-size: 1.125rem; }
+.bf-pacote__cheio { margin: 0; opacity: 0.6; font-size: 0.9375rem; }
+.bf-pacote__preco { margin: 0; font-size: 2rem; font-weight: 800; color: var(--color-text-main); line-height: 1.2; }
+.bf-pacote__economia { margin: 0 0 12px; font-size: 0.875rem; color: var(--color-text-accent); font-weight: 500; }
+.bf-pacote__botao { margin-top: auto; width: 100%; text-align: center; border: 0; font: inherit; font-weight: 500; cursor: pointer; }
+.bf-pacote__botao.btn-secondary { border: 1px solid var(--color-button); }
+.bf-form { margin-top: 24px; scroll-margin-top: 96px; }
+.bf-passo { margin: 20px 0 0; font-weight: 700; color: var(--color-text-accent); }
+.bf-aviso { margin-top: 24px; background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; line-height: 1.6; }
+.bf-aviso p { margin: 0; }
+.bf-aviso__titulo { font-weight: 700; color: var(--color-text-accent); font-size: 1.125rem; margin-bottom: 6px !important; }
+.bf-aviso a { color: var(--color-text-accent); text-decoration: underline; }
+.bf-duvida { margin-top: 40px; padding: 24px 20px; border-radius: 12px; background: var(--color-dark); color: #ffffff; text-align: center; }
+.bf-duvida p { margin: 0 0 8px; line-height: 1.6; }
+.bf-duvida__titulo { font-weight: 700; font-size: 1.125rem; }
+.bf-duvida .btn-secondary { display: block; margin-top: 16px; background: #ffffff; text-align: center; }
+.bf-termo { padding-left: 20px; line-height: 1.7; margin: 24px 0 0; }
+.bf-termo li { margin-bottom: 12px; }
+.bf-termo__data { margin-top: 24px; opacity: 0.6; font-size: 0.875rem; }
+#bf-compra { scroll-margin-top: 96px; }
+@media (min-width: 768px) {
+  .bf-pacotes { grid-template-columns: repeat(3, 1fr); }
+  .bf-form { max-width: 640px; margin-left: auto; margin-right: auto; }
+  .bf-duvida .btn-secondary { display: inline-block; padding-left: 32px; padding-right: 32px; }
+}
