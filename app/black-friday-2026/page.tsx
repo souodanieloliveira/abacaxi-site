@@ -44,7 +44,7 @@ export default function BlackFridayPage() {
           <ul className="bf-regras">
             <li>Desconto único no ano.</li>
             <li>Os encontros valem por 60 dias, contados da data da compra.</li>
-            <li>Encontros online, por videochamada.</li>
+            <li>Encontros online, por videochamada, de 60 minutos.</li>
           </ul>
 
           <CompraCampanha conversaUrl={BOOKING_URL} />

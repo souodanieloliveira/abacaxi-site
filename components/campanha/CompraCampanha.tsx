@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { digitosWhatsappValidos } from "../calculadora/whatsapp";
-import { PACOTES, estadoCampanha, reais, type EstadoCampanha, type Pacote } from "../../content/campanha";
+import { MODO_TESTE_NAVEGADOR, PACOTES, estadoCampanha, reais, type EstadoCampanha, type Pacote } from "../../content/campanha";
 
 // Compra direta da campanha Black Friday + 13º 2026: escolha do pacote → formulário → aceite do termo →
 // link de pagamento (Mercado Pago) → agendamento do primeiro encontro. O estado da campanha (antes, aberta,
@@ -48,7 +48,7 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
   const [resultado, setResultado] = useState<Resultado | null>(null);
 
   useEffect(() => {
-    const atualizar = () => setEstado(estadoCampanha());
+    const atualizar = () => setEstado(MODO_TESTE_NAVEGADOR ? "aberta" : estadoCampanha());
     atualizar();
     const t = setInterval(atualizar, 30_000);
     return () => clearInterval(t);
@@ -94,6 +94,9 @@ export default function CompraCampanha({ conversaUrl }: { conversaUrl: string })
 
   return (
     <div id="bf-compra" className="bf-compra">
+      {MODO_TESTE_NAVEGADOR && (
+        <p className="bf-aviso bf-aviso__titulo">Prévia de teste: a campanha aparece aberta e o cadastro entra no Funil marcado [TESTE].</p>
+      )}
       <div className="bf-pacotes">
         {PACOTES.map((p) => (
           <div key={p.id} className={"bf-pacote" + (pacote === p.id ? " bf-pacote--escolhido" : "")}>

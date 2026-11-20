@@ -55,7 +55,9 @@ export async function POST(request: Request) {
 
   if (body.site) return NextResponse.json({ ok: true, linkPagamento: "", agenda: "" });
 
-  const estado = estadoCampanha();
+  // Fora da produção (prévia da Vercel ou local), o período não é conferido e o registro sai marcado [TESTE].
+  const teste = process.env.VERCEL_ENV !== "production";
+  const estado = teste ? "aberta" : estadoCampanha();
   if (estado === "antes") return NextResponse.json({ error: "A campanha abre em 24/11, às 00h." }, { status: 403 });
   if (estado === "encerrada") return NextResponse.json({ error: "A campanha foi encerrada." }, { status: 410 });
 
@@ -84,7 +86,7 @@ export async function POST(request: Request) {
   const rotuloPacote = pacote.encontros === 1 ? "1 encontro" : `${pacote.encontros} encontros`;
 
   const fields: Record<string, unknown> = {
-    "Nome do Lead": `${nome} — Black Friday (${rotuloPacote})`,
+    "Nome do Lead": `${teste ? "[TESTE] " : ""}${nome} — Black Friday (${rotuloPacote})`,
     Origem: "Site",
     Fase: "Fechamento",
     Status: "Qualificado",

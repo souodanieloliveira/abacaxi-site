@@ -34,6 +34,10 @@ export const AGENDA_ENCONTRO_URL = "";
 
 export type EstadoCampanha = "antes" | "aberta" | "encerrada";
 
+// Modo de teste (20/11/2026): fora da produção (prévias da Vercel e computador local), a campanha fica aberta
+// para testar o fluxo antes de 24/11. Na produção (abacaxi.cc), vale sempre o horário real.
+export const MODO_TESTE_NAVEGADOR = !!process.env.NEXT_PUBLIC_VERCEL_ENV && process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
+
 export function estadoCampanha(agora: Date = new Date()): EstadoCampanha {
   if (agora < new Date(CAMPANHA.inicio)) return "antes";
   if (agora > new Date(CAMPANHA.fim)) return "encerrada";

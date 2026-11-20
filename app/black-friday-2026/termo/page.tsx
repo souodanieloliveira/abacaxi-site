@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 // Termo de compra dos Encontros Individuais da campanha Black Friday + 13º 2026.
-// Texto proposto pela conversa Site e aprovado por Daniel em 20/11/2026 01:55 ("sim. pode confirmar os itens"),
+// Texto proposto pela conversa Site e aprovado por Daniel em 20/11/2026 01:55 ("sim. pode confirmar os itens") e 02:03 (duração de 60 minutos),
 // com os itens antes marcados "a confirmar" confirmados como propostos. Não há contrato: a compra é por este termo.
 export const metadata: Metadata = {
   title: "Termo de compra: Encontros Individuais (Black Friday 2026)",
@@ -16,7 +16,7 @@ const ITENS: { titulo: string; texto: string }[] = [
   },
   {
     titulo: "O que você está comprando",
-    texto: "Um pacote de 1, 2 ou 3 Encontros Individuais de planejamento financeiro com Daniel Oliveira, online, por videochamada.",
+    texto: "Um pacote de 1, 2 ou 3 Encontros Individuais de planejamento financeiro com Daniel Oliveira, online, por videochamada, com duração planejada de 60 minutos cada um.",
   },
   {
     titulo: "Preço",
