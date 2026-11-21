@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CalendarCheck, ListChecks, Video } from "lucide-react";
 import BarraFixa from "../../components/campanha/BarraFixa";
 import EscolhaPacotes from "../../components/campanha/EscolhaPacotes";
+import { Letreiro } from "../../components/campanha/FaixaCampanha";
 import { BOOKING_URL } from "../../content/blog/config";
 import { PACOTES, reais } from "../../content/campanha";
 import { siteContent } from "../../content/site";
@@ -71,12 +72,9 @@ export default function BlackFridayPage() {
         </div>
       </section>
 
-      <div className="lpb-letreiro lpc-letreiro" aria-hidden="true">
-        <div className="lpb-letreiro__trilho">
-          {[...FRASES, ...FRASES, ...FRASES].map((f, i) => (
-            <span key={i}>{f} ✦ </span>
-          ))}
-        </div>
+      {/* Mesma identidade da faixa do topo do site (Daniel, 20/11/2026 21:39). */}
+      <div className="bf-faixa bf-faixa--pagina" aria-hidden="true">
+        <Letreiro frases={FRASES} />
       </div>
 
       <section className="lpb-pontos lpc-pontos">

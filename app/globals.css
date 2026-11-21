@@ -997,7 +997,7 @@ a:focus-visible {
 .lpb-hero__preco span { display: block; font-size: 3rem; font-weight: 800; line-height: 1.1; color: #ffffff; text-shadow: 0 2px 0 rgba(61, 26, 110, 0.25); }
 .lpb-hero__prazo { margin: 8px 0 0; font-weight: 700; }
 .lpb-botao { display: block; text-align: center; margin-top: 28px; background: #3D1A6E; color: #ffffff; font-weight: 700; font-size: 1.125rem; padding: 18px 24px; border-radius: 999px; text-decoration: none; box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18); }
-.lpb-botao--laranja { background: #FF8B13; }
+.lpb-botao--laranja { background: #FF8B13; color: #111111; } /* texto em preto (Daniel, 20/11/2026 21:42) */
 .lpb-letreiro { background: #3D1A6E; color: #ffffff; overflow: hidden; white-space: nowrap; padding: 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.875rem; }
 .lpb-letreiro__trilho { display: inline-block; animation: lpb-rolar 28s linear infinite; }
 .lpb-letreiro__trilho span { margin-right: 12px; }
@@ -1035,7 +1035,8 @@ a:focus-visible {
 /* Opção C da página de venda (20/11/2026 15:52): entre a A (sóbria) e a B (vibrante). */
 .lpc-hero { background: #3D1A6E; color: #ffffff; }
 .lpc-hero .lpb-hero__titulo { color: #ffffff; }
-.lpc-hero .lpb-hero__marca { background: #FF8B13; transform: none; border-radius: 999px; }
+/* Selo "Black Friday Abacaxi" com a identidade da faixa da promoção: preto com letra laranja (20/11/2026 21:39). */
+.lpc-hero .lpb-hero__marca { background: #111111; color: var(--color-secondary); transform: none; border-radius: 999px; }
 .lpc-hero .lpb-hero__preco span { color: #FF8B13; text-shadow: none; }
 .lpc-hero .lpb-bola--1 { background: rgba(255, 139, 19, 0.16); }
 .lpc-hero .lpb-bola--2 { background: rgba(255, 255, 255, 0.08); }

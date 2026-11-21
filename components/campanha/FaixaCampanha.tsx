@@ -16,9 +16,9 @@ const assinar = () => () => {};
 
 const FRASES = ["Black Friday Abacaxi", "3x R$ 140 sem juros", "Até R$ 500 de desconto", "Encontros Individuais", "Só até 4/12"];
 
-function Metade() {
+function Metade({ frases }: { frases: string[] }) {
   // Repetida para encher telas largas; o trilho tem duas metades iguais e anda metade da largura, sem salto.
-  const sequencia = [...FRASES, ...FRASES];
+  const sequencia = [...frases, ...frases];
   return (
     <span className="bf-faixa__metade">
       {sequencia.map((t, i) => (
@@ -28,6 +28,17 @@ function Metade() {
           <span className="bf-faixa__barra">|</span>
         </Fragment>
       ))}
+    </span>
+  );
+}
+
+// Texto passando, usado na faixa do topo do site e na faixa abaixo da abertura da página da campanha (Daniel,
+// 20/11/2026 21:39: "a faixa fina abaixo do hero, vamos colocar com a mesma identidade da faixa da promoção do site").
+export function Letreiro({ frases }: { frases: string[] }) {
+  return (
+    <span className="bf-faixa__trilho" aria-hidden="true">
+      <Metade frases={frases} />
+      <Metade frases={frases} />
     </span>
   );
 }
@@ -50,10 +61,7 @@ export default function FaixaCampanha() {
       data-umami-event="bf-faixa-topo"
       aria-label="Black Friday Abacaxi: Encontros Individuais a partir de 3x R$ 140 sem juros, até R$ 500 de desconto, só até 4 de dezembro. Ver ofertas."
     >
-      <span className="bf-faixa__trilho" aria-hidden="true">
-        <Metade />
-        <Metade />
-      </span>
+      <Letreiro frases={FRASES} />
       <span className="bf-faixa__botao" aria-hidden="true">
         <span className="bf-faixa__pilula">
           Ver ofertas <span>→</span>
