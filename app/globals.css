@@ -865,3 +865,217 @@ a:focus-visible {
 @media (min-width: 768px) {
   .flex-responsive.flex-topo { align-items: flex-start; }
 }
+
+/* Campanha Black Friday 2026 (/black-friday-2026, 20/11/2026). Celular primeiro. */
+.bf-wrap { max-width: 880px; margin: 0 auto; }
+.bf-atalhos { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 32px; }
+.bf-atalhos__rotulo { font-size: 0.875rem; font-weight: 700; opacity: 0.6; }
+.bf-atalho { display: inline-block; padding: 8px 14px; border-radius: 999px; background: #ffffff; border: 1px solid var(--color-border-light); color: var(--color-text-accent); font-size: 0.9375rem; font-weight: 500; text-decoration: none; }
+.bf-atalho:hover { border-color: var(--color-text-accent); }
+.bf-regras { margin: 20px 0 0; padding-left: 20px; line-height: 1.7; }
+.bf-compra { margin-top: 32px; }
+.bf-pacotes { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.bf-pacote { background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; display: flex; flex-direction: column; gap: 4px; }
+.bf-pacote--escolhido { border: 2px solid var(--color-button); padding: 23px 19px; }
+.bf-pacote__nome { margin: 0 0 8px; font-weight: 700; color: var(--color-text-accent); font-size: 1.125rem; }
+.bf-pacote__cheio { margin: 0; opacity: 0.6; font-size: 0.9375rem; }
+.bf-pacote__preco { margin: 0; font-size: 2rem; font-weight: 800; color: var(--color-text-main); line-height: 1.2; }
+.bf-pacote__economia { margin: 0 0 12px; font-size: 0.875rem; color: var(--color-text-accent); font-weight: 500; }
+.bf-pacote__botao { margin-top: auto; width: 100%; text-align: center; border: 0; font: inherit; font-weight: 500; cursor: pointer; }
+.bf-pacote__botao.btn-secondary { border: 1px solid var(--color-button); }
+.bf-form { margin-top: 24px; scroll-margin-top: 96px; }
+.bf-passo { margin: 20px 0 0; font-weight: 700; color: var(--color-text-accent); }
+.bf-aviso { margin-top: 24px; background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; line-height: 1.6; }
+.bf-aviso p { margin: 0; }
+.bf-aviso__titulo { font-weight: 700; color: var(--color-text-accent); font-size: 1.125rem; margin-bottom: 6px !important; }
+.bf-aviso a { color: var(--color-text-accent); text-decoration: underline; }
+.bf-duvida { margin-top: 40px; padding: 24px 20px; border-radius: 12px; background: var(--color-dark); color: #ffffff; text-align: center; }
+.bf-duvida p { margin: 0 0 8px; line-height: 1.6; }
+.bf-duvida__titulo { font-weight: 700; font-size: 1.125rem; }
+.bf-duvida .btn-secondary { display: block; margin-top: 16px; background: #ffffff; text-align: center; }
+.bf-termo { padding-left: 20px; line-height: 1.7; margin: 24px 0 0; }
+.bf-termo li { margin-bottom: 12px; }
+.bf-termo__data { margin-top: 24px; opacity: 0.6; font-size: 0.875rem; }
+#bf-compra { scroll-margin-top: 96px; }
+.bf-wrap--estreito { max-width: 640px; }
+.bf-cta { display: inline-block; margin-top: 24px; }
+.bf-como { margin-top: 40px; background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 24px 20px; line-height: 1.7; }
+.bf-como p { margin: 0; }
+.bf-como__titulo { font-size: 1.25rem; font-weight: 700; color: var(--color-text-accent); margin: 0 0 8px; }
+.bf-pacotes__titulo { margin-top: 40px; }
+.bf-pacote__desc { margin: 0 0 12px; font-size: 0.9375rem; line-height: 1.6; }
+.bf-rodape { margin-top: 24px; font-size: 0.875rem; opacity: 0.75; }
+.bf-rodape a { color: var(--color-text-accent); text-decoration: underline; }
+.bf-resumo { margin-top: 24px; background: #ffffff; border: 2px solid var(--color-button); border-radius: 12px; padding: 20px; }
+.bf-resumo p { margin: 0; }
+.bf-resumo__rotulo { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
+.bf-resumo__nome { font-weight: 700; color: var(--color-text-accent); font-size: 1.125rem; margin-top: 4px !important; }
+.bf-resumo__preco { margin-top: 4px !important; font-size: 1.25rem; font-weight: 800; }
+.bf-resumo__preco s { font-weight: 400; opacity: 0.5; font-size: 1rem; margin-right: 6px; }
+.bf-resumo__trocar { display: inline-block; margin-top: 8px; font-size: 0.9375rem; color: var(--color-text-accent); text-decoration: underline; }
+.bf-agenda__passo { margin-top: 12px; }
+.bf-form .calc-consent + .calc-desc { margin-top: 16px; }
+/* Agenda em cartão (20/11/2026 17:40, "1. sim"): o fundo branco é da página do Brevo Meetings e não pode ser mudado
+   pelo site; o cartão estreito com faixa roxa faz o branco parecer intencional. */
+.bf-agenda { margin: 32px auto 0; max-width: 520px; background: #ffffff; border: 1px solid #E3DCF2; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(61, 26, 110, 0.12); }
+.bf-agenda__topo { margin: 0; padding: 14px 20px; background: #3D1A6E; color: #ffffff; font-weight: 700; font-size: 0.9375rem; letter-spacing: 0.02em; }
+.bf-agenda__quadro { display: block; width: 100%; height: 720px; border: 0; margin-top: 16px; }
+.bf-agenda__alternativa { margin-top: 16px; font-size: 0.9375rem; text-align: center; }
+.bf-agenda__alternativa a { color: var(--color-text-accent); text-decoration: underline; }
+@media (min-width: 768px) {
+  .bf-pacotes { grid-template-columns: repeat(3, 1fr); }
+  .bf-form { max-width: 640px; margin-left: auto; margin-right: auto; }
+  .bf-duvida .btn-secondary { display: inline-block; padding-left: 32px; padding-right: 32px; }
+}
+
+/* Página de venda da Black Friday 2026 (20/11/2026 15:39): moldura própria, celular primeiro. */
+.lp { background: var(--color-background-soft); min-height: 100vh; display: flex; flex-direction: column; }
+.lp > main, .lp > div { flex: 1; }
+.lp-topo { background: #ffffff; display: flex; justify-content: center; padding: 16px; border-bottom: 1px solid var(--color-border-light); }
+.lp-topo__logo { width: 132px; height: auto; }
+.lp-rodape { padding: 24px 16px 96px; text-align: center; font-size: 0.8125rem; line-height: 1.7; opacity: 0.75; }
+.lp-rodape p { margin: 0; }
+.lp-rodape a { color: inherit; text-decoration: underline; }
+.lp-faixa { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+.lp-hero { background: #3D1A6E; color: #ffffff; padding: 48px 0 56px; }
+.lp-selo { display: inline-block; background: #FF8B13; color: #ffffff; font-weight: 700; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+.lp-hero__titulo { font-family: var(--font-fraunces), Georgia, serif; font-weight: 500; font-size: 2.25rem; line-height: 1.15; margin: 20px 0 16px; color: #ffffff; }
+.lp-hero__texto { font-size: 1.125rem; line-height: 1.6; margin: 0; }
+.lp-hero__texto strong { color: #FFB766; font-size: 1.375rem; }
+.lp-hero__prazo { margin: 8px 0 0; opacity: 0.85; }
+.lp-botao { display: block; text-align: center; margin-top: 28px; padding-top: 16px; padding-bottom: 16px; font-size: 1.0625rem; }
+.lp-pontos { display: grid; gap: 12px; margin-top: -24px; position: relative; }
+.lp-ponto { background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; line-height: 1.55; }
+.lp-ponto p { margin: 0; }
+.lp-ponto strong { color: var(--color-text-accent); }
+.lp-ponto__icone { flex: none; width: 28px; height: 28px; color: #FF8B13; }
+.lp-secao { margin-top: 48px; }
+.lp-secao__titulo { font-family: var(--font-fraunces), Georgia, serif; font-weight: 500; font-size: 1.75rem; color: var(--color-text-accent); margin: 0 0 16px; }
+.lp .bf-compra { margin-top: 0; }
+.bf-pacote { position: relative; }
+.bf-pacote--destaque { border: 2px solid #FF8B13; padding: 23px 19px; box-shadow: 0 8px 24px rgba(61, 26, 110, 0.12); }
+.bf-pacote__selo { position: absolute; top: -12px; left: 20px; background: #FF8B13; color: #ffffff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+.lp .bf-pacote__botao { text-align: center; }
+.lp-depoimento { margin: 0; background: #ffffff; border-left: 4px solid #FF8B13; border-radius: 12px; padding: 24px 20px; line-height: 1.7; }
+.lp-depoimento p { margin: 0; font-family: var(--font-fraunces), Georgia, serif; font-style: italic; font-size: 1.0625rem; }
+.lp-depoimento footer { margin-top: 12px; font-weight: 700; color: var(--color-text-accent); font-size: 0.9375rem; }
+.lp-quem { display: grid; gap: 20px; }
+.lp-quem p { line-height: 1.7; margin: 0; }
+.lp-quem__foto { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; }
+.lp-numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+.lp-numeros__valor { font-size: 1.75rem; font-weight: 800; color: var(--color-text-accent); }
+.lp-numeros__rotulo { font-size: 0.8125rem; line-height: 1.4 !important; opacity: 0.8; }
+.lp-perguntas { display: grid; gap: 10px; }
+.lp-pergunta { background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 12px; padding: 16px 20px; }
+.lp-pergunta summary { cursor: pointer; font-weight: 700; color: var(--color-text-accent); }
+.lp-pergunta p { margin: 10px 0 0; line-height: 1.7; }
+.lp-fecho { background: #3D1A6E; color: #ffffff; margin-top: 56px; padding: 40px 0 48px; text-align: center; }
+.lp-fecho__titulo { font-family: var(--font-fraunces), Georgia, serif; font-size: 1.5rem; margin: 0; }
+.lp-barra { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, 0.96); border-top: 1px solid var(--color-border-light); transform: translateY(110%); transition: transform 0.25s ease; z-index: 40; }
+.lp-barra--visivel { transform: translateY(0); }
+.lp-barra .lp-botao { margin-top: 0; }
+@media (min-width: 768px) {
+  .lp-hero { padding: 72px 0 80px; }
+  .lp-hero__titulo { font-size: 3rem; max-width: 720px; }
+  .lp-botao { display: inline-block; padding-left: 40px; padding-right: 40px; }
+  .lp-pontos { grid-template-columns: repeat(3, 1fr); }
+  .lp-quem { grid-template-columns: 200px 1fr; align-items: center; }
+  .lp-quem__foto { width: 200px; height: 200px; }
+  .lp-barra { display: none; }
+  .lp-rodape { padding-bottom: 24px; }
+}
+
+/* Opção B da página de venda (20/11/2026 15:47): mais vibrante. Cores da marca: laranja #FF8B13 e roxo-escuro #3D1A6E. */
+.lpb-hero { position: relative; overflow: hidden; background: #FF8B13; color: #3D1A6E; padding: 48px 0 56px; }
+.lpb-hero__conteudo { position: relative; }
+.lpb-bola { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.18); }
+.lpb-bola--1 { width: 320px; height: 320px; right: -120px; top: -100px; }
+.lpb-bola--2 { width: 180px; height: 180px; left: -70px; bottom: -80px; background: rgba(61, 26, 110, 0.12); }
+.lpb-hero__marca { display: inline-block; margin: 0; background: #3D1A6E; color: #ffffff; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.875rem; padding: 8px 14px; border-radius: 6px; transform: rotate(-2deg); }
+.lpb-hero__titulo { font-weight: 800; font-size: 2.5rem; line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0 16px; color: #3D1A6E; }
+.lpb-hero__preco { margin: 0; font-size: 1.125rem; font-weight: 500; }
+.lpb-hero__preco span { display: block; font-size: 3rem; font-weight: 800; line-height: 1.1; color: #ffffff; text-shadow: 0 2px 0 rgba(61, 26, 110, 0.25); }
+.lpb-hero__prazo { margin: 8px 0 0; font-weight: 700; }
+.lpb-botao { display: block; text-align: center; margin-top: 28px; background: #3D1A6E; color: #ffffff; font-weight: 700; font-size: 1.125rem; padding: 18px 24px; border-radius: 999px; text-decoration: none; box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18); }
+.lpb-botao--laranja { background: #FF8B13; }
+.lpb-letreiro { background: #3D1A6E; color: #ffffff; overflow: hidden; white-space: nowrap; padding: 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.875rem; }
+.lpb-letreiro__trilho { display: inline-block; animation: lpb-rolar 28s linear infinite; }
+.lpb-letreiro__trilho span { margin-right: 12px; }
+@keyframes lpb-rolar { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+@media (prefers-reduced-motion: reduce) { .lpb-letreiro__trilho { animation: none; } }
+.lpb-pontos { background: #3D1A6E; color: #ffffff; padding: 8px 0 40px; }
+.lpb-pontos__grade { display: grid; gap: 24px; }
+.lpb-ponto svg { width: 44px; height: 44px; padding: 10px; border-radius: 50%; background: #FF8B13; color: #ffffff; }
+.lpb-ponto p { margin: 6px 0 0; line-height: 1.6; opacity: 0.9; }
+.lpb-ponto .lpb-ponto__titulo { font-weight: 800; font-size: 1.125rem; opacity: 1; margin-top: 12px; }
+.lpb-titulo { font-weight: 800; font-size: 2rem; letter-spacing: -0.01em; line-height: 1.15; color: #3D1A6E; margin: 0 0 20px; }
+.lpb .bf-pacote { border-radius: 16px; }
+.lpb .bf-pacote__preco { font-size: 2.5rem; }
+.lpb .bf-pacote--destaque { background: #3D1A6E; color: #ffffff; border-color: #3D1A6E; }
+.lpb .bf-pacote--destaque .bf-pacote__nome, .lpb .bf-pacote--destaque .bf-pacote__preco, .lpb .bf-pacote--destaque .bf-pacote__economia { color: #ffffff; }
+.lpb .bf-pacote--destaque .bf-pacote__economia { color: #FFB766; }
+.lpb-depoimento { background: #FF8B13; color: #3D1A6E; margin-top: 56px; padding: 40px 0 48px; }
+.lpb-depoimento__aspas { margin: 0; font-family: var(--font-fraunces), Georgia, serif; font-size: 6rem; line-height: 0.6; color: #ffffff; }
+.lpb-depoimento blockquote { margin: 0; }
+.lpb-depoimento blockquote p { margin: 0; font-size: 1.125rem; line-height: 1.7; font-weight: 500; }
+.lpb-depoimento footer { margin-top: 16px; font-weight: 800; }
+.lpb-quem__foto { border: 6px solid #FF8B13; }
+.lpb-numeros__valor { color: #FF8B13; }
+.lpb-fecho { background: #3D1A6E; color: #ffffff; margin-top: 56px; padding: 48px 0 56px; text-align: center; }
+.lpb-fecho__titulo { font-weight: 800; font-size: 1.75rem; line-height: 1.2; margin: 0; }
+@media (min-width: 768px) {
+  .lpb-hero { padding: 80px 0 96px; }
+  .lpb-hero__titulo { font-size: 4rem; max-width: 760px; }
+  .lpb-hero__preco span { display: inline; font-size: 3rem; }
+  .lpb-botao { display: inline-block; padding-left: 48px; padding-right: 48px; }
+  .lpb-pontos__grade { grid-template-columns: repeat(3, 1fr); }
+  .lpb-titulo { font-size: 2.5rem; }
+}
+
+/* Opção C da página de venda (20/11/2026 15:52): entre a A (sóbria) e a B (vibrante). */
+.lpc-hero { background: #3D1A6E; color: #ffffff; }
+.lpc-hero .lpb-hero__titulo { color: #ffffff; }
+.lpc-hero .lpb-hero__marca { background: #FF8B13; transform: none; border-radius: 999px; }
+.lpc-hero .lpb-hero__preco span { color: #FF8B13; text-shadow: none; }
+.lpc-hero .lpb-bola--1 { background: rgba(255, 139, 19, 0.16); }
+.lpc-hero .lpb-bola--2 { background: rgba(255, 255, 255, 0.08); }
+.lpc-letreiro { background: #FF8B13; color: #3D1A6E; text-align: center; white-space: normal; }
+.lpc-letreiro .lpb-letreiro__trilho { animation: none; display: block; }
+.lpc-letreiro .lpb-letreiro__trilho span:nth-child(n + 3) { display: none; }
+@media (min-width: 768px) { .lpc-letreiro .lpb-letreiro__trilho span:nth-child(3), .lpc-letreiro .lpb-letreiro__trilho span:nth-child(4) { display: inline; } }
+.lpc-pontos { background: transparent; color: inherit; padding: 32px 0 0; }
+.lpc-pontos .lpb-ponto { background: #ffffff; border: 1px solid var(--color-border-light); border-radius: 16px; padding: 20px; }
+.lpc-pontos .lpb-ponto__titulo { color: #3D1A6E; }
+.lpc-pontos .lpb-ponto p { opacity: 1; }
+.lpc-depoimento { background: transparent; color: inherit; padding: 0; }
+.lpc-depoimento .lp-faixa > * { position: relative; }
+.lpc-depoimento .lp-faixa { background: #ffffff; border-left: 6px solid #FF8B13; border-radius: 16px; padding: 24px 20px; margin: 0 16px; }
+.lpc-depoimento .lpb-depoimento__aspas { color: #FF8B13; }
+.lpc-depoimento footer { color: #3D1A6E; }
+.lpc-fecho { background: #FF8B13; color: #3D1A6E; }
+@media (min-width: 768px) {
+  .lpc-depoimento .lp-faixa { margin: 0 auto; max-width: 848px; }
+}
+
+/* Faixa da Black Friday Abacaxi abaixo do cabeçalho: uma fila de texto passando, reta, sobre fundo preto, frases
+   alternando laranja e branco (Daniel, 20/11/2026 20:42; cor de teste). Botão fixo à direita, piscando. */
+.bf-faixa { --bf-fundo: #111111; --bf-laranja: var(--color-secondary); position: relative; display: flex; align-items: center; height: 48px; overflow: hidden; background: var(--bf-fundo); text-decoration: none; }
+.bf-faixa__trilho { display: flex; width: max-content; animation: bf-rodar 32s linear infinite; }
+.bf-faixa__metade { display: flex; }
+.bf-faixa__frase { padding: 0; font-size: .9375rem; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; color: #ffffff; }
+.bf-faixa__frase--laranja { color: var(--bf-laranja); }
+.bf-faixa__metade { align-items: center; }
+.bf-faixa__barra { margin: 0 7px; font-weight: 800; color: #ffffff; opacity: .6; }
+@keyframes bf-rodar { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.bf-faixa__botao { position: absolute; right: 0; top: 0; bottom: 0; z-index: 1; display: flex; align-items: center; padding: 0 12px 0 32px; background: linear-gradient(to right, rgba(17,17,17,0), var(--bf-fundo) 28px); }
+.bf-faixa__pilula { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 999px; background: #ffffff; color: var(--bf-fundo); font-weight: 800; font-size: .875rem; white-space: nowrap; animation: bf-piscar 1.2s ease-in-out infinite; }
+@keyframes bf-piscar { 0%, 100% { background: #ffffff; } 50% { background: var(--bf-laranja); } }
+@media (min-width: 768px) {
+  .bf-faixa { height: 52px; }
+  .bf-faixa__botao { padding-right: max(24px, calc((100vw - 1100px) / 2)); }
+  .bf-faixa__frase { font-size: 1rem; }
+  .bf-faixa__trilho { animation-duration: 40s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bf-faixa__trilho, .bf-faixa__pilula { animation: none; }
+}

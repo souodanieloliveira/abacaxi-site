@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ATUALIZADA_EM = "19 de novembro de 2026";
+const ATUALIZADA_EM = "20 de novembro de 2026";
 
 export default function PrivacidadePage() {
   return (
@@ -77,6 +77,13 @@ export default function PrivacidadePage() {
                 na calculadora ficam só no seu navegador e não são enviados à Abacaxi.
               </li>
               <li>
+                <strong>Compra de Encontros Individuais (campanhas):</strong> nome, e-mail, WhatsApp, CPF e o
+                registro do aceite do termo de compra, para registrar a compra, gerar a cobrança, emitir a nota fiscal,
+                agendar e falar com você sobre os encontros. O pagamento é feito na Iugu, que recebe o seu nome,
+                e-mail, WhatsApp e CPF para gerar a cobrança e trata os dados do pagamento. O CPF não fica guardado
+                no site.
+              </li>
+              <li>
                 <strong>Formulário de contato:</strong> nome, empresa (se você informar), e-mail,
                 mensagem e serviço de interesse, para responder ao seu contato.
               </li>
@@ -108,7 +115,7 @@ export default function PrivacidadePage() {
 
             <h2>Com quem compartilhamos</h2>
             <p>
-              Só com os serviços que usamos para operar: Brevo (newsletter, materiais e calculadora), Airtable (contatos e lista
+              Só com os serviços que usamos para operar: Brevo (newsletter, materiais, calculadora e e-mails das compras), Iugu (pagamento das compras), Airtable (contatos, compras e lista
               de espera), Google (agenda, e-mail e reCAPTCHA, a proteção contra spam dos formulários do site), Vercel
               (hospedagem e contagem de visitas) e Umami (uso das páginas). Alguns guardam os dados fora
               do Brasil. Não vendemos nem cedemos seus dados a ninguém.
@@ -119,6 +126,7 @@ export default function PrivacidadePage() {
               <li>Newsletter: enquanto a sua inscrição estiver ativa.</li>
               <li>Materiais (guias e outros): 12 meses.</li>
               <li>Calculadora de Limite de Gastos: 12 meses.</li>
+              <li>Compras de Encontros Individuais: enquanto durar o atendimento e pelo prazo exigido pela lei para registros fiscais e contábeis.</li>
               <li>Contatos que não viram clientes: 12 meses.</li>
               <li>Lista de espera: 12 meses.</li>
             </ul>

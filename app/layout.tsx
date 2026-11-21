@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ChromeGate from "../components/ChromeGate";
+import FaixaCampanha from "../components/campanha/FaixaCampanha";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
         />
         <ChromeGate>
           <Header />
+          <FaixaCampanha />
         </ChromeGate>
         {children}
         <ChromeGate>
