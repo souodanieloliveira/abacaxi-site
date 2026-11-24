@@ -6,6 +6,7 @@ import { digitosWhatsappValidos } from "../calculadora/whatsapp";
 import { cpfValido, mascaraCpf } from "./cpf";
 import { CAMPANHA, MODO_TESTE_NAVEGADOR, reais, rotuloPacote, type Pacote } from "../../content/campanha";
 import { useEstadoCampanha } from "./useEstadoCampanha";
+import { lerUtmGuardada } from "../../content/utm";
 
 // Etapa 2 da compra da campanha Black Friday 2026 (20/11/2026 15:21): dados da pessoa, aceite dos Termos e Condições e
 // consentimento; o servidor (/api/black-friday) cria o registro no Funil e a fatura da Iugu, e a pessoa segue para o pagamento.
@@ -76,7 +77,7 @@ export default function FormularioCompra({ pacote }: { pacote: Pacote }) {
       const r = await fetch("/api/black-friday", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pacote: pacote.id, nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: wpp, cpf, termo: true, consentimento: true, site: isca }),
+        body: JSON.stringify({ pacote: pacote.id, nome: nome.trim().replace(/\s+/g, " "), email: email.trim(), whatsapp: wpp, cpf, termo: true, consentimento: true, site: isca, utm: lerUtmGuardada() }),
       });
       const dados = await r.json().catch(() => ({}));
       if (!r.ok) {
