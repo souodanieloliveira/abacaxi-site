@@ -39,7 +39,7 @@ export default function EscolhaPacotes({ conversaUrl }: { conversaUrl: string })
 
       {estado === "antes" && (
         <div className="bf-aviso">
-          <p className="bf-aviso__titulo">A campanha abre em 24 de novembro de 2026, às 00h.</p>
+          <p className="bf-aviso__titulo">A campanha abre em 25 de novembro de 2026, às 00h.</p>
         </div>
       )}
 
