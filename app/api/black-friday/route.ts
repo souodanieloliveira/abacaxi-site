@@ -3,6 +3,7 @@ import { digitosWhatsappValidos } from "../../../components/calculadora/whatsapp
 import { cpfValido, digitosCpf } from "../../../components/campanha/cpf";
 import { FUNIL_TABLE_ID, MARCA_CAMPANHA, airtable, criarFatura } from "../../../components/campanha/servidor";
 import { CAMPANHA, PACOTES, PAGAMENTO, estadoCampanha, reais } from "../../../content/campanha";
+import { limparUtm, textoUtm } from "../../../content/utm";
 
 // Cadastro da compra direta da campanha Black Friday 2026 (/black-friday-2026).
 // Fluxo: pacote → formulário (com CPF) → aceite do termo → fatura da Iugu (Pix ou cartão em até 3x) → página da agenda.
@@ -19,6 +20,7 @@ type Corpo = {
   termo?: boolean;
   consentimento?: boolean;
   site?: string; // campo-isca
+  utm?: unknown; // origem da chegada (content/utm.ts)
 };
 
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -88,6 +90,9 @@ export async function POST(request: Request) {
   const rotuloPacote = pacote.encontros === 1 ? "1 encontro" : `${pacote.encontros} encontros`;
   const aguardando = `${email} — ${whatsapp} — ${rotuloPacote} por ${reais(pacote.precoCampanha)} — aguardando pagamento (prazo ${dataBR(prazo)})`;
 
+  // Origem da chegada (UTM), quando houver: por exemplo "gmail / email / bf2026-pessoal / c05" (24/11/2026).
+  const origemUtm = textoUtm(limparUtm(body.utm));
+
   // 1. Registro no Funil de Vendas.
   let registroId = "";
   try {
@@ -104,6 +109,7 @@ export async function POST(request: Request) {
         Campanha: CAMPANHA.nome,
         "Data de Fechamento Esperada": prazo,
         "Próxima Ação": aguardando,
+        ...(origemUtm ? { "Origem UTM": origemUtm } : {}),
       },
     });
     if (!res.ok) {
