@@ -9,7 +9,7 @@ import { CAMPANHA, MODO_TESTE_NAVEGADOR, estadoCampanha } from "../../content/ca
 // 20:42: "a faixa é boa, mas quero ela sozinha passando. só o escrito, fundo preto, letra ora laranja, ora branca, sem
 // inclinação". Uma fila de texto passando, reta, sobre fundo preto (cor de teste), com o botão "Ver ofertas" fixo à
 // direita, piscando (pedido de 20:32). Quem pede menos movimento no aparelho vê o texto parado e o botão sem piscar.
-// Aparece de 00h00 de 24/11 a 23h59 de 04/12 (horário de Brasília); nas prévias da Vercel fica sempre visível para
+// Aparece de 00h00 de 25/11 a 23h59 de 04/12 (horário de Brasília); nas prévias da Vercel fica sempre visível para
 // testar. Não aparece nas páginas da campanha nem em /pagamento-concluido. A data é lida no navegador (as páginas são
 // geradas antes), por isso a faixa só surge depois de a página carregar.
 const assinar = () => () => {};

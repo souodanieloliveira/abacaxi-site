@@ -17,7 +17,7 @@ import { siteContent } from "../../content/site";
 export const metadata: Metadata = {
   title: "Black Friday Abacaxi: Encontros Individuais com desconto",
   description:
-    "De 24 de novembro a 4 de dezembro de 2026, Encontros Individuais de planejamento financeiro com desconto. A única promoção do ano.",
+    "De 25 de novembro a 4 de dezembro de 2026, Encontros Individuais de planejamento financeiro com desconto. A única promoção do ano.",
   alternates: { canonical: "https://abacaxi.cc/black-friday-2026" },
   openGraph: {
     type: "website",
@@ -51,7 +51,7 @@ const PERGUNTAS = [
   },
 ];
 
-const FRASES = ["Única promoção do ano", "Até R$ 500 de desconto", "De 24/11 a 4/12", "Online, de onde você estiver"];
+const FRASES = ["Única promoção do ano", "Até R$ 500 de desconto", "De 25/11 a 4/12", "Online, de onde você estiver"];
 
 export default function BlackFridayPage() {
   return (
@@ -65,7 +65,7 @@ export default function BlackFridayPage() {
           <p className="lpb-hero__preco">
             a partir de <span>3x {reais(menorPreco / 3)}</span> sem juros
           </p>
-          <p className="lpb-hero__prazo">De 24 de novembro a 4 de dezembro.</p>
+          <p className="lpb-hero__prazo">De 25 de novembro a 4 de dezembro.</p>
           <a href="#bf-pacotes" className="lpb-botao lpb-botao--laranja" data-umami-event="bf-escolher-topo">
             Escolher meu pacote
           </a>

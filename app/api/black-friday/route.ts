@@ -8,7 +8,7 @@ import { CAMPANHA, PACOTES, PAGAMENTO, estadoCampanha, reais } from "../../../co
 // Fluxo: pacote → formulário (com CPF) → aceite do termo → fatura da Iugu (Pix ou cartão em até 3x) → página da agenda.
 // Cada cadastro entra no Funil de Vendas com o campo Campanha preenchido, aguardando o pagamento; o aviso de
 // pagamento da Iugu (/api/iugu/fatura) marca o registro como Ganho.
-// O horário vale pelo servidor: antes de 24/11 00h00 e depois de 04/12 23h59 o cadastro é recusado.
+// O horário vale pelo servidor: antes de 25/11 00h00 e depois de 04/12 23h59 o cadastro é recusado.
 
 type Corpo = {
   pacote?: string;
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
   // Fora da produção (prévia da Vercel ou local), o período não é conferido e o registro sai marcado [TESTE].
   const teste = process.env.VERCEL_ENV !== "production";
   const estado = teste ? "aberta" : estadoCampanha();
-  if (estado === "antes") return NextResponse.json({ error: "A campanha abre em 24/11, às 00h." }, { status: 403 });
+  if (estado === "antes") return NextResponse.json({ error: "A campanha abre em 25/11, às 00h." }, { status: 403 });
   if (estado === "encerrada") return NextResponse.json({ error: "A campanha foi encerrada." }, { status: 410 });
 
   const pacote = PACOTES.find((p) => p.id === body.pacote);
