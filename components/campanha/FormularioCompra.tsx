@@ -180,6 +180,11 @@ export default function FormularioCompra({ pacote }: { pacote: Pacote }) {
           <button className="btn-primary calc-botao" type="submit" disabled={enviando} data-umami-event="bf-cadastrar">
             {enviando ? "Abrindo o pagamento…" : "Ir para o pagamento"}
           </button>
+          {enviando && (
+            <p className="calc-desc" role="status">
+              Preparando a sua fatura. Isso pode levar alguns segundos.
+            </p>
+          )}
         </form>
       )}
     </div>
