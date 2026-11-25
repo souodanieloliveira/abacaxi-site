@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { digitosWhatsappValidos } from "../../../components/calculadora/whatsapp";
 import { cpfValido, digitosCpf } from "../../../components/campanha/cpf";
 import { FUNIL_TABLE_ID, MARCA_CAMPANHA, airtable, criarFatura } from "../../../components/campanha/servidor";
@@ -158,10 +158,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Não foi possível abrir o pagamento agora. Tente de novo em instantes." }, { status: 502 });
   }
 
-  // 3. Liga a fatura ao registro do Funil.
-  await airtable("PATCH", `${FUNIL_TABLE_ID}/${registroId}`, {
-    fields: { "Próxima Ação": `${aguardando} — fatura Iugu ${fatura.dados.id} — ${fatura.dados.secure_url}` },
-  }).catch((erro) => console.error("Falha ao ligar a fatura ao Funil:", erro));
+  // 3. Liga a fatura ao registro do Funil depois de responder (after), para a pessoa seguir para a Iugu sem esperar
+  // esta gravação (25/11/2026, Daniel: "demora muito para abrir a página da iugu").
+  const faturaId = fatura.dados.id;
+  const faturaUrl = fatura.dados.secure_url;
+  after(async () => {
+    try {
+      const res = await airtable("PATCH", `${FUNIL_TABLE_ID}/${registroId}`, {
+        fields: { "Próxima Ação": `${aguardando} — fatura Iugu ${faturaId} — ${faturaUrl}` },
+      });
+      if (!res.ok) console.error("Erro do Airtable ao ligar a fatura ao Funil:", res.status, await res.text());
+    } catch (erro) {
+      console.error("Falha ao ligar a fatura ao Funil:", erro);
+    }
+  });
 
   return NextResponse.json({ ok: true, url: fatura.dados.secure_url });
 }
