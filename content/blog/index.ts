@@ -3,9 +3,10 @@ import escolhaOSeuInimigo from "./posts/escolha-o-seu-inimigo";
 import naoEComigo from "./posts/nao-e-comigo-custa-mais-do-que-parece";
 import oQueOMercadoEnsina from "./posts/o-que-o-mercado-financeiro-nos-ensina-sobre-ele-mesmo";
 import oQueTeDistrai from "./posts/o-que-te-distrai";
+import motivosParaAgradecer from "./posts/motivos-para-agradecer";
 
 // Para publicar um texto novo: crie o arquivo em ./posts e adicione-o aqui.
-const posts: BlogPost[] = [escolhaOSeuInimigo, naoEComigo, oQueOMercadoEnsina, oQueTeDistrai];
+const posts: BlogPost[] = [escolhaOSeuInimigo, naoEComigo, oQueOMercadoEnsina, oQueTeDistrai, motivosParaAgradecer];
 
 export function getAllPosts(): BlogPost[] {
   return [...posts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
