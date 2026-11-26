@@ -1,12 +1,14 @@
 import Script from "next/script";
 import { EBOOK_FORM_URL } from "../../content/ebook";
 import { IconeAviso, MENSAGENS_BREVO, RECAPTCHA_SITE_KEY } from "../brevo/comum";
+import CampoOrigem from "./CampoOrigem";
 
 // Formulário "Material Rico" do Brevo dentro de /ebook (decisão de Daniel em 12/11/2026, opção b).
 // Marcação, nomes de campos, ids e scripts vêm do código HTML gerado pelo Brevo (Compartilhar > HTML);
 // o visual é o do site (estilos .ebook-form em globals.css; a folha de estilos do Brevo não é carregada). O Brevo continua cuidando da lista, do
 // reCAPTCHA, do e-mail com o ebook (modelo 9) e do envio para /ebook/obrigado.
 // Se o formulário mudar no Brevo (campos, textos, lista), este arquivo precisa ser atualizado junto.
+// Campo oculto ORIGEM (26/11/2026): atributo ORIGEM criado na Brevo e incluído no formulário, não obrigatório; ver CampoOrigem.
 
 export default function FormularioEbook() {
   return (
@@ -144,6 +146,7 @@ export default function FormularioEbook() {
 
             <input type="text" name="email_address_check" defaultValue="" className="input--hidden" tabIndex={-1} autoComplete="off" />
             <input type="hidden" name="locale" value="pt" />
+            <CampoOrigem />
           </form>
         </div>
       </div>
