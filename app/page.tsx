@@ -85,7 +85,7 @@ export default function Home() {
                   title={
                     service.href === "/pessoas" ? "Serviços para pessoas físicas" :
                     service.href === "/empresas" ? "Serviços para empresas" :
-                    "Educação financeira"
+                    "Cursos de educação financeira"
                   }
                   style={{
                     display: "flex",

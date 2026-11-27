@@ -11,12 +11,14 @@ import { Menu, X } from "lucide-react";
 // Roxo-escuro (opção C, Daniel em 16/11/2026 14:10), com o logo sem "planejamento financeiro" e texto branco
 // (14:20). No celular, o botão é de contorno branco, para o laranja não brigar com o do logo (14:20).
 
+// 27/11/2026: "Educação" virou "Cursos" e "Blog" saiu do menu, com "Conteúdos" no lugar (conversa de Marketing).
+// O /blog (descasca.) continua no ar, com link em /conteudos e no rodapé.
 const navLinks = [
   { href: "/pessoas", label: "Pessoas", title: "Serviços para pessoas físicas" },
   { href: "/empresas", label: "Empresas", title: "Serviços para empresas" },
-  { href: "/educacao", label: "Educação", title: "Educação financeira" },
+  { href: "/cursos", label: "Cursos", title: "Cursos de educação financeira" },
   { href: "/sobre", label: "Sobre", title: "Sobre a Abacaxi" },
-  { href: "/blog", label: "Blog", title: "Blog da Abacaxi" },
+  { href: "/conteudos", label: "Conteúdos", title: "Conteúdos gratuitos da Abacaxi" },
 ];
 
 export default function Header() {

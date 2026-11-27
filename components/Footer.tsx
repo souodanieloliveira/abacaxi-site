@@ -97,6 +97,10 @@ export default function Footer() {
             CNPJ 12.329.221/0001-97 ·{" "}
             <Link href="/privacidade" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
               Política de Privacidade
+            </Link>{" "}
+            ·{" "}
+            <Link href="/blog" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+              Blog
             </Link>
           </span>
           <span>© 2026 Abacaxi Serviços Financeiros Ltda. Todos os direitos reservados.</span>
