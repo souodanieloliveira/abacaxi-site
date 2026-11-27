@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { EBOOK_PDF } from "../../../content/ebook";
+import LeitorPdf from "../../../components/ebook/LeitorPdf";
 
 // Página depois do envio do formulário do ebook (configurada no Brevo). Fora do índice de busca.
 // 12/11/2026: no computador, o PDF aparece na própria página; no celular, o botão "Abrir o ebook"
 // abre o PDF no leitor do aparelho (navegadores de celular não mostram PDF embutido de forma confiável).
+// 27/11/2026: o leitor só é montado no computador (LeitorPdf), para o celular não baixar o PDF escondido.
 // Texto da página definido por Daniel em 12/11/2026 13:33. No celular, texto alinhado à esquerda e
 // botões na largura toda (12/11/2026 13:44); no computador, centralizado.
 export const metadata: Metadata = {
@@ -67,13 +69,7 @@ export default function EbookObrigadoPage() {
           </div>
         </div>
 
-        <div className="ebook-leitor">
-          <iframe
-            src={`${EBOOK_PDF}#view=FitH`}
-            title="Guia Quanto tempo dura seu orçamento?"
-            style={{ width: "100%", height: "100%", border: 0, display: "block" }}
-          />
-        </div>
+        <LeitorPdf src={`${EBOOK_PDF}#view=FitH`} titulo="Guia Quanto tempo dura seu orçamento?" />
       </div>
     </div>
   );
