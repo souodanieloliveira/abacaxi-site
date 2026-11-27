@@ -3,12 +3,12 @@ import { siteContent } from "../../content/site";
 import PaginaHero from "../../components/PaginaHero";
 
 export const metadata: Metadata = {
-  title: "Educação Financeira",
+  title: "Cursos de educação financeira",
   description:
     "Aulas e cursos estruturados de educação financeira para empresas e órgãos — com foco especial em preparação para aposentadoria.",
-  alternates: { canonical: "https://abacaxi.cc/educacao" },
+  alternates: { canonical: "https://abacaxi.cc/cursos" },
   openGraph: {
-    url: "https://abacaxi.cc/educacao",
+    url: "https://abacaxi.cc/cursos",
     images: [{ url: "https://abacaxi.cc/hero-abacaxi.png", width: 1200, height: 630 }],
   },
   twitter: {
@@ -19,13 +19,16 @@ export const metadata: Metadata = {
 import ContactForm from "../../components/ContactForm";
 import EmailCapture from "../../components/EmailCapture";
 
-export default function EducacaoPage() {
+// 27/11/2026: "Educação" passou a se chamar "Cursos" (decisão da conversa de Marketing; endereço /cursos,
+// Daniel: "Sim, /cursos"). /educacao redireciona para cá (next.config.ts). O valor enviado pelo formulário
+// continua "Educação", para não mudar o que chega no Airtable.
+export default function CursosPage() {
   const { educacao } = siteContent;
 
   return (
     <>
       <PaginaHero
-        rotulo="Educação financeira"
+        rotulo="Cursos"
         titulo={educacao.hero.title}
         frase={educacao.hero.subtitle}
         imagem={educacao.hero.image}

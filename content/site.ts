@@ -29,11 +29,11 @@ export const siteContent = {
         href: "/empresas",
       },
       {
-        title: "Educação.",
+        title: "Cursos.",
         subtitle: "Cursos online e presenciais.",
         description:
           "A educação financeira apropriada vai além do conhecimento técnico: promove clareza, tranquilidade e melhores decisões para pessoas, grupos, empresas e instituições.",
-        href: "/educacao",
+        href: "/cursos",
       },
     ],
 
@@ -299,7 +299,7 @@ export const siteContent = {
       image: "/hero-abacaxi.png",
     },
     main: {
-      tag: "Para empresas e órgãos",
+      tag: "Aulas e workshops para empresas e órgãos públicos",
       subtitle: "Uma aula que transforma a relação das pessoas com o dinheiro.",
       description:
         "Há mais de 4 anos levamos educação financeira para colaboradores de empresas e órgãos como CNI, SESC/SENAC e Ministério Público de Minas Gerais. Nossas aulas têm entre 2h e 3h e podem ser contratadas de forma avulsa ou como parte de um programa estruturado de preparação para aposentadoria.",
